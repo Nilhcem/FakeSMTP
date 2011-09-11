@@ -1,0 +1,12 @@
+# Ignore temporary files
+*~
+\#*
+
+# Ignore target folder
+target/*
+
+# Ignore eclipse files
+.classpath
+.pmd
+.project
+.settings/*

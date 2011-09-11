@@ -1,0 +1,39 @@
+package com.nilhcem.fakesmtp.mail;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.subethamail.smtp.helper.SimpleMessageListenerAdapter;
+import org.subethamail.smtp.server.SMTPServer;
+
+// Singleton
+public enum SMTPServerHandler {
+	INSTANCE;
+
+	private static final Logger logger = LoggerFactory.getLogger(SMTPServerHandler.class);
+	private final MailListener myListener = new MailListener();
+	private final SMTPServer smtpServer;
+
+	SMTPServerHandler() {
+		smtpServer = new SMTPServer(new SimpleMessageListenerAdapter(myListener));
+	}
+
+	// throws java.lang.RuntimeException:  java.net.BindException "Permission denied"
+	// throws java.lang.IllegalArgumentException: port out of range:
+	public void startServer(int port) {
+		logger.debug("Starting server on port {}", port);
+		smtpServer.setPort(port);
+		smtpServer.start();
+	}
+
+	// Stops the server. If the server is not started, does nothing.
+	public void stopServer() {
+		if (smtpServer.isRunning()) {
+			logger.debug("Stopping server");
+			smtpServer.stop();
+		}
+	}
+
+	public MailListener getSMTPListener() {
+		return myListener;
+	}
+}
