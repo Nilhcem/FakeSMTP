@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
 import com.nilhcem.fakesmtp.mail.SMTPServerHandler;
 import com.nilhcem.fakesmtp.ui.MainPanel.PanelActionEnum;
 
-public class StartServerButton extends JButton implements ActionListener {
+public final class StartServerButton extends JButton implements ActionListener {
 	private static final long serialVersionUID = -6775847462270276642L;
-	private static final Logger logger = LoggerFactory.getLogger(StartServerButton.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(StartServerButton.class);
 
 	private static final String START_SERVER_STR = "Start server";
 	private static final String STOP_SERVER_STR = "Stop server";
@@ -47,14 +47,14 @@ public class StartServerButton extends JButton implements ActionListener {
 				setText(StartServerButton.STOP_SERVER_STR);
 			} catch (RuntimeException exception) {
 				if (exception.getMessage().contains("BindException")) { // can't open port
-					logger.error("{}. Port {}", exception.getMessage(), port);
+					LOGGER.error("{}. Port {}", exception.getMessage(), port);
 					displayError(String.format("Can't start SMTP Server.%nMake sure no other program is listening on port %d.", port));
 				} else if (exception.getMessage().contains("out of range")) { // port out of range
-					logger.error("Port {} our of range.", port);
+					LOGGER.error("Port {} our of range.", port);
 					displayError(String.format("Can't start SMTP Server.%nPort %d is out of range.", port));
 				}
 				else { // unknown error
-					logger.error("", exception);
+					LOGGER.error("", exception);
 					displayError(String.format("Error starting SMTP Server:%n%s.", exception.getMessage()));
 				}
 			}

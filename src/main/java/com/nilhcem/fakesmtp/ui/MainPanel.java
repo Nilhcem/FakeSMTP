@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 
-public class MainPanel extends JPanel {
+public final class MainPanel extends JPanel {
 	private static final long serialVersionUID = 3754673330087672446L;
 	private static final String DEFAULT_PORT = "2525"; // 25
 	private static final String DEFAULT_PATH = "./fakesmtp-mails"; // ./fakeSMTP

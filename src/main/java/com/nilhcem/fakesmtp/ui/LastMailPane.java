@@ -18,11 +18,11 @@ import org.slf4j.LoggerFactory;
 import com.nilhcem.fakesmtp.mail.IMailObserver;
 import com.nilhcem.fakesmtp.mail.SMTPServerHandler;
 
-public class LastMailPane extends JScrollPane implements IMailObserver {
+public final class LastMailPane extends JScrollPane implements IMailObserver {
 	private static final long serialVersionUID = 7824377979564256075L;
 	private final JTextArea lastMailArea = new JTextArea();
 	private static final String MAIL_SUFFIX = ".eml";
-	private static final Logger logger = LoggerFactory.getLogger(LastMailPane.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LastMailPane.class);
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyhhmmssSSS");
 
 	public LastMailPane() {
@@ -39,6 +39,7 @@ public class LastMailPane extends JScrollPane implements IMailObserver {
 	}
 
 	private String convertStreamToString(InputStream is) {
+		final long lineNbToStartCopy = 4; // Do not copy the first 4 lines (received part)
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 		StringBuilder sb = new StringBuilder();
 
@@ -46,13 +47,12 @@ public class LastMailPane extends JScrollPane implements IMailObserver {
 		long lineNb = 0;
 		try {
 			while ((line = reader.readLine()) != null) {
-				// Do not copy the first 3 lines (received part).
-				if (++lineNb > 4) {
+				if (++lineNb > lineNbToStartCopy) {
 					sb.append(line + System.getProperty("line.separator"));
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return sb.toString();
 	}
@@ -77,7 +77,7 @@ public class LastMailPane extends JScrollPane implements IMailObserver {
 		try {
 			FileUtils.writeStringToFile(file, mailContent);
 		} catch (IOException e) {
-			logger.error("", e);
+			LOGGER.error("", e);
 		}
 	}
 }

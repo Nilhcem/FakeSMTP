@@ -8,7 +8,7 @@ import ch.qos.logback.core.AppenderBase;
 
 // Logback appender class
 // Observable
-public class SMTPLogsAppender<E> extends AppenderBase<E> implements ILogObservable {
+public final class SMTPLogsAppender<E> extends AppenderBase<E> implements ILogObservable {
 	private final List<ILogObserver> observers = new ArrayList<ILogObserver>();
 
 	@Override

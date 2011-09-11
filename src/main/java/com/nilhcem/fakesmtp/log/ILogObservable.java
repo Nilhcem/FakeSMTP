@@ -1,7 +1,7 @@
 package com.nilhcem.fakesmtp.log;
 
 public interface ILogObservable {
-	public void addObserver(ILogObserver observer);
-	public void removeObserver(ILogObserver observer);
-	public void notifyObservers(String log);
+	void addObserver(ILogObserver observer);
+	void removeObserver(ILogObserver observer);
+	void notifyObservers(String log);
 }

@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 import com.nilhcem.fakesmtp.mail.SMTPServerHandler;
 
-public class MainFrame extends JFrame {
+public final class MainFrame extends JFrame {
 	private static final long serialVersionUID = 54795562728273075L;
 	private static final int HEIGHT = 470;
 	private static final int WIDTH = 620;

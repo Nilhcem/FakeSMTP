@@ -8,10 +8,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-public class MenuBar extends JMenuBar implements ActionListener {
+public final class MenuBar extends JMenuBar implements ActionListener {
 	private static final long serialVersionUID = 3023456490990170945L;
-	private JMenu file;
-	private JMenu help;
 
 	private enum MenuActionEnum {
 		ABOUT,
@@ -19,30 +17,30 @@ public class MenuBar extends JMenuBar implements ActionListener {
 	}
 
 	public MenuBar() {
-		addFileMenu();
-		addHelpMenu();
+		createFileMenu();
+		createHelpMenu();
 	}
 
 	// creates and adds the file menu
-	private void addFileMenu() {
-		file = new JMenu("File");
+	private void createFileMenu() {
+		JMenu fileMenu = new JMenu("File");
 		JMenuItem exit = new JMenuItem("Exit");
 
 		exit.setActionCommand(MenuActionEnum.EXIT.toString());
 		exit.addActionListener(this);
-		file.add(exit);
-		add(file);
+		fileMenu.add(exit);
+		add(fileMenu);
 	}
 
 	// creates and adds the help menu
-	private void addHelpMenu() {
-		help = new JMenu("Help");
+	private void createHelpMenu() {
+		JMenu helpMenu = new JMenu("Help");
 		JMenuItem about = new JMenuItem("About");
 		about.setActionCommand(MenuActionEnum.ABOUT.toString());
 		about.addActionListener(this);
 
-		help.add(about);
-		add(help);
+		helpMenu.add(about);
+		add(helpMenu);
 	}
 
 	@Override

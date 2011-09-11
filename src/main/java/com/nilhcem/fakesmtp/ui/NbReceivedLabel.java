@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import com.nilhcem.fakesmtp.mail.IMailObserver;
 import com.nilhcem.fakesmtp.mail.SMTPServerHandler;
 
-public class NbReceivedLabel extends JLabel implements IMailObserver {
+public final class NbReceivedLabel extends JLabel implements IMailObserver {
 	private static final long serialVersionUID = 6438269208461377412L;
 	private static long nbMsgReceived = 0;
 

@@ -5,11 +5,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.subethamail.smtp.TooMuchDataException;
 import org.subethamail.smtp.helper.SimpleMessageListener;
 
-public class MailListener implements SimpleMessageListener, IMailObservable {
-	List<IMailObserver> observers = new ArrayList<IMailObserver>();
+public final class MailListener implements SimpleMessageListener, IMailObservable {
+	private List<IMailObserver> observers = new ArrayList<IMailObserver>();
 
     /**
      * Called once for every RCPT TO during a SMTP exchange.
@@ -21,7 +20,7 @@ public class MailListener implements SimpleMessageListener, IMailObservable {
 	}
 
 	@Override
-	public void deliver(String from, String recipient, InputStream data) throws TooMuchDataException, IOException {
+	public void deliver(String from, String recipient, InputStream data) throws IOException {
 		notifyObservers(data);
 	}
 

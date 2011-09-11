@@ -20,9 +20,9 @@ import com.nilhcem.fakesmtp.ui.MainPanel.PanelActionEnum;
 
 // Scrollable pane containing a text area for logs
 // Observer always updated
-public class LogsPane extends JScrollPane implements ActionListener, ILogObserver {
+public final class LogsPane extends JScrollPane implements ActionListener, ILogObserver {
 	private static final long serialVersionUID = -3886655723914600051L;
-	private static final Logger logger = LoggerFactory.getLogger(LogsPane.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LogsPane.class);
 	private static final String SMTP_LOGS_APPENDER_NAME = "SMTPLOGS";
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
 	private final JTextArea logsArea = new JTextArea();
@@ -41,7 +41,7 @@ public class LogsPane extends JScrollPane implements ActionListener, ILogObserve
 		SMTPLogsAppender<ILoggingEvent> appender = (SMTPLogsAppender<ILoggingEvent>)((AppenderAttachable<ILoggingEvent>) smtpLogger)
 			.getAppender(LogsPane.SMTP_LOGS_APPENDER_NAME);
 		if (appender == null) {
-			logger.error("Can't find logger: {}", LogsPane.SMTP_LOGS_APPENDER_NAME);
+			LOGGER.error("Can't find logger: {}", LogsPane.SMTP_LOGS_APPENDER_NAME);
 		} else {
 			appender.addObserver(this);
 		}

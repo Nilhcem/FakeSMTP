@@ -9,7 +9,7 @@ import org.subethamail.smtp.server.SMTPServer;
 public enum SMTPServerHandler {
 	INSTANCE;
 
-	private static final Logger logger = LoggerFactory.getLogger(SMTPServerHandler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SMTPServerHandler.class);
 	private final MailListener myListener = new MailListener();
 	private final SMTPServer smtpServer;
 
@@ -20,7 +20,7 @@ public enum SMTPServerHandler {
 	// throws java.lang.RuntimeException:  java.net.BindException "Permission denied"
 	// throws java.lang.IllegalArgumentException: port out of range:
 	public void startServer(int port) {
-		logger.debug("Starting server on port {}", port);
+		LOGGER.debug("Starting server on port {}", port);
 		smtpServer.setPort(port);
 		smtpServer.start();
 	}
@@ -28,7 +28,7 @@ public enum SMTPServerHandler {
 	// Stops the server. If the server is not started, does nothing.
 	public void stopServer() {
 		if (smtpServer.isRunning()) {
-			logger.debug("Stopping server");
+			LOGGER.debug("Stopping server");
 			smtpServer.stop();
 		}
 	}
