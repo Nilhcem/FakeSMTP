@@ -1,5 +1,6 @@
 package com.nilhcem.fakesmtp.ui;
 
+import java.awt.Font;
 import java.io.InputStream;
 
 import javax.swing.JLabel;
@@ -14,6 +15,11 @@ public final class NbReceivedLabel extends JLabel implements IMailObserver {
 	// Initializes the number of received mails as 0 and add observer to receive notification when we got a message
 	public NbReceivedLabel() {
 		super("0");
+
+		// Set bold font
+		Font boldFont = new Font(getFont().getName(), Font.BOLD, getFont().getSize());
+		setFont(boldFont);
+
 		SMTPServerHandler.INSTANCE.getSMTPListener().addObserver(this);
 	}
 

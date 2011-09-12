@@ -43,7 +43,7 @@ public class SendEmailsIT {
 		attachment.setPath("src/main/resources/logback.xml");
 		attachment.setDisposition(EmailAttachment.ATTACHMENT);
 		attachment.setDescription("Pdf file");
-		attachment.setName("Logback");
+		attachment.setName("logback.xml");
 
 		// Create the email message
 		MultiPartEmail email = new MultiPartEmail();
