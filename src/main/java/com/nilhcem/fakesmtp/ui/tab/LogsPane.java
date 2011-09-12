@@ -2,6 +2,8 @@ package com.nilhcem.fakesmtp.ui.tab;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -49,6 +51,14 @@ public final class LogsPane extends JScrollPane implements ActionListener, ILogO
 	@Override
 	public void update(String log) {
 		logsArea.append(String.format("%s - %s%n", dateFormat.format(new Date()), log));
+
+		// Scroll pane to the bottom
+		getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+			@Override
+			public void adjustmentValueChanged(AdjustmentEvent e) {
+				e.getAdjustable().setValue(e.getAdjustable().getMaximum());
+			}
+		});
 	}
 
 	private void clearLogs() {
