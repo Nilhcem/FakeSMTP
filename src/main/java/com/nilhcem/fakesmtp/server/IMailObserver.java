@@ -1,4 +1,4 @@
-package com.nilhcem.fakesmtp.mail;
+package com.nilhcem.fakesmtp.server;
 
 import java.io.InputStream;
 

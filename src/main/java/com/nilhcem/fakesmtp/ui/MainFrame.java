@@ -2,7 +2,7 @@ package com.nilhcem.fakesmtp.ui;
 
 import javax.swing.JFrame;
 
-import com.nilhcem.fakesmtp.mail.SMTPServerHandler;
+import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
 public final class MainFrame extends JFrame {
 	private static final long serialVersionUID = 54795562728273075L;

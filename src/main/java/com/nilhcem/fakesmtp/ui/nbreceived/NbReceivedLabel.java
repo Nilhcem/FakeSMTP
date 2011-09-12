@@ -1,12 +1,12 @@
-package com.nilhcem.fakesmtp.ui;
+package com.nilhcem.fakesmtp.ui.nbreceived;
 
 import java.awt.Font;
 import java.io.InputStream;
 
 import javax.swing.JLabel;
 
-import com.nilhcem.fakesmtp.mail.IMailObserver;
-import com.nilhcem.fakesmtp.mail.SMTPServerHandler;
+import com.nilhcem.fakesmtp.server.IMailObserver;
+import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
 public final class NbReceivedLabel extends JLabel implements IMailObserver {
 	private static final long serialVersionUID = 6438269208461377412L;

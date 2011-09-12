@@ -1,4 +1,4 @@
-package com.nilhcem.fakesmtp.ui;
+package com.nilhcem.fakesmtp.ui.tab;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,11 +15,12 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nilhcem.fakesmtp.mail.IMailObserver;
-import com.nilhcem.fakesmtp.mail.SMTPServerHandler;
+import com.nilhcem.fakesmtp.server.IMailObserver;
+import com.nilhcem.fakesmtp.server.SMTPServerHandler;
+import com.nilhcem.fakesmtp.ui.MainPanel;
 
 public final class LastMailPane extends JScrollPane implements IMailObserver {
-	private static final long serialVersionUID = 7824377979564256075L;
+	private static final long serialVersionUID = 1692487027292449420L;
 	private final JTextArea lastMailArea = new JTextArea();
 	private static final String MAIL_SUFFIX = ".eml";
 	private static final Logger LOGGER = LoggerFactory.getLogger(LastMailPane.class);
@@ -35,7 +36,7 @@ public final class LastMailPane extends JScrollPane implements IMailObserver {
 	public synchronized void update(InputStream data) {
 		String mailContent = convertStreamToString(data);
 		lastMailArea.setText(mailContent);
-		saveEmail(mailContent);
+		saveEmailToFile(mailContent);
 	}
 
 	private String convertStreamToString(InputStream is) {
@@ -57,7 +58,8 @@ public final class LastMailPane extends JScrollPane implements IMailObserver {
 		return sb.toString();
 	}
 
-	private void saveEmail(String mailContent) {
+	// TODO: Put this in another place.
+	private void saveEmailToFile(String mailContent) {
 		MainPanel mainPanel = (MainPanel)getParent().getParent();
 
 		String filePath = String.format("%s%s%d_%s", mainPanel.getSavePathValue(), File.separator,
@@ -77,7 +79,9 @@ public final class LastMailPane extends JScrollPane implements IMailObserver {
 		try {
 			FileUtils.writeStringToFile(file, mailContent);
 		} catch (IOException e) {
-			LOGGER.error("", e);
+			// If we can't save file, we display the error in the SMTP logs
+			Logger smtpLogger = LoggerFactory.getLogger(org.subethamail.smtp.server.Session.class);
+			smtpLogger.error("Error: Can't save email: {}", e.getMessage());
 		}
 	}
 }

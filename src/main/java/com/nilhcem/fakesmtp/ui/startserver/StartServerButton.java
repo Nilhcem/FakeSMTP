@@ -1,4 +1,4 @@
-package com.nilhcem.fakesmtp.ui;
+package com.nilhcem.fakesmtp.ui.startserver;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,11 +9,11 @@ import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.nilhcem.fakesmtp.mail.SMTPServerHandler;
-import com.nilhcem.fakesmtp.ui.MainPanel.PanelActionEnum;
+import com.nilhcem.fakesmtp.server.SMTPServerHandler;
+import com.nilhcem.fakesmtp.ui.MainPanel;
 
 public final class StartServerButton extends JButton implements ActionListener {
-	private static final long serialVersionUID = -6775847462270276642L;
+	private static final long serialVersionUID = -6482637657359938820L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(StartServerButton.class);
 
 	private static final String START_SERVER_STR = "Start server";
@@ -21,7 +21,7 @@ public final class StartServerButton extends JButton implements ActionListener {
 
 	public StartServerButton() {
 		super(StartServerButton.START_SERVER_STR);
-		setActionCommand(PanelActionEnum.START_SERVER.toString());
+		setActionCommand(ActionServerEnum.START_SERVER.toString());
 		addActionListener(this);
 	}
 
@@ -29,9 +29,9 @@ public final class StartServerButton extends JButton implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		String actionCommand = event.getActionCommand();
 
-		if (actionCommand.equals(PanelActionEnum.START_SERVER.toString())) {
+		if (actionCommand.equals(ActionServerEnum.START_SERVER.toString())) {
 			startServer();
-		} else if (actionCommand.equals(PanelActionEnum.STOP_SERVER.toString())) {
+		} else if (actionCommand.equals(ActionServerEnum.STOP_SERVER.toString())) {
 			stopServer();
 		}
 	}
@@ -43,7 +43,7 @@ public final class StartServerButton extends JButton implements ActionListener {
 		if (port != null) {
 			try {
 				SMTPServerHandler.INSTANCE.startServer(port);
-				setActionCommand(PanelActionEnum.STOP_SERVER.toString());
+				setActionCommand(ActionServerEnum.STOP_SERVER.toString());
 				setText(StartServerButton.STOP_SERVER_STR);
 			} catch (RuntimeException exception) {
 				if (exception.getMessage().contains("BindException")) { // can't open port
@@ -64,7 +64,7 @@ public final class StartServerButton extends JButton implements ActionListener {
 	// Stops server and changes button text and action
 	private void stopServer() {
 		SMTPServerHandler.INSTANCE.stopServer();
-		setActionCommand(PanelActionEnum.START_SERVER.toString());
+		setActionCommand(ActionServerEnum.START_SERVER.toString());
 		setText(StartServerButton.START_SERVER_STR);
 	}
 

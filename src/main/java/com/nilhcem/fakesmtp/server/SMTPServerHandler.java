@@ -1,4 +1,4 @@
-package com.nilhcem.fakesmtp.mail;
+package com.nilhcem.fakesmtp.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,7 @@ public enum SMTPServerHandler {
 	private final MailListener myListener = new MailListener();
 	private final SMTPServer smtpServer;
 
-	SMTPServerHandler() {
+	private SMTPServerHandler() {
 		smtpServer = new SMTPServer(new SimpleMessageListenerAdapter(myListener));
 	}
 

@@ -8,10 +8,15 @@ import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
 
+import com.nilhcem.fakesmtp.ui.nbreceived.NbReceivedLabel;
+import com.nilhcem.fakesmtp.ui.savefolder.SaveMsgField;
+import com.nilhcem.fakesmtp.ui.startserver.StartServerButton;
+import com.nilhcem.fakesmtp.ui.tab.LastMailPane;
+import com.nilhcem.fakesmtp.ui.tab.LogsPane;
+
 public final class MainPanel extends JPanel {
-	private static final long serialVersionUID = 3754673330087672446L;
+	private static final long serialVersionUID = -2846193165221467116L;
 	private static final String DEFAULT_PORT = "2525"; // 25
-	private static final String DEFAULT_PATH = "./fakesmtp-mails"; // ./fakeSMTP
 
 	// Port
 	private JLabel portLabel = new JLabel("Listening port:");
@@ -24,7 +29,7 @@ public final class MainPanel extends JPanel {
 
 	// Save incoming messages to
 	private JLabel saveMessages = new JLabel("Save message(s) to: ");
-	private JTextField saveMsgTextField = new JTextField(DEFAULT_PATH);
+	private SaveMsgField saveMsgTextField = new SaveMsgField();
 
 	// Tab pane
 	private JTabbedPane tabbedPane = new JTabbedPane();
@@ -33,13 +38,6 @@ public final class MainPanel extends JPanel {
 
 	// Clear logs
 	private JButton clearLogs = new JButton("Clear logs");
-
-	/* package-private */
-	enum PanelActionEnum {
-		START_SERVER,
-		STOP_SERVER,
-		CLEAR_LOGS
-	}
 
 	public MainPanel() {
 		super(new MigLayout());
@@ -61,7 +59,6 @@ public final class MainPanel extends JPanel {
 		add(tabbedPane, "span 3, w 600!, h 300!, wrap");
 
 		// Clear logs
-		clearLogs.setActionCommand(PanelActionEnum.CLEAR_LOGS.toString());
 		clearLogs.addActionListener(logsPane);
 		add(clearLogs, "span 3, align center");
 	}

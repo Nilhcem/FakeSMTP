@@ -1,4 +1,4 @@
-package com.nilhcem.fakesmtp.ui;
+package com.nilhcem.fakesmtp.ui.tab;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,12 +16,11 @@ import ch.qos.logback.core.spi.AppenderAttachable;
 
 import com.nilhcem.fakesmtp.log.ILogObserver;
 import com.nilhcem.fakesmtp.log.SMTPLogsAppender;
-import com.nilhcem.fakesmtp.ui.MainPanel.PanelActionEnum;
 
 // Scrollable pane containing a text area for logs
 // Observer always updated
 public final class LogsPane extends JScrollPane implements ActionListener, ILogObserver {
-	private static final long serialVersionUID = -3886655723914600051L;
+	private static final long serialVersionUID = 1837171289209363382L;
 	private static final Logger LOGGER = LoggerFactory.getLogger(LogsPane.class);
 	private static final String SMTP_LOGS_APPENDER_NAME = "SMTPLOGS";
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
@@ -58,10 +57,6 @@ public final class LogsPane extends JScrollPane implements ActionListener, ILogO
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		String actionCommand = event.getActionCommand();
-
-		if (actionCommand.equals(PanelActionEnum.CLEAR_LOGS.toString())) {
-			clearLogs();
-		}
+		clearLogs();
 	}
 }
