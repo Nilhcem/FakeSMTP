@@ -7,8 +7,9 @@ import java.util.List;
 
 import org.subethamail.smtp.helper.SimpleMessageListener;
 
+// Listens to incoming emails and notifies observers classes when emails arrive.
 public final class MailListener implements SimpleMessageListener, IMailObservable {
-	private List<IMailObserver> observers = new ArrayList<IMailObserver>();
+	private final List<IMailObserver> observers = new ArrayList<IMailObserver>();
 
     /**
      * Called once for every RCPT TO during a SMTP exchange.

@@ -10,3 +10,6 @@ target/*
 .pmd
 .project
 .settings/*
+
+# Ignore received emails folder
+received-emails/*

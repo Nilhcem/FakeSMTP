@@ -42,7 +42,7 @@ public class SendEmailsIT {
 		EmailAttachment attachment = new EmailAttachment();
 		attachment.setPath("src/main/resources/logback.xml");
 		attachment.setDisposition(EmailAttachment.ATTACHMENT);
-		attachment.setDescription("Pdf file");
+		attachment.setDescription("Xml file");
 		attachment.setName("logback.xml");
 
 		// Create the email message
@@ -52,7 +52,7 @@ public class SendEmailsIT {
 		email.addTo("jdoe@somewhere.org", "John Doe");
 		email.setFrom("me@apache.org", "Me");
 		email.setSubject("The file");
-		email.setMsg("Here is the file you wanted");
+		email.setMsg("Here is the file you wanted.");
 
 		// Add the attachment
 		email.attach(attachment);

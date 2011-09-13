@@ -7,29 +7,30 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.server.IMailObserver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
-import com.nilhcem.fakesmtp.ui.MainPanel;
+import com.nilhcem.fakesmtp.ui.info.UIModel;
 
-public final class LastMailPane extends JScrollPane implements IMailObserver {
-	private static final long serialVersionUID = 1692487027292449420L;
-	private final JTextArea lastMailArea = new JTextArea();
-	private static final String MAIL_SUFFIX = ".eml";
+public class LastMailPane implements IMailObserver {
+	private final JScrollPane lastMailPane = new JScrollPane();
 	private static final Logger LOGGER = LoggerFactory.getLogger(LastMailPane.class);
+	private final JTextArea lastMailArea = new JTextArea();
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyhhmmssSSS");
 
 	public LastMailPane() {
-		super();
-		getViewport().add(lastMailArea, null);
+		lastMailArea.setEditable(false);
+		lastMailPane.getViewport().add(lastMailArea, null);
 		SMTPServerHandler.INSTANCE.getSMTPListener().addObserver(this);
+	}
+
+	public JScrollPane get() {
+		return lastMailPane;
 	}
 
 	@Override
@@ -60,10 +61,8 @@ public final class LastMailPane extends JScrollPane implements IMailObserver {
 
 	// TODO: Put this in another place.
 	private void saveEmailToFile(String mailContent) {
-		MainPanel mainPanel = (MainPanel)getParent().getParent();
-
-		String filePath = String.format("%s%s%d_%s", mainPanel.getSavePathValue(), File.separator,
-				mainPanel.getNbMsgReceived(), dateFormat.format(new Date()));
+		String filePath = String.format("%s%s%d_%s", UIModel.INSTANCE.getSavePath(), File.separator,
+				UIModel.INSTANCE.getNbMessageReceived(), dateFormat.format(new Date()));
 		createFileFromInputStream(filePath, mailContent);
 	}
 
@@ -72,7 +71,7 @@ public final class LastMailPane extends JScrollPane implements IMailObserver {
 		int i = 0;
 		File file = null;
 		while (file == null || (file != null && file.exists())) {
-			file = new File(filePath + (i++ > 0 ? Integer.toString(i) : "") + LastMailPane.MAIL_SUFFIX);
+			file = new File(filePath + (i++ > 0 ? Integer.toString(i) : "") + Configuration.INSTANCE.get("emails.suffix"));
 		}
 
 		// Copy String to file
