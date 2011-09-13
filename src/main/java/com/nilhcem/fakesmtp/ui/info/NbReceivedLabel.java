@@ -5,6 +5,7 @@ import java.io.InputStream;
 import javax.swing.JLabel;
 import com.nilhcem.fakesmtp.server.IMailObserver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
+import com.nilhcem.fakesmtp.ui.model.UIModel;
 
 public class NbReceivedLabel implements IMailObserver {
 	private final JLabel nbReceived = new JLabel("0");

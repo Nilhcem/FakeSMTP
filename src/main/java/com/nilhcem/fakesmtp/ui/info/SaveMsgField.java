@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JTextField;
 import com.nilhcem.fakesmtp.log.ILogObserver;
+import com.nilhcem.fakesmtp.ui.model.UIModel;
 
 public final class SaveMsgField implements ILogObserver {
 	private final JTextField saveMsgField;
@@ -28,21 +29,17 @@ public final class SaveMsgField implements ILogObserver {
 			public void mouseClicked(MouseEvent e) {
 				openFolderSelection();
 			}
-
 			@Override
 			public void mousePressed(MouseEvent e) {
 				openFolderSelection();
 			}
-
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				openFolderSelection();
 			}
-
 			@Override
 			public void mouseEntered(MouseEvent e) {
 			}
-
 			@Override
 			public void mouseExited(MouseEvent e) {
 			}

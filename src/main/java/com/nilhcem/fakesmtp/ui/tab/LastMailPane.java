@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.server.IMailObserver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
-import com.nilhcem.fakesmtp.ui.info.UIModel;
+import com.nilhcem.fakesmtp.ui.model.UIModel;
 
 public class LastMailPane implements IMailObserver {
 	private final JScrollPane lastMailPane = new JScrollPane();

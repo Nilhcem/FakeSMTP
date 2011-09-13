@@ -20,7 +20,7 @@ public enum SMTPServerHandler {
 
 	// throws java.lang.RuntimeException:  java.net.BindException "Permission denied"
 	// throws java.lang.IllegalArgumentException: port out of range:
-	public void startServer(int port) throws BindPortException, OutOfRangePortException, RuntimeException {
+	public void startServer(int port) throws BindPortException, OutOfRangePortException {
 		LOGGER.debug("Starting server on port {}", port);
 		try {
 			smtpServer.setPort(port);
@@ -29,11 +29,11 @@ public enum SMTPServerHandler {
 		catch (RuntimeException exception) {
 			if (exception.getMessage().contains("BindException")) { // can't open port
 				LOGGER.error("{}. Port {}", exception.getMessage(), port);
-				throw new BindPortException(port);
+				throw new BindPortException(exception, port);
 			}
 			else if (exception.getMessage().contains("out of range")) { // port out of range
 				LOGGER.error("Port {} our of range.", port);
-				throw new OutOfRangePortException(port);
+				throw new OutOfRangePortException(exception, port);
 			}
 			else { // unknown error
 				LOGGER.error("", exception);

@@ -4,6 +4,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.ui.model.UIModel;
 
 public final class PortTextField {
 	private final JTextField portTextField = new JTextField();

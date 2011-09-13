@@ -70,4 +70,8 @@ public final class MainPanel {
 	public JPanel get() {
 		return mainPanel;
 	}
+
+	public PortTextField getPortTextField() {
+		return portText;
+	}
 }

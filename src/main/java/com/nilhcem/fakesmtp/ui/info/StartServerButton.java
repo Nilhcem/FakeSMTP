@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
 import com.nilhcem.fakesmtp.core.exception.InvalidPortException;
 import com.nilhcem.fakesmtp.core.exception.OutOfRangePortException;
+import com.nilhcem.fakesmtp.ui.model.UIModel;
 
 public final class StartServerButton {
 	private static final String START_SERVER_STR = "Start server";

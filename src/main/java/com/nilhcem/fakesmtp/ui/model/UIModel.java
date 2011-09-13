@@ -1,4 +1,4 @@
-package com.nilhcem.fakesmtp.ui.info;
+package com.nilhcem.fakesmtp.ui.model;
 
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
@@ -21,8 +21,8 @@ public enum UIModel {
 	private UIModel() {
 	}
 
-	public void toggleButton() throws InvalidPortException, BindPortException,
-			OutOfRangePortException, RuntimeException {
+	// throws RuntimeException
+	public void toggleButton() throws InvalidPortException, BindPortException, OutOfRangePortException {
 		if (started) {
 			stopServer();
 		} else {
@@ -34,14 +34,14 @@ public enum UIModel {
 		return started;
 	}
 
-	private void startServer() throws InvalidPortException, BindPortException,
-			OutOfRangePortException, RuntimeException {
+	// throws RuntimeException
+	private void startServer() throws InvalidPortException, BindPortException, OutOfRangePortException {
 		int port;
 
 		try {
 			port = Integer.parseInt(portStr);
 		} catch (NumberFormatException e) {
-			throw new InvalidPortException();
+			throw new InvalidPortException(e);
 		}
 		SMTPServerHandler.INSTANCE.startServer(port);
 		started = true;
