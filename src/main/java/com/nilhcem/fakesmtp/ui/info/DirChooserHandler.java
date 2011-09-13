@@ -8,7 +8,7 @@ import javax.swing.JFileChooser;
 
 import com.nilhcem.fakesmtp.ui.model.UIModel;
 
-public class DirChooserHandler extends Observable {
+public final class DirChooserHandler extends Observable {
 	private final JFileChooser dirChooser = new JFileChooser();
 	private Component parent = null;
 
@@ -23,11 +23,11 @@ public class DirChooserHandler extends Observable {
 	 * not before.
 	 */
 	private static class DirChooserHandlerHolder {
-		public static final DirChooserHandler instance = new DirChooserHandler();
+		public static final DirChooserHandler INSTANCE = new DirChooserHandler();
 	}
 
 	public static DirChooserHandler getInstance() {
-		return DirChooserHandlerHolder.instance;
+		return DirChooserHandlerHolder.INSTANCE;
 	}
 
 	// Must be called as soon as possible

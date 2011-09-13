@@ -1,6 +1,6 @@
 package com.nilhcem.fakesmtp.core.exception;
 
-class AbstractPortException extends Exception {
+abstract class AbstractPortException extends Exception {
 	private static final long serialVersionUID = 9011196541962512429L;
 	private final int port;
 

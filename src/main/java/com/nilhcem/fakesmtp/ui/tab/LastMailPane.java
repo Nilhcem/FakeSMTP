@@ -22,7 +22,7 @@ import com.nilhcem.fakesmtp.server.MailListener;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 import com.nilhcem.fakesmtp.ui.model.UIModel;
 
-public class LastMailPane implements Observer {
+public final class LastMailPane implements Observer {
 	private final JScrollPane lastMailPane = new JScrollPane();
 	private static final Logger LOGGER = LoggerFactory.getLogger(LastMailPane.class);
 	private final JTextArea lastMailArea = new JTextArea();

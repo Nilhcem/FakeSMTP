@@ -10,7 +10,7 @@ import com.nilhcem.fakesmtp.server.MailListener;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 import com.nilhcem.fakesmtp.ui.model.UIModel;
 
-public class NbReceivedLabel implements Observer {
+public final class NbReceivedLabel implements Observer {
 	private final JLabel nbReceived = new JLabel("0");
 
 	public NbReceivedLabel() {
