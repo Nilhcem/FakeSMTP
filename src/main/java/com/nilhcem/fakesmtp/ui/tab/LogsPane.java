@@ -2,17 +2,23 @@ package com.nilhcem.fakesmtp.ui.tab;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.spi.AppenderAttachable;
-import com.nilhcem.fakesmtp.core.Configuration;
-import com.nilhcem.fakesmtp.log.ILogObserver;
-import com.nilhcem.fakesmtp.log.SMTPLogsAppender;
 
-public final class LogsPane implements ILogObserver {
+import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.log.SMTPLogsAppender;
+import com.nilhcem.fakesmtp.log.SMTPLogsObservable;
+
+public final class LogsPane implements Observer {
 	private final JScrollPane logsPane = new JScrollPane();
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
 	private final JTextArea logsArea = new JTextArea();
@@ -40,15 +46,17 @@ public final class LogsPane implements ILogObserver {
 			LoggerFactory.getLogger(LogsPane.class).error("Can't find logger: {}", appenderName);
 		}
 		else {
-			appender.addObserver(this);
+			appender.getObservable().addObserver(this);
 		}
 	}
 
 	// Updates and scroll pane to the bottom
 	@Override
-	public void update(String log) {
-		logsArea.append(String.format("%s - %s%n", dateFormat.format(new Date()), log));
-		logsArea.setCaretPosition(logsArea.getText().length());
+	public void update(Observable o, Object log) {
+		if (o instanceof SMTPLogsObservable) {
+			logsArea.append(String.format("%s - %s%n", dateFormat.format(new Date()), log));
+			logsArea.setCaretPosition(logsArea.getText().length());
+		}
 	}
 
 	public void clearLogs() {

@@ -7,17 +7,22 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.nilhcem.fakesmtp.core.Configuration;
-import com.nilhcem.fakesmtp.server.IMailObserver;
+import com.nilhcem.fakesmtp.server.MailListener;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 import com.nilhcem.fakesmtp.ui.model.UIModel;
 
-public class LastMailPane implements IMailObserver {
+public class LastMailPane implements Observer {
 	private final JScrollPane lastMailPane = new JScrollPane();
 	private static final Logger LOGGER = LoggerFactory.getLogger(LastMailPane.class);
 	private final JTextArea lastMailArea = new JTextArea();
@@ -34,10 +39,12 @@ public class LastMailPane implements IMailObserver {
 	}
 
 	@Override
-	public synchronized void update(InputStream data) {
-		String mailContent = convertStreamToString(data);
-		lastMailArea.setText(mailContent);
-		saveEmailToFile(mailContent);
+	public synchronized void update(Observable o, Object data) {
+		if (o instanceof MailListener) {
+			String mailContent = convertStreamToString((InputStream)data);
+			lastMailArea.setText(mailContent);
+			saveEmailToFile(mailContent);
+		}
 	}
 
 	private String convertStreamToString(InputStream is) {

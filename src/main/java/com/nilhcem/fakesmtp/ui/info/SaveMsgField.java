@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JTextField;
-import com.nilhcem.fakesmtp.log.ILogObserver;
+
 import com.nilhcem.fakesmtp.ui.model.UIModel;
 
-public final class SaveMsgField implements ILogObserver {
+public final class SaveMsgField implements Observer {
 	private final JTextField saveMsgField;
 
 	public SaveMsgField(Component parent) {
@@ -20,8 +23,8 @@ public final class SaveMsgField implements ILogObserver {
 		saveMsgField.setBackground(bg);
 
 		// Creates the JFileChooser and set the variables first
-		DirChooserHandler.INSTANCE.init(parent);
-		DirChooserHandler.INSTANCE.addObserver(this);
+		DirChooserHandler.getInstance().setParent(parent);
+		DirChooserHandler.getInstance().addObserver(this);
 
 		// AddMouseListener
 		saveMsgField.addMouseListener(new MouseListener() {
@@ -51,11 +54,13 @@ public final class SaveMsgField implements ILogObserver {
 	}
 
 	private void openFolderSelection() {
-		DirChooserHandler.INSTANCE.openFolderSelection();
+		DirChooserHandler.getInstance().openFolderSelection();
 	}
 
 	@Override
-	public void update(String log) {
-		saveMsgField.setText(UIModel.INSTANCE.getSavePath());
+	public void update(Observable o, Object arg) {
+		if (o instanceof DirChooserHandler) {
+			saveMsgField.setText(UIModel.INSTANCE.getSavePath());
+		}
 	}
 }

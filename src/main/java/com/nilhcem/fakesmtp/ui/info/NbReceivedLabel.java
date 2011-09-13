@@ -1,13 +1,16 @@
 package com.nilhcem.fakesmtp.ui.info;
 
 import java.awt.Font;
-import java.io.InputStream;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JLabel;
-import com.nilhcem.fakesmtp.server.IMailObserver;
+
+import com.nilhcem.fakesmtp.server.MailListener;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 import com.nilhcem.fakesmtp.ui.model.UIModel;
 
-public class NbReceivedLabel implements IMailObserver {
+public class NbReceivedLabel implements Observer {
 	private final JLabel nbReceived = new JLabel("0");
 
 	public NbReceivedLabel() {
@@ -24,7 +27,9 @@ public class NbReceivedLabel implements IMailObserver {
 	}
 
 	@Override
-	public void update(InputStream data) {
-		nbReceived.setText(Long.toString(UIModel.INSTANCE.incrementNbMsgReceived()));
+	public void update(Observable o, Object arg) {
+		if (o instanceof MailListener) {
+			nbReceived.setText(Long.toString(UIModel.INSTANCE.incrementNbMsgReceived()));
+		}
 	}
 }

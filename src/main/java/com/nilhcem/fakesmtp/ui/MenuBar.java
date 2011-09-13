@@ -50,7 +50,7 @@ public final class MenuBar {
 		mailsLocation.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DirChooserHandler.INSTANCE.openFolderSelection();
+				DirChooserHandler.getInstance().openFolderSelection();
 			}
 		});
 
