@@ -1,50 +1,44 @@
-package com.nilhcem.fakesmtp.ui.tab;
+package com.nilhcem.fakesmtp.server;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.nilhcem.fakesmtp.core.Configuration;
-import com.nilhcem.fakesmtp.server.MailListener;
-import com.nilhcem.fakesmtp.server.SMTPServerHandler;
-import com.nilhcem.fakesmtp.ui.model.UIModel;
+import com.nilhcem.fakesmtp.model.EmailModel;
+import com.nilhcem.fakesmtp.model.UIModel;
 
-public final class LastMailPane implements Observer {
-	private final JScrollPane lastMailPane = new JScrollPane();
-	private static final Logger LOGGER = LoggerFactory.getLogger(LastMailPane.class);
-	private final JTextArea lastMailArea = new JTextArea();
+public final class MailSaver extends Observable {
+	private static final Logger LOGGER = LoggerFactory.getLogger(MailSaver.class);
+	private final Pattern subjectPattern = Pattern.compile("^Subject: (.*)$");
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyhhmmssSSS");
 
-	public LastMailPane() {
-		lastMailArea.setEditable(false);
-		lastMailPane.getViewport().add(lastMailArea, null);
-		SMTPServerHandler.INSTANCE.getSMTPListener().addObserver(this);
-	}
+	// saves email and notify observers
+	public void saveEmailAndNotify(String from, String to, InputStream data) {
+		String mailContent = convertStreamToString(data);
+		String filePath = saveEmailToFile(mailContent);
 
-	public JScrollPane get() {
-		return lastMailPane;
-	}
+		EmailModel model = new EmailModel();
+		model.setReceivedDate(new Date());
+		model.setFrom(from);
+		model.setTo(to);
+		model.setSubject(getSubjectFromStr(mailContent));
+		model.setEmailStr(mailContent);
+		model.setFilePath(filePath);
 
-	@Override
-	public synchronized void update(Observable o, Object data) {
-		if (o instanceof MailListener) {
-			String mailContent = convertStreamToString((InputStream)data);
-			lastMailArea.setText(mailContent);
-			saveEmailToFile(mailContent);
-		}
+		setChanged();
+		notifyObservers(model);
 	}
 
 	private String convertStreamToString(InputStream is) {
@@ -67,13 +61,13 @@ public final class LastMailPane implements Observer {
 	}
 
 	// TODO: Put this in another place.
-	private void saveEmailToFile(String mailContent) {
+	private String saveEmailToFile(String mailContent) {
 		String filePath = String.format("%s%s%d_%s", UIModel.INSTANCE.getSavePath(), File.separator,
-				UIModel.INSTANCE.getNbMessageReceived(), dateFormat.format(new Date()));
-		createFileFromInputStream(filePath, mailContent);
+				UIModel.INSTANCE.getNbMessageReceived() + 1, dateFormat.format(new Date()));
+		return createFileFromInputStream(filePath, mailContent);
 	}
 
-	private void createFileFromInputStream(String filePath, String mailContent) {
+	private String createFileFromInputStream(String filePath, String mailContent) {
 		// Create file
 		int i = 0;
 		File file = null;
@@ -89,5 +83,24 @@ public final class LastMailPane implements Observer {
 			Logger smtpLogger = LoggerFactory.getLogger(org.subethamail.smtp.server.Session.class);
 			smtpLogger.error("Error: Can't save email: {}", e.getMessage());
 		}
+		return file.getAbsolutePath();
+	}
+
+	// Returns an empty subject if not found
+	private String getSubjectFromStr(String data) {
+		try {
+			BufferedReader reader = new BufferedReader(new StringReader(data));
+
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				 Matcher matcher = subjectPattern.matcher(line);
+				 if (matcher.matches()) {
+					 return matcher.group(1);
+				 }
+			}
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+		return "";
 	}
 }

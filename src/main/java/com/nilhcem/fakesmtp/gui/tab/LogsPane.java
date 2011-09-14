@@ -1,19 +1,15 @@
-package com.nilhcem.fakesmtp.ui.tab;
+package com.nilhcem.fakesmtp.gui.tab;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.spi.AppenderAttachable;
-
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.log.SMTPLogsAppender;
 import com.nilhcem.fakesmtp.log.SMTPLogsObservable;

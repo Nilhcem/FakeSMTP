@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 // see http://commons.apache.org/email/userguide.html
-public class SendEmailsIT {
+public final class SendEmailsIT {
 	private static final String SMTP_HOST = "localhost";
 	private static final int SMTP_PORT = 2525;
 	private static final Logger logger = LoggerFactory.getLogger(SendEmailsIT.class);

@@ -1,4 +1,7 @@
-package com.nilhcem.fakesmtp.ui.model;
+package com.nilhcem.fakesmtp.model;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
@@ -17,6 +20,7 @@ public enum UIModel {
 	private String portStr; // TODO: Change
 	private long nbMessageReceived = 0;
 	private String savePath = Configuration.INSTANCE.get("emails.default.dir");
+	private final Map<Integer, String> listMailsMap = new HashMap<Integer, String>();
 
 	private UIModel() {
 	}
@@ -60,12 +64,12 @@ public enum UIModel {
 		this.portStr = port;
 	}
 
-	public long incrementNbMsgReceived() {
-		return ++nbMessageReceived;
-	}
-
 	public long getNbMessageReceived() {
 		return nbMessageReceived;
+	}
+
+	public void setNbMessageReceived(long nbMessageReceived) {
+		this.nbMessageReceived = nbMessageReceived;
 	}
 
 	public String getSavePath() {
@@ -74,5 +78,9 @@ public enum UIModel {
 
 	public void setSavePath(String savePath) {
 		this.savePath = savePath;
+	}
+
+	public Map<Integer, String> getListMailsMap() {
+		return listMailsMap;
 	}
 }

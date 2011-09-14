@@ -1,15 +1,14 @@
-package com.nilhcem.fakesmtp.ui;
+package com.nilhcem.fakesmtp.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import com.nilhcem.fakesmtp.ui.info.DirChooserHandler;
-
-public final class MenuBar {
+public final class MenuBar extends Observable {
 	private final JMenuBar menuBar = new JMenuBar();
 
 	public MenuBar() {
@@ -50,7 +49,8 @@ public final class MenuBar {
 		mailsLocation.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DirChooserHandler.getInstance().openFolderSelection();
+				setChanged();
+				notifyObservers();
 			}
 		});
 

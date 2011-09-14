@@ -3,7 +3,7 @@ package com.nilhcem.fakesmtp;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.nilhcem.fakesmtp.core.Configuration;
-import com.nilhcem.fakesmtp.ui.MainFrame;
+import com.nilhcem.fakesmtp.gui.MainFrame;
 
 public final class FakeSMTP {
 	private FakeSMTP() {

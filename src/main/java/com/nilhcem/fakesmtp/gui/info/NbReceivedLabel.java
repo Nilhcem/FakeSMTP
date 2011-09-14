@@ -1,14 +1,12 @@
-package com.nilhcem.fakesmtp.ui.info;
+package com.nilhcem.fakesmtp.gui.info;
 
 import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.JLabel;
-
-import com.nilhcem.fakesmtp.server.MailListener;
+import com.nilhcem.fakesmtp.model.UIModel;
+import com.nilhcem.fakesmtp.server.MailSaver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
-import com.nilhcem.fakesmtp.ui.model.UIModel;
 
 public final class NbReceivedLabel implements Observer {
 	private final JLabel nbReceived = new JLabel("0");
@@ -19,7 +17,7 @@ public final class NbReceivedLabel implements Observer {
 		nbReceived.setFont(boldFont);
 
 		// Add observer
-		SMTPServerHandler.INSTANCE.getSMTPListener().addObserver(this);
+		SMTPServerHandler.INSTANCE.getEmailSaver().addObserver(this);
 	}
 
 	public JLabel get() {
@@ -28,8 +26,11 @@ public final class NbReceivedLabel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if (o instanceof MailListener) {
-			nbReceived.setText(Long.toString(UIModel.INSTANCE.incrementNbMsgReceived()));
+		if (o instanceof MailSaver) {
+			UIModel model = UIModel.INSTANCE;
+			long countMsg = model.getNbMessageReceived() + 1;
+			model.setNbMessageReceived(countMsg);
+			nbReceived.setText(Long.toString(countMsg));
 		}
 	}
 }

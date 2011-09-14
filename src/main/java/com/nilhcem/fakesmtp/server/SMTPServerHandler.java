@@ -12,7 +12,8 @@ public enum SMTPServerHandler {
 	INSTANCE;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SMTPServerHandler.class);
-	private final MailListener myListener = new MailListener();
+	private final MailSaver emailSaver = new MailSaver();
+	private final MailListener myListener = new MailListener(emailSaver);
 	private final SMTPServer smtpServer = new SMTPServer(new SimpleMessageListenerAdapter(myListener));
 
 	private SMTPServerHandler() {
@@ -50,7 +51,10 @@ public enum SMTPServerHandler {
 		}
 	}
 
-	public MailListener getSMTPListener() {
-		return myListener;
+	public MailSaver getEmailSaver() {
+		return emailSaver;
 	}
+//	public MailListener getSMTPListener() {
+//		return myListener;
+//	}
 }

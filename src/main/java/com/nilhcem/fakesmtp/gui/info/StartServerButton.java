@@ -1,15 +1,16 @@
-package com.nilhcem.fakesmtp.ui.info;
+package com.nilhcem.fakesmtp.gui.info;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
 import com.nilhcem.fakesmtp.core.exception.InvalidPortException;
 import com.nilhcem.fakesmtp.core.exception.OutOfRangePortException;
-import com.nilhcem.fakesmtp.ui.model.UIModel;
+import com.nilhcem.fakesmtp.model.UIModel;
 
-public final class StartServerButton {
+public final class StartServerButton extends Observable {
 	private static final String START_SERVER_STR = "Start server";
 	private static final String STOP_SERVER_STR = "Stop server";
 
@@ -21,7 +22,7 @@ public final class StartServerButton {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					UIModel.INSTANCE.toggleButton();
-					switchText();
+					toggleButton();
 				} catch (InvalidPortException ipe) {
 					displayError(String.format("Can't start SMTP Server.%n\"Listening port\" is invalid."));
 				}
@@ -38,8 +39,12 @@ public final class StartServerButton {
 		});
 	}
 
-	private void switchText() {
+	// switches text and call observers
+	// see portTextField
+	private void toggleButton() {
 		button.setText(UIModel.INSTANCE.isStarted() ? StartServerButton.STOP_SERVER_STR : StartServerButton.START_SERVER_STR);
+		setChanged();
+		notifyObservers();
 	}
 
 	public JButton get() {
