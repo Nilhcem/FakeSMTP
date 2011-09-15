@@ -11,14 +11,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Observable;
 import java.util.Observer;
-
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.nilhcem.fakesmtp.model.EmailModel;
 import com.nilhcem.fakesmtp.model.UIModel;
 import com.nilhcem.fakesmtp.server.MailSaver;
@@ -76,11 +74,15 @@ public final class MailsListPane implements Observer {
 				if (e.getClickCount() == 2 && desktop != null) {
 					JTable target = (JTable) e.getSource();
 					File file = new File(UIModel.INSTANCE.getListMailsMap().get(target.getSelectedRow()));
-
-					try {
-						desktop.open(file);
-					} catch (IOException e1) {
-						LOGGER.error("", e);
+					if (file.exists()) {
+						try {
+							desktop.open(file);
+						} catch (IOException ioe) {
+							LOGGER.error("", ioe);
+							displayError("Can't open the file: "  + file.getAbsolutePath());
+						}
+					} else {
+						displayError("Can't find the file: "  + file.getAbsolutePath());
 					}
 				}
 			}
@@ -99,7 +101,24 @@ public final class MailsListPane implements Observer {
 		model.addColumn("Subject");
 		table.setModel(model);
 
-		resizeColumns();
+		mailsListPane.addComponentListener(new ComponentAdapter() {
+			public void componentResized(ComponentEvent e) {
+				int[] widths = new int[] { 85, 140, 140};
+
+				// When the width of a column is changed, only the columns to the left and right of the margin change
+				table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+
+				// Set width for each column
+				int total = 0;
+				int length = widths.length;
+				for (int i = 0; i < length; i++) {
+					table.getColumnModel().getColumn(i).setPreferredWidth(widths[i]);
+					total += widths[i];
+				}
+				table.getColumnModel().getColumn(length).setPreferredWidth(table.getWidth() - total);
+			}
+		});
+
 		mailsListPane.getViewport().add(table, null);
 		SMTPServerHandler.INSTANCE.getEmailSaver().addObserver(this);
 	}
@@ -118,16 +137,8 @@ public final class MailsListPane implements Observer {
 		}
 	}
 
-	private void resizeColumns() {
-		int[] widths = new int[] { 85, 140, 140, 200 };
-
-		// Disable auto resizing
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-		// Set width for each column
-		int length = widths.length;
-		for (int i = 0; i < length; i++) {
-			table.getColumnModel().getColumn(i).setMinWidth(widths[i]);
-		}
+	// Displays a message dialog containing the error specified in parameter.
+	private void displayError(String error) {
+		JOptionPane.showMessageDialog(mailsListPane.getParent(), error, "Error", JOptionPane.ERROR_MESSAGE);
 	}
 }

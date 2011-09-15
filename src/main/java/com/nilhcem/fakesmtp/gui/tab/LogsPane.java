@@ -54,8 +54,8 @@ public final class LogsPane implements Observer {
 			logsArea.setCaretPosition(logsArea.getText().length());
 		}
 	}
-
-	public void clearLogs() {
-		logsArea.setText("");
-	}
+//
+//	public void clearLogs() {
+//		logsArea.setText("");
+//	}
 }

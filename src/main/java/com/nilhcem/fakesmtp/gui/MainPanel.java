@@ -1,9 +1,6 @@
 package com.nilhcem.fakesmtp.gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -17,7 +14,12 @@ import com.nilhcem.fakesmtp.gui.tab.LogsPane;
 import com.nilhcem.fakesmtp.gui.tab.MailsListPane;
 
 public final class MainPanel {
-	private final JPanel mainPanel = new JPanel(new MigLayout());
+	// Panel and layout
+	private final MigLayout layout = new MigLayout(
+		"", // Layout constraints
+		"[] 10 [] [] [grow,fill]", // Column constraints
+		"[] [] 5 [] 5 [grow,fill]"); // Row constraints
+	private final JPanel mainPanel = new JPanel(layout);
 
 	// Directory chooser
 	private final DirChooser dirChooser = new DirChooser(mainPanel);
@@ -41,8 +43,8 @@ public final class MainPanel {
 	private final MailsListPane mailsListPane = new MailsListPane();
 	private final LastMailPane lastMailPane = new LastMailPane();
 
-	// Clear logs
-	private final JButton clearLogs = new JButton("Clear logs");
+//	// Clear logs
+//	private final JButton clearLogs = new JButton("Clear logs");
 
 	public MainPanel(Observable menu) {
 		addObservers(menu);
@@ -65,27 +67,27 @@ public final class MainPanel {
 	private void buildGUI() {
 		mainPanel.add(portLabel);
 		mainPanel.add(portText.get(), "w 60!"); // width 60 (min:preferred:max)
-		mainPanel.add(portBtn.get(), "wrap");
+		mainPanel.add(portBtn.get(), "span, w 166!");
 
 		mainPanel.add(saveMessages);
-		mainPanel.add(saveMsgTextField.get(), "span 2, w 200!, wrap");
+		mainPanel.add(saveMsgTextField.get(), "span, w 230!");
 
 		mainPanel.add(receivedLabel);
-		mainPanel.add(nbReceivedLabel.get(), "wrap");
+		mainPanel.add(nbReceivedLabel.get(), "span");
 
 		// Tab pane
 		tabbedPane.add(mailsListPane.get(), "Mails list");
 		tabbedPane.add(logsPane.get(), "SMTP Log");
 		tabbedPane.add(lastMailPane.get(), "Last message");
-		mainPanel.add(tabbedPane, "span 3, w 600!, h 300!, wrap");
+		mainPanel.add(tabbedPane, "span, grow");
 
-		// Clear logs
-		clearLogs.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				logsPane.clearLogs();
-			}
-		});
-		mainPanel.add(clearLogs, "span 3, align center");
+//		// Clear logs
+//		clearLogs.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				logsPane.clearLogs();
+//			}
+//		});
+//		mainPanel.add(clearLogs, "span, grow, center");
 	}
 }

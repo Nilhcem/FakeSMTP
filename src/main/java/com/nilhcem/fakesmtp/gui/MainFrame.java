@@ -1,5 +1,6 @@
 package com.nilhcem.fakesmtp.gui;
 
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
@@ -10,9 +11,12 @@ public final class MainFrame {
 	private final MainPanel panel = new MainPanel(menu);
 
 	public MainFrame() {
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(Integer.parseInt(Configuration.INSTANCE.get("application.min.width")),
+		Dimension frameSize = new Dimension(Integer.parseInt(Configuration.INSTANCE.get("application.min.width")),
 			Integer.parseInt(Configuration.INSTANCE.get("application.min.height")));
+
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setSize(frameSize);
+		mainFrame.setMinimumSize(frameSize);
 
 		mainFrame.setJMenuBar(menu.get());
 		mainFrame.getContentPane().add(panel.get());
