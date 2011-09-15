@@ -17,8 +17,8 @@ public enum UIModel {
 	INSTANCE;
 
 	private boolean started = false; // server is not started by default
-	private String portStr; // TODO: Change
-	private long nbMessageReceived = 0;
+	private String portStr;
+	private int nbMessageReceived = 0;
 	private String savePath = Configuration.INSTANCE.get("emails.default.dir");
 	private final Map<Integer, String> listMailsMap = new HashMap<Integer, String>();
 
@@ -64,11 +64,11 @@ public enum UIModel {
 		this.portStr = port;
 	}
 
-	public long getNbMessageReceived() {
+	public int getNbMessageReceived() {
 		return nbMessageReceived;
 	}
 
-	public void setNbMessageReceived(long nbMessageReceived) {
+	public void setNbMessageReceived(int nbMessageReceived) {
 		this.nbMessageReceived = nbMessageReceived;
 	}
 

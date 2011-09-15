@@ -12,8 +12,8 @@ public enum SMTPServerHandler {
 	INSTANCE;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SMTPServerHandler.class);
-	private final MailSaver emailSaver = new MailSaver();
-	private final MailListener myListener = new MailListener(emailSaver);
+	private final MailSaver mailSaver = new MailSaver();
+	private final MailListener myListener = new MailListener(mailSaver);
 	private final SMTPServer smtpServer = new SMTPServer(new SimpleMessageListenerAdapter(myListener));
 
 	private SMTPServerHandler() {
@@ -31,12 +31,10 @@ public enum SMTPServerHandler {
 			if (exception.getMessage().contains("BindException")) { // can't open port
 				LOGGER.error("{}. Port {}", exception.getMessage(), port);
 				throw new BindPortException(exception, port);
-			}
-			else if (exception.getMessage().contains("out of range")) { // port out of range
+			} else if (exception.getMessage().contains("out of range")) { // port out of range
 				LOGGER.error("Port {} our of range.", port);
 				throw new OutOfRangePortException(exception, port);
-			}
-			else { // unknown error
+			} else { // unknown error
 				LOGGER.error("", exception);
 				throw exception;
 			}
@@ -51,10 +49,7 @@ public enum SMTPServerHandler {
 		}
 	}
 
-	public MailSaver getEmailSaver() {
-		return emailSaver;
+	public MailSaver getMailSaver() {
+		return mailSaver;
 	}
-//	public MailListener getSMTPListener() {
-//		return myListener;
-//	}
 }

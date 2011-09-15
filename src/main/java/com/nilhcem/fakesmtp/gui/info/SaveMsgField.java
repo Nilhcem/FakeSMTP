@@ -24,7 +24,6 @@ public final class SaveMsgField extends Observable implements Observer {
 		saveMsgField.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				openFolderSelection();
 			}
 
 			@Override
@@ -34,7 +33,6 @@ public final class SaveMsgField extends Observable implements Observer {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				openFolderSelection();
 			}
 
 			@Override

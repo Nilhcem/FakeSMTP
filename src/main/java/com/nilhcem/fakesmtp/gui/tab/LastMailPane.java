@@ -2,11 +2,13 @@ package com.nilhcem.fakesmtp.gui.tab;
 
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
 import com.nilhcem.fakesmtp.model.EmailModel;
 import com.nilhcem.fakesmtp.server.MailSaver;
-import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
 public final class LastMailPane implements Observer {
 	private final JScrollPane lastMailPane = new JScrollPane();
@@ -15,7 +17,6 @@ public final class LastMailPane implements Observer {
 	public LastMailPane() {
 		lastMailArea.setEditable(false);
 		lastMailPane.getViewport().add(lastMailArea, null);
-		SMTPServerHandler.INSTANCE.getEmailSaver().addObserver(this);
 	}
 
 	public JScrollPane get() {
@@ -27,6 +28,8 @@ public final class LastMailPane implements Observer {
 		if (o instanceof MailSaver) {
 			EmailModel model = (EmailModel) data;
 			lastMailArea.setText(model.getEmailStr());
+		} else if (o instanceof ClearAllButton) {
+			lastMailArea.setText("");
 		}
 	}
 }

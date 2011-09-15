@@ -69,7 +69,7 @@ public final class MenuBar extends Observable {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(menuBar.getParent(),
-					String.format("Fake SMTP Server v1.0%nPowered by SubEtha SMTP"),
+					String.format("Fake SMTP Server v1.0%nhttps://github.com/nilhcem"),
 					"About", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});

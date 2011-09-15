@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.spi.AppenderAttachable;
 import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
 import com.nilhcem.fakesmtp.log.SMTPLogsAppender;
 import com.nilhcem.fakesmtp.log.SMTPLogsObservable;
 
@@ -40,22 +41,20 @@ public final class LogsPane implements Observer {
 			.getAppender(appenderName);
 		if (appender == null) {
 			LoggerFactory.getLogger(LogsPane.class).error("Can't find logger: {}", appenderName);
-		}
-		else {
+		} else {
 			appender.getObservable().addObserver(this);
 		}
 	}
 
-	// Updates and scroll pane to the bottom
 	@Override
 	public void update(Observable o, Object log) {
 		if (o instanceof SMTPLogsObservable) {
+			// Update and scroll pane to the bottom
 			logsArea.append(String.format("%s - %s%n", dateFormat.format(new Date()), log));
 			logsArea.setCaretPosition(logsArea.getText().length());
+		} else if (o instanceof ClearAllButton) {
+			// Remove text
+			logsArea.setText("");
 		}
 	}
-//
-//	public void clearLogs() {
-//		logsArea.setText("");
-//	}
 }

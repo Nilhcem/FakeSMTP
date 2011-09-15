@@ -11,16 +11,19 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
 import com.nilhcem.fakesmtp.model.EmailModel;
 import com.nilhcem.fakesmtp.model.UIModel;
 import com.nilhcem.fakesmtp.server.MailSaver;
-import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
 public final class MailsListPane implements Observer {
 	private int nbElements = 0;
@@ -28,6 +31,7 @@ public final class MailsListPane implements Observer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MailsListPane.class);
 	private final JScrollPane mailsListPane = new JScrollPane();
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
+	private final int[] widths = new int[] { 85, 140, 140}; //widths of columns in tab
 
 	private final JTable table = new JTable() {
 		private static final long serialVersionUID = 6332956458868628779L;
@@ -73,7 +77,12 @@ public final class MailsListPane implements Observer {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2 && desktop != null) {
 					JTable target = (JTable) e.getSource();
-					File file = new File(UIModel.INSTANCE.getListMailsMap().get(target.getSelectedRow()));
+					String fileName = UIModel.INSTANCE.getListMailsMap().get(target.getSelectedRow());
+					if (fileName == null) {
+						LOGGER.error("Can't file any associated email for row #{}", target.getSelectedRow());
+					}
+
+					File file = new File(fileName);
 					if (file.exists()) {
 						try {
 							desktop.open(file);
@@ -103,8 +112,6 @@ public final class MailsListPane implements Observer {
 
 		mailsListPane.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent e) {
-				int[] widths = new int[] { 85, 140, 140};
-
 				// When the width of a column is changed, only the columns to the left and right of the margin change
 				table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
@@ -118,9 +125,7 @@ public final class MailsListPane implements Observer {
 				table.getColumnModel().getColumn(length).setPreferredWidth(table.getWidth() - total);
 			}
 		});
-
 		mailsListPane.getViewport().add(table, null);
-		SMTPServerHandler.INSTANCE.getEmailSaver().addObserver(this);
 	}
 
 	public JScrollPane get() {
@@ -134,6 +139,18 @@ public final class MailsListPane implements Observer {
 			model.addRow(new Object[] { dateFormat.format(email.getReceivedDate()),
 					email.getFrom(), email.getTo(), email.getSubject() });
 			UIModel.INSTANCE.getListMailsMap().put(nbElements++, email.getFilePath());
+		} else if (o instanceof ClearAllButton) {
+			// Delete information from the map
+			UIModel.INSTANCE.getListMailsMap().clear();
+
+			// Remove elements from the list
+			try {
+				while (nbElements > 0) {
+					model.removeRow(--nbElements);
+				}
+			} catch (ArrayIndexOutOfBoundsException e) {
+				LOGGER.error("", e);
+			}
 		}
 	}
 
