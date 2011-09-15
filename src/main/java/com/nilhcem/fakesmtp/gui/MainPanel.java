@@ -103,7 +103,7 @@ public final class MainPanel {
 
 		// Tab pane
 		tabbedPane.add(mailsListPane.get(), "Mails list");
-		tabbedPane.add(logsPane.get(), "SMTP Log");
+		tabbedPane.add(logsPane.get(), "SMTP log");
 		tabbedPane.add(lastMailPane.get(), "Last message");
 		mainPanel.add(tabbedPane, "span, grow");
 
