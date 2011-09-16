@@ -99,23 +99,6 @@
 					</execution>
 				</executions>
 			</plugin>
-  
-			<!-- Launch project with "$ mvn exec:java" -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<mainClass>${project.main.class}</mainClass>
-				</configuration>
-			</plugin>
 
 			<!-- Create an executable jar with dependencies -->
 			<plugin>

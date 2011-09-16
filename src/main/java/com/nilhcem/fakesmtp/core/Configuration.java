@@ -5,13 +5,21 @@ import java.io.InputStream;
 import java.util.Properties;
 import org.slf4j.LoggerFactory;
 
-// Gets some project specific configuration variables.
+/**
+ * Contains and returns some project-specific configuration variables.
+ *
+ * @author Nilhcem
+ * @since 1.0
+ */
 public enum Configuration {
 	INSTANCE;
 
 	private static final String CONFIG_FILE = "/configuration.properties";
 	private final Properties config = new Properties();
 
+	/**
+	 * Opens the "{@code configuration.properties}" file and maps data.
+	 */
 	private Configuration() {
 		InputStream in = getClass().getResourceAsStream(CONFIG_FILE);
 		try {
@@ -22,7 +30,12 @@ public enum Configuration {
 		}
 	}
 
-	// Returns the key or an empty string if not found
+	/**
+	 * Returns the value of a specific entry from the "{@code configuration.properties}" file.
+	 *
+	 * @param key a string representing the key from a key/value couple.
+	 * @return the value of the key, or an empty string if the key was not found.
+	 */
 	public String get(String key) {
 		return ((config != null && config.containsKey(key)) ? (String)config.get(key) : "");
 	}

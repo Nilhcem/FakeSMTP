@@ -7,7 +7,12 @@ import org.subethamail.smtp.server.SMTPServer;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
 import com.nilhcem.fakesmtp.core.exception.OutOfRangePortException;
 
-// Starts and stops SMTP server
+/**
+ * Starts and stops the SMTP server.
+ *
+ * @author Nilhcem
+ * @since 1.0
+ */
 public enum SMTPServerHandler {
 	INSTANCE;
 
@@ -19,8 +24,14 @@ public enum SMTPServerHandler {
 	private SMTPServerHandler() {
 	}
 
-	// throws java.lang.RuntimeException:  java.net.BindException "Permission denied"
-	// throws java.lang.IllegalArgumentException: port out of range:
+	/**
+	 * Starts the server on the port specified in parameters.
+	 *
+	 * @param port the SMTP port to be opened.
+	 * @throws BindPortException when the port can't be opened.
+	 * @throws OutOfRangePortException when port is out of range.
+	 * @throws IllegalArgumentException when port is out of range.
+	 */
 	public void startServer(int port) throws BindPortException, OutOfRangePortException {
 		LOGGER.debug("Starting server on port {}", port);
 		try {
@@ -28,20 +39,25 @@ public enum SMTPServerHandler {
 			smtpServer.start();
 		}
 		catch (RuntimeException exception) {
-			if (exception.getMessage().contains("BindException")) { // can't open port
+			if (exception.getMessage().contains("BindException")) { // Can't open port
 				LOGGER.error("{}. Port {}", exception.getMessage(), port);
 				throw new BindPortException(exception, port);
-			} else if (exception.getMessage().contains("out of range")) { // port out of range
-				LOGGER.error("Port {} our of range.", port);
+			} else if (exception.getMessage().contains("out of range")) { // Port out of range
+				LOGGER.error("Port {} out of range.", port);
 				throw new OutOfRangePortException(exception, port);
-			} else { // unknown error
+			} else { // Unknown error
 				LOGGER.error("", exception);
 				throw exception;
 			}
 		}
 	}
 
-	// Stops the server. If the server is not started, does nothing.
+	/**
+	 * Stops the server.
+	 * <p>
+	 * If the server is not started, does nothing special.
+	 * </p>
+	 */
 	public void stopServer() {
 		if (smtpServer.isRunning()) {
 			LOGGER.debug("Stopping server");
@@ -49,6 +65,11 @@ public enum SMTPServerHandler {
 		}
 	}
 
+	/**
+	 * Returns the {@code MailSaver} object.
+	 *
+	 * @return the {@code MailSaver} object.
+	 */
 	public MailSaver getMailSaver() {
 		return mailSaver;
 	}

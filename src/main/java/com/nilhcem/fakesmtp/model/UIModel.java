@@ -9,10 +9,17 @@ import com.nilhcem.fakesmtp.core.exception.InvalidPortException;
 import com.nilhcem.fakesmtp.core.exception.OutOfRangePortException;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
-// UI Presentation model
-//The essence of a Presentation Model is of a fully self-contained class that represents
-//all the data and behavior of the UI window, but without any of the controls used to render that UI on the screen
-//@see http://martinfowler.com/eaaDev/PresentationModel.html
+/**
+ * UI presentation model of the application.
+ * <p>
+ * The essence of a Presentation Model is of a fully self-contained class that represents all the data
+ * and behavior of the UI window, but without any of the controls used to render that UI on the screen.
+ * </p>
+ *
+ * @author Nilhcem
+ * @since 1.0
+ * @see "http://martinfowler.com/eaaDev/PresentationModel.html"
+ */
 public enum UIModel {
 	INSTANCE;
 
@@ -25,35 +32,40 @@ public enum UIModel {
 	private UIModel() {
 	}
 
-	// throws RuntimeException
+	/**
+	 * Happens when a user click on the start / stop button.
+	 * <p>
+	 * This method will notify the {@code SMTPServerHandler} to start and stop the server.
+	 * </p>
+	 *
+	 * @throws InvalidPortException when the port is invalid.
+	 * @throws BindPortException when the port cannot be bound.
+	 * @throws OutOfRangePortException when the port is out of range.
+	 * @throws RuntimeException when an unknown exception happened.
+	 */
 	public void toggleButton() throws InvalidPortException, BindPortException, OutOfRangePortException {
 		if (started) {
-			stopServer();
+			SMTPServerHandler.INSTANCE.stopServer();
 		} else {
-			startServer();
+			int port;
+
+			try {
+				port = Integer.parseInt(portStr);
+			} catch (NumberFormatException e) {
+				throw new InvalidPortException(e);
+			}
+			SMTPServerHandler.INSTANCE.startServer(port);
 		}
+		started = !started;
 	}
 
+	/**
+	 * Returns {@code true} if the server is started.
+	 *
+	 * @return {@code true} if the server is started.
+	 */
 	public boolean isStarted() {
 		return started;
-	}
-
-	// throws RuntimeException
-	private void startServer() throws InvalidPortException, BindPortException, OutOfRangePortException {
-		int port;
-
-		try {
-			port = Integer.parseInt(portStr);
-		} catch (NumberFormatException e) {
-			throw new InvalidPortException(e);
-		}
-		SMTPServerHandler.INSTANCE.startServer(port);
-		started = true;
-	}
-
-	private void stopServer() {
-		SMTPServerHandler.INSTANCE.stopServer();
-		started = false;
 	}
 
 	public String getPort() {

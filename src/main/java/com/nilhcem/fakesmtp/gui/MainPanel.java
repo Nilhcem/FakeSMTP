@@ -19,6 +19,12 @@ import com.nilhcem.fakesmtp.gui.tab.MailsListPane;
 import com.nilhcem.fakesmtp.server.MailSaver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
+/**
+ * Provides the main panel of the application, which will contain all the components.
+ *
+ * @author Nilhcem
+ * @since 1.0
+ */
 public final class MainPanel {
 	// Panel and layout
 	private final MigLayout layout = new MigLayout(
@@ -52,16 +58,45 @@ public final class MainPanel {
 	// Clear all
 	private final ClearAllButton clearAll = new ClearAllButton();
 
+	/**
+	 * Creates the main panel.
+	 * <p>
+	 * To create the main panel, the method will first have to handle components interactions by
+	 * adding observers to observable elements, then the method will build the GUI by placing all the
+	 * components in the main panel.
+	 * </p>
+	 *
+	 * @param menu the menu bar which will notify the directory file chooser.
+	 */
 	public MainPanel(Observable menu) {
 		addObservers(menu);
 		buildGUI();
 	}
 
+	/**
+	 * Returns the JPanel object.
+	 *
+	 * @return the JPanel object.
+	 */
 	public JPanel get() {
 		return mainPanel;
 	}
 
-	// Centralize all observers
+	/**
+	 * Handles components interactions by adding observers to observable elements.
+	 * <p>
+	 * The interactions are the following:
+	 * <ul>
+	 *   <li>Open the directory chooser when clicking on the menu/the save message field;</li>
+	 *   <li>Enable/Disable the port field when the server starts/stops;</li>
+	 *   <li>Set the new directory, once a folder is selected;<li>
+	 *   <li>Notify components when a message is received;</li>
+	 *   <li>Notify components when the user wants to clear them all.</li>
+	 * </ul>
+	 * </p>
+	 *
+	 * @param menu the menu bar which will notify the directory file chooser.
+	 */
 	private void addObservers(Observable menu) {
 		// When we want to select a directory
 		menu.addObserver(dirChooser);
@@ -87,10 +122,13 @@ public final class MainPanel {
 		clearAll.addObserver(lastMailPane);
 	}
 
+	/**
+	 * Places all components in the panel.
+	 */
 	private void buildGUI() {
 		// Port / Start server
 		mainPanel.add(portLabel);
-		mainPanel.add(portText.get(), "w 60!"); // width 60 (min:preferred:max)
+		mainPanel.add(portText.get(), "w 60!");
 		mainPanel.add(startServerBtn.get(), "span, w 165!");
 
 		// Save messages to...

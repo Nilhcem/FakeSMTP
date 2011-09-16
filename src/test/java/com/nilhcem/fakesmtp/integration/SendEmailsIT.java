@@ -1,4 +1,4 @@
-package com.nilhcem.fakesmtp;
+package com.nilhcem.fakesmtp.integration;
 
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailAttachment;
@@ -10,24 +10,23 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.test.TestConfig;
 
-// see http://commons.apache.org/email/userguide.html
 public final class SendEmailsIT {
-	private static final String SMTP_HOST = "localhost";
-	private static final int SMTP_PORT = 2525;
 	private static final Logger logger = LoggerFactory.getLogger(SendEmailsIT.class);
 
 	@BeforeClass
 	public static void displayInfo() {
 		logger.info("Launching integration tests...");
-		logger.info("You need to run the project and launch the SMTP server on port {} before testing.", SendEmailsIT.SMTP_PORT);
+		logger.info("You need to run the project and launch the SMTP server on port {} before testing.", TestConfig.PORT);
 	}
 
 	@Test
 	public void sendSimpleTestEmail() throws EmailException {
 		Email email = new SimpleEmail();
-		email.setHostName(SendEmailsIT.SMTP_HOST);
-		email.setSmtpPort(SendEmailsIT.SMTP_PORT);
+		email.setHostName(TestConfig.HOST);
+		email.setSmtpPort(TestConfig.PORT);
 		email.setTLS(true);
 		email.setFrom("user@gmail.com");
 		email.setSubject("TestMail");
@@ -40,15 +39,15 @@ public final class SendEmailsIT {
 	public void sendEmailWithAttachment() throws EmailException {
 		// Create the attachment
 		EmailAttachment attachment = new EmailAttachment();
-		attachment.setPath("src/main/resources/logback.xml");
+		attachment.setPath("src/main/resources" + Configuration.INSTANCE.get("application.icon.path"));
 		attachment.setDisposition(EmailAttachment.ATTACHMENT);
-		attachment.setDescription("Xml file");
-		attachment.setName("logback.xml");
+		attachment.setDescription("Image file");
+		attachment.setName("icon.gif");
 
 		// Create the email message
 		MultiPartEmail email = new MultiPartEmail();
-		email.setHostName(SendEmailsIT.SMTP_HOST);
-		email.setSmtpPort(SendEmailsIT.SMTP_PORT);
+		email.setHostName(TestConfig.HOST);
+		email.setSmtpPort(TestConfig.PORT);
 		email.addTo("jdoe@somewhere.org", "John Doe");
 		email.setFrom("me@apache.org", "Me");
 		email.setSubject("The file");
@@ -65,8 +64,8 @@ public final class SendEmailsIT {
 	public void sendHTMLFormattedEmail() throws EmailException {
 		// Create the email message
 		HtmlEmail email = new HtmlEmail();
-		email.setHostName(SendEmailsIT.SMTP_HOST);
-		email.setSmtpPort(SendEmailsIT.SMTP_PORT);
+		email.setHostName(TestConfig.HOST);
+		email.setSmtpPort(TestConfig.PORT);
 		email.addTo("jdoe@somewhere.org", "John Doe");
 		email.setFrom("me@apache.org", "Me");
 		email.setSubject("Test HTML email.");

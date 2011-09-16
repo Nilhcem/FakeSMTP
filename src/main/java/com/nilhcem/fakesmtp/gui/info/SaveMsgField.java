@@ -9,9 +9,22 @@ import javax.swing.JTextField;
 import com.nilhcem.fakesmtp.gui.DirChooser;
 import com.nilhcem.fakesmtp.model.UIModel;
 
+/**
+ * Text field in which will be written the path where emails will be automatically saved.
+ *
+ * @author Nilhcem
+ * @since 1.0
+ */
 public final class SaveMsgField extends Observable implements Observer {
 	private final JTextField saveMsgField;
 
+	/**
+	 * Creates a text field and adds a mouse listener, to display the directory chooser dialog when a user clicks on the field.
+	 * <p>
+	 * The text field will be disabled by default to avoid the user to type any folder directly.<br />
+	 * Instead, he can use the directory chooser dialog to select the path he wants.
+	 * </p>
+	 */
 	public SaveMsgField() {
 		this.saveMsgField = new JTextField(UIModel.INSTANCE.getSavePath());
 
@@ -20,7 +33,7 @@ public final class SaveMsgField extends Observable implements Observer {
 		saveMsgField.setEditable(false);
 		saveMsgField.setBackground(bg);
 
-		// AddMouseListener
+		// Add a MouseListener
 		saveMsgField.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -50,10 +63,25 @@ public final class SaveMsgField extends Observable implements Observer {
 		});
 	}
 
+	/**
+	 * Returns the JTextField object.
+	 *
+	 * @return the JTextField object.
+	 */
 	public JTextField get() {
 		return saveMsgField;
 	}
 
+	/**
+	 * Updates the content of the JTextField with the new directory value.
+	 * <p>
+	 * Once a directory has been chosen by the {@link DirChooser}, the latter will
+	 * notify this class, so that it can update its content.
+	 * </p>
+	 *
+	 * @param o the observable element which will notify this class.
+	 * @param arg optional parameters (not used).
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		if (o instanceof DirChooser) {

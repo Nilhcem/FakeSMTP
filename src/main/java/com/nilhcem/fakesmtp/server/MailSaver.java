@@ -21,12 +21,25 @@ import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.model.EmailModel;
 import com.nilhcem.fakesmtp.model.UIModel;
 
+/**
+ * Saves emails and notifies components so they can refresh their views with new data.
+ *
+ * @author Nilhcem
+ * @since 1.0
+ */
 public final class MailSaver extends Observable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MailSaver.class);
 	private final Pattern subjectPattern = Pattern.compile("^Subject: (.*)$");
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyhhmmssSSS");
 
-	// saves email and notify observers
+	/**
+	 * Saves incoming email in file system and notifies observers.
+	 *
+	 * @param from the user who send the email.
+	 * @param to the recipient of the email.
+	 * @param data an inputstream object containing the email.
+	 * @see com.nilhcem.fakesmtp.gui.MainPanel#addObservers to see which observers will be notified
+	 */
 	public void saveEmailAndNotify(String from, String to, InputStream data) {
 		synchronized (getLock()) {
 			String mailContent = convertStreamToString(data);
@@ -45,7 +58,9 @@ public final class MailSaver extends Observable {
 		}
 	}
 
-	// Deletes all emails
+	/**
+	 * Deletes all received emails from file system.
+	 */
 	public void deleteEmails() {
 		Map<Integer, String> mails = UIModel.INSTANCE.getListMailsMap();
 
@@ -63,10 +78,29 @@ public final class MailSaver extends Observable {
 		}
 	}
 
+	/**
+	 * Returns a lock object.
+	 * <p>
+	 * This lock will be used to make the application thread-safe, and
+	 * avoid receiving and deleting emails in the same time.
+	 * </p>
+	 *
+	 * @return a lock object <i>(which is actually the current instance of the {@code MailSaver} object)</i>.
+	 */
 	public Object getLock() {
 		return this;
 	}
 
+	/**
+	 * Converts an {@code InputStream} into a {@code String} object.
+	 * <p>
+	 * The method will not copy the first 4 lines of the input stream.<br />
+	 * These 4 lines are SubEtha SMTP additional information.
+	 * </p>
+	 *
+	 * @param is the inputstream to be converted.
+	 * @return the converted string object, containing data from the inputstream passed in parameters.
+	 */
 	private String convertStreamToString(InputStream is) {
 		final long lineNbToStartCopy = 4; // Do not copy the first 4 lines (received part)
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -86,13 +120,16 @@ public final class MailSaver extends Observable {
 		return sb.toString();
 	}
 
+	/**
+	 * Saves the content of the email passed in parameters in a file.
+	 *
+	 * @param mailContent the content of the email to be saved.
+	 * @return the path of the created file.
+	 */
 	private String saveEmailToFile(String mailContent) {
 		String filePath = String.format("%s%s%s", UIModel.INSTANCE.getSavePath(), File.separator,
 				dateFormat.format(new Date()));
-		return createFileFromInputStream(filePath, mailContent);
-	}
 
-	private String createFileFromInputStream(String filePath, String mailContent) {
 		// Create file
 		int i = 0;
 		File file = null;
@@ -111,7 +148,12 @@ public final class MailSaver extends Observable {
 		return file.getAbsolutePath();
 	}
 
-	// Returns an empty subject if not found
+	/**
+	 * Gets the subject from the email data passed in parameters.
+	 *
+	 * @param data a string representing the email content.
+	 * @return the subject of the email, or an empty subject if not found.
+	 */
 	private String getSubjectFromStr(String data) {
 		try {
 			BufferedReader reader = new BufferedReader(new StringReader(data));

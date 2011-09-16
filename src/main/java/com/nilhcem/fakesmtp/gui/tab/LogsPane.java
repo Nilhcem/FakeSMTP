@@ -15,23 +15,42 @@ import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
 import com.nilhcem.fakesmtp.log.SMTPLogsAppender;
 import com.nilhcem.fakesmtp.log.SMTPLogsObservable;
 
+/**
+ * Scrolled text area where will be displayed the SMTP logs.
+ *
+ * @author Nilhcem
+ * @since 1.0
+ */
 public final class LogsPane implements Observer {
 	private final JScrollPane logsPane = new JScrollPane();
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
 	private final JTextArea logsArea = new JTextArea();
 
+	/**
+	 * Creates the text area, sets it as non-editable and sets an observer to intercept logs.
+	 */
 	public LogsPane() {
 		logsArea.setEditable(false);
 		logsPane.getViewport().add(logsArea, null);
 		addObserverToSmtpLogAppender();
 	}
 
+	/**
+	 * Returns the JScrollPane object.
+	 *
+	 * @return the JScrollPane object.
+	 */
 	public JScrollPane get() {
 		return logsPane;
 	}
 
-	// Adds this observer to the SMTP log appender
-	// The goal is to be informed when the log appender will received some debug SMTP logs.
+	/**
+	 * Adds this object to the SMTP logs appender observable, to intercept logs.
+	 * <p>
+	 * The goal is to be informed when the log appender will received some debug SMTP logs.<br />
+	 * When a log is written, the appender will notify this class which will display it in the text area.
+	 * </p>
+	 */
 	private void addObserverToSmtpLogAppender() {
 		Logger smtpLogger = LoggerFactory.getLogger(org.subethamail.smtp.server.Session.class);
 		String appenderName = Configuration.INSTANCE.get("logback.appender.name");
@@ -46,6 +65,19 @@ public final class LogsPane implements Observer {
 		}
 	}
 
+	/**
+	 * Updates the content of the text area.
+	 * <p>
+	 * This method will be called by an observable element.
+	 * <ul>
+	 *   <li>If the observable is a {@link SMTPLogsObservable} object, the text area will display the received log.</li>
+	 *   <li>If the observable is a {@link ClearAllButton} object, the text area will be cleared.</li>
+	 * </ul>
+	 * </p>
+	 *
+	 * @param o the observable element which will notify this class.
+	 * @param log optional parameter (a {@code String} object, when the observable is a {@code SMTPLogsObservable} object, which will contain the log).
+	 */
 	@Override
 	public void update(Observable o, Object log) {
 		if (o instanceof SMTPLogsObservable) {

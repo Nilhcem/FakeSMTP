@@ -8,20 +8,41 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+/**
+ * Provides the menu bar of the application.
+ *
+ * @author Nilhcem
+ * @since 1.0
+ */
 public final class MenuBar extends Observable {
 	private final JMenuBar menuBar = new JMenuBar();
 
+	/**
+	 * Creates the menu bar and the different menus (file / edit / help).
+	 */
 	public MenuBar() {
 		menuBar.add(createFileMenu());
 		menuBar.add(createEditMenu());
 		menuBar.add(createHelpMenu());
 	}
 
+	/**
+	 * Returns the JMenuBar object.
+	 *
+	 * @return the JMenuBar object.
+	 */
 	public JMenuBar get() {
 		return menuBar;
 	}
 
-	// creates the file menu
+	/**
+	 * Creates the file menu.
+	 * <p>
+	 * The file menu contains an "Exit" item, to quit the application.
+	 * </p>
+	 *
+	 * @return the newly created file menu.
+	 */
 	private JMenu createFileMenu() {
 		JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic('F');
@@ -39,7 +60,14 @@ public final class MenuBar extends Observable {
 		return fileMenu;
 	}
 
-	// creates the edit menu
+	/**
+	 * Creates the edit menu.
+	 * <p>
+	 * The edit menu contains a "Messages location" item, to define the location of the incoming mails.
+	 * </p>
+	 *
+	 * @return the newly created edit menu.
+	 */
 	private JMenu createEditMenu() {
 		JMenu editMenu = new JMenu("Edit");
 		editMenu.setMnemonic('E');
@@ -58,7 +86,14 @@ public final class MenuBar extends Observable {
 		return editMenu;
 	}
 
-	// creates the help menu
+	/**
+	 * Creates the help menu.
+	 * <p>
+	 * The help menu contains an "About" item, to display some software information.
+	 * </p>
+	 *
+	 * @return the newly created help menu.
+	 */
 	private JMenu createHelpMenu() {
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic('H');

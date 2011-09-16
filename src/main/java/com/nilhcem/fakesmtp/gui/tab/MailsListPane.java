@@ -25,6 +25,15 @@ import com.nilhcem.fakesmtp.model.EmailModel;
 import com.nilhcem.fakesmtp.model.UIModel;
 import com.nilhcem.fakesmtp.server.MailSaver;
 
+/**
+ * Scrolled table where will be displayed every received email (one line for each email).
+ * <p>
+ * The user can double-click on any row to see the selected email.
+ * </p>
+ *
+ * @author Nilhcem
+ * @since 1.0
+ */
 public final class MailsListPane implements Observer {
 	private int nbElements = 0;
 	private Desktop desktop = null;
@@ -33,6 +42,9 @@ public final class MailsListPane implements Observer {
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
 	private final int[] widths = new int[] { 85, 140, 140}; //widths of columns in tab
 
+	/**
+	 * Table with non-editable cells.
+	 */
 	private final JTable table = new JTable() {
 		private static final long serialVersionUID = 6332956458868628779L;
 
@@ -42,6 +54,9 @@ public final class MailsListPane implements Observer {
 		}
 	};
 
+	/**
+	 * Table model with non-editable cells.
+	 */
 	private final DefaultTableModel model = new DefaultTableModel() {
 		private static final long serialVersionUID = -6716294637919469299L;
 
@@ -50,6 +65,16 @@ public final class MailsListPane implements Observer {
 		}
 	};
 
+	/**
+	 * Creates the table and sets its cells as non editable.
+	 * <p>
+	 * Adds some mouse events on the table, to display emails, when a user click on
+	 * a specific row.<br />
+	 * If the email can't be found, an error message will be displayed.<br />
+	 * The table will reset the size of its column every time the size of the table changed
+	 * (for example when the user maximize the window).
+	 * </p>
+	 */
 	public MailsListPane() {
 		// Init desktop (Java 6 Desktop API)
 		if (Desktop.isDesktopSupported()) {
@@ -128,10 +153,31 @@ public final class MailsListPane implements Observer {
 		mailsListPane.getViewport().add(table, null);
 	}
 
+	/**
+	 * Returns the JScrollPane object.
+	 *
+	 * @return the JScrollPane object.
+	 */
 	public JScrollPane get() {
 		return mailsListPane;
 	}
 
+	/**
+	 * Updates the content of the table.
+	 * <p>
+	 * This method will be called by an observable element.
+	 * <ul>
+	 *   <li>If the observable is a {@link MailSaver} object, a new row will be added
+	 *   to the table, and the {@link UIModel} will be updated;</li>
+	 *   <li>If the observable is a {@link ClearAllButton} object, all the cells
+	 *   of the table will be removed, and the {@link UIModel} will be updated.</li>
+	 * </ul>
+	 * </p>
+	 *
+	 * @param o the observable element which will notify this class.
+	 * @param arg optional parameters (an {@code EmailModel} object, for the case of
+	 * a {@code MailSaver} observable) containing all the information about the email.
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		if (o instanceof MailSaver) {
@@ -154,7 +200,11 @@ public final class MailsListPane implements Observer {
 		}
 	}
 
-	// Displays a message dialog containing the error specified in parameter.
+	/**
+	 * Displays a message dialog containing the error specified in parameter.
+	 *
+	 * @param error a String representing an error message to display.
+	 */
 	private void displayError(String error) {
 		JOptionPane.showMessageDialog(mailsListPane.getParent(), error, "Error", JOptionPane.ERROR_MESSAGE);
 	}

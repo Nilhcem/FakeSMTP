@@ -8,11 +8,23 @@ import javax.swing.event.DocumentListener;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.model.UIModel;
 
+/**
+ * Text field in which will be written the desired SMTP port.
+ *
+ * @author Nilhcem
+ * @since 1.0
+ */
 public final class PortTextField implements Observer {
 	private final JTextField portTextField = new JTextField();
 
+	/**
+	 * Creates the port field object and adds a listener on change to alert the presentation model.
+	 * <p>
+	 * The default port's value is defined in the configuration.properties file.<br />
+	 * Each time the port is modified, the port from the {@link UIModel} will be reset.
+	 * </p>
+	 */
 	public PortTextField() {
-		// Add listenener to onchange to alert presentation model
 		portTextField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void removeUpdate(DocumentEvent e) {
@@ -37,11 +49,26 @@ public final class PortTextField implements Observer {
 		portTextField.setText(Configuration.INSTANCE.get("smtp.default.port"));
 	}
 
+	/**
+	 * Returns the JTextField object.
+	 *
+	 * @return the JTextField object.
+	 */
 	public JTextField get() {
 		return portTextField;
 	}
 
-	// enables / disables textField
+	/**
+	 * Enables or disables the port text field.
+	 * <p>
+	 * When the element will receive an action from the {@link StartServerButton} object,
+	 * it will enable or disable the port, so that the user can't modify it
+	 * when the server is already launched.
+	 * </p>
+	 *
+	 * @param o the observable element which will notify this class.
+	 * @param arg optional parameters (not used).
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		if (o instanceof StartServerButton) {
