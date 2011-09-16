@@ -43,7 +43,7 @@ public enum UIModel {
 	 * @throws OutOfRangePortException when the port is out of range.
 	 * @throws RuntimeException when an unknown exception happened.
 	 */
-	public void toggleButton() throws InvalidPortException, BindPortException, OutOfRangePortException {
+	public void toggleButton() throws BindPortException, OutOfRangePortException, InvalidPortException {
 		if (started) {
 			SMTPServerHandler.INSTANCE.stopServer();
 		} else {

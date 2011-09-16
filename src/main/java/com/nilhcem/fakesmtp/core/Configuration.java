@@ -37,6 +37,9 @@ public enum Configuration {
 	 * @return the value of the key, or an empty string if the key was not found.
 	 */
 	public String get(String key) {
-		return ((config != null && config.containsKey(key)) ? (String)config.get(key) : "");
+		if (config != null && config.containsKey(key)) {
+			return config.getProperty(key);
+		}
+		return "";
 	}
 }

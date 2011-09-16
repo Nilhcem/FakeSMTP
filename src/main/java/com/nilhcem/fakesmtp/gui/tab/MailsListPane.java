@@ -40,7 +40,7 @@ public final class MailsListPane implements Observer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MailsListPane.class);
 	private final JScrollPane mailsListPane = new JScrollPane();
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
-	private final int[] widths = new int[] { 85, 140, 140}; //widths of columns in tab
+	private final int[] widths = new int[] {85, 140, 140}; //widths of columns in tab
 
 	/**
 	 * Table with non-editable cells.
@@ -182,8 +182,8 @@ public final class MailsListPane implements Observer {
 	public void update(Observable o, Object arg) {
 		if (o instanceof MailSaver) {
 			EmailModel email = (EmailModel) arg;
-			model.addRow(new Object[] { dateFormat.format(email.getReceivedDate()),
-					email.getFrom(), email.getTo(), email.getSubject() });
+			model.addRow(new Object[] {dateFormat.format(email.getReceivedDate()),
+					email.getFrom(), email.getTo(), email.getSubject()});
 			UIModel.INSTANCE.getListMailsMap().put(nbElements++, email.getFilePath());
 		} else if (o instanceof ClearAllButton) {
 			// Delete information from the map

@@ -134,7 +134,13 @@ public final class MailSaver extends Observable {
 		int i = 0;
 		File file = null;
 		while (file == null || (file != null && file.exists())) {
-			file = new File(filePath + (i++ > 0 ? Integer.toString(i) : "") + Configuration.INSTANCE.get("emails.suffix"));
+			String iStr;
+			if (i++ > 0) {
+				iStr = Integer.toString(i);
+			} else {
+				iStr = "";
+			}
+			file = new File(filePath + iStr + Configuration.INSTANCE.get("emails.suffix"));
 		}
 
 		// Copy String to file

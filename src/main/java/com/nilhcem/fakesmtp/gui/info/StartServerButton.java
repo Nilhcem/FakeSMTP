@@ -37,14 +37,11 @@ public final class StartServerButton extends Observable {
 					toggleButton();
 				} catch (InvalidPortException ipe) {
 					displayError(String.format("Can't start SMTP Server.%n\"Listening port\" is invalid."));
-				}
-				catch (BindPortException bpe) {
+				} catch (BindPortException bpe) {
 					displayError(String.format("Can't start SMTP Server.%nMake sure no other program is listening on port %d.", bpe.getPort()));
-				}
-				catch (OutOfRangePortException orpe) {
+				} catch (OutOfRangePortException orpe) {
 					displayError(String.format("Can't start SMTP Server.%nPort %d is out of range.", orpe.getPort()));
-				}
-				catch (RuntimeException re) {
+				} catch (RuntimeException re) {
 					displayError(String.format("Error starting SMTP Server:%n%s.", re.getMessage()));
 				}
 			}
@@ -57,7 +54,13 @@ public final class StartServerButton extends Observable {
 	 * @see PortTextField
 	 */
 	private void toggleButton() {
-		button.setText(UIModel.INSTANCE.isStarted() ? StartServerButton.STOP_SERVER_STR : StartServerButton.START_SERVER_STR);
+		String btnText;
+		if (UIModel.INSTANCE.isStarted()) {
+			btnText = StartServerButton.STOP_SERVER_STR;
+		} else {
+			btnText = StartServerButton.START_SERVER_STR;
+		}
+		button.setText(btnText);
 		setChanged();
 		notifyObservers();
 	}

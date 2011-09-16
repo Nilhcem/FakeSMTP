@@ -23,7 +23,7 @@ public final class SMTPLogsAppender<E> extends AppenderBase<E> {
 	@Override
 	protected void append(E event) {
 		if (event instanceof ILoggingEvent) {
-			ILoggingEvent loggingEvent = (ILoggingEvent)event;
+			ILoggingEvent loggingEvent = (ILoggingEvent) event;
 			observable.notifyObservers(loggingEvent.getFormattedMessage());
 		}
 	}

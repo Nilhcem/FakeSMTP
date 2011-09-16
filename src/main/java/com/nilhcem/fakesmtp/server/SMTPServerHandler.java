@@ -37,8 +37,7 @@ public enum SMTPServerHandler {
 		try {
 			smtpServer.setPort(port);
 			smtpServer.start();
-		}
-		catch (RuntimeException exception) {
+		} catch (RuntimeException exception) {
 			if (exception.getMessage().contains("BindException")) { // Can't open port
 				LOGGER.error("{}. Port {}", exception.getMessage(), port);
 				throw new BindPortException(exception, port);
