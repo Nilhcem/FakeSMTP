@@ -2,12 +2,15 @@ FakeSMTP
 ========
 
 FakeSMTP is a Free Java SMTP Server GUI for testing.
+
 Configure your application to use `localhost` as your SMTP server, and all
 emails will be intercepted and displayed in this software.
 
 FakeSMTP uses SubEthaSMTP: an easy-to-use server-side SMTP library for Java.
+
 FakeSMTP is free to use for commercial and non-commercial projects and the
 source code is provided.
+
 It is licensed under the very free BSD or GPL license, whichever you prefer.
 
 
@@ -15,6 +18,7 @@ Requirements
 ------------
 
 You need Java JVM 1.6 or newer installed on your machine.
+
 If you are on a "Unix-like" machine (Mac, GNU/Linux, BSD...), you may have
 to be "root" to start the port `25`, otherwise, try another port >= `1024`.
 
@@ -39,12 +43,14 @@ Listed below are some greats alternatives to Fake SMTP:
 
 
 **[SMTP4dev](http://smtp4dev.codeplex.com/)**
+
 * Nice features;
 * Open source;
 * Written for Windows in .net.
 
 
 **[DevNull SMTP](http://www.aboutmyip.com/AboutMyXApp/DevNullSmtp.jsp)**
+
 * Lightweight;
 * Closed source;
 * Written in Java 1.4 (cross platform).
@@ -55,9 +61,13 @@ Building it
 
 You need to download and setup Maven.
 Once installed, go to project directory and run the following command:
+
     mvn package -Dmaven.test.skip=true
+
 This command will create an executable jar on the target folder.
+
 We recommend you not to skip unit tests.
+
 Once you know how to configure unit tests for this project, stop skipping them.
 
 
@@ -66,7 +76,9 @@ Running integration tests
 
 To run integration tests, you will first need to launch the application
 and start the server on port `2525`.
+
 You can then run the following command:
+
     mvn integration-test
 
 
@@ -81,6 +93,7 @@ Import the project on Eclipse IDE
 ---------------------------------
 
 Run the following command:
+
     mvn eclipse:eclipse
 
 
