@@ -4,12 +4,12 @@
 
 	<groupId>com.nilhcem.fakesmtp</groupId>
 	<artifactId>fakesmtp</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Fake SMTP</name>
 	<description>Dummy SMTP server for testing</description>
-	<url>https://www.github.com/nilhcem</url>
+	<url>https://github.com/Nilhcem/FakeSMTP</url>
 
 	<properties>
 		<project.lib.dir>${project.basedir}/lib</project.lib.dir>
