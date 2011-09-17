@@ -7,14 +7,14 @@
 	</bannerLeft>
 	<body>
 	    <links>
-	      <item name="GitHub" href="http://www.github.com/nilhcem" />
 	      <item name="SubEtha SMTP" href="http://code.google.com/p/subethasmtp/" />
+	      <item name="GitHub page" href="http://github.com/Nilhcem/FakeSMTP" />
 	    </links>
 
 		<menu name="Introduction">
 	      <item name="Overview" href="index.html"/>
 	      <item name="Screenshots" href="screenshots.html"/>
-	      <!-- <item name="Downloads" href="downloads.html"/> -->
+	      <item name="Download" href="download.html"/>
 	      <item name="License" href="license.html"/>
 	      <item name="Developer FAQ" href="faq.html"/>
 		</menu>

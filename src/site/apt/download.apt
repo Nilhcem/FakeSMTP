@@ -1,0 +1,19 @@
+ -----
+ FakeSMTP - Download
+ -----
+ Nilhcem
+ -----
+ September 2011
+
+Download
+
+ Click {{{http://github.com/downloads/Nilhcem/FakeSMTP/fakeSMTP-1.0.zip}here}} to download the latest version.
+
+
+* Get the sources
+
+ Source code available on {{{http://github.com/Nilhcem/FakeSMTP}GitHub}}.
+
++--
+git clone git@github.com:Nilhcem/FakeSMTP.git
++--
