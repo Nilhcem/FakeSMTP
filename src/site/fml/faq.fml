@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs xmlns="http://maven.apache.org/FML/1.0.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/FML/1.0.1 http://maven.apache.org/xsd/fml-1.0.1.xsd"
+  title="Developer FAQ">
+
+	<part id="about">
+		<faq id="1">
+			<question>How to compile the project</question>
+			<answer>
+				<p>
+					You need to download and setup <a href="http://maven.apache.org/">Maven</a>.<br />
+					Once installed, go to project directory and run the following command:
+					<pre>mvn package -Dmaven.test.skip=true</pre>
+					This command will create an executable jar on the target folder.<br />
+					We recommend you not to skip unit tests.<br />
+					Once you know how to configure unit tests for this project, stop skipping them.
+				</p>
+			</answer>
+		</faq>
+
+		<faq id="2">
+			<question>How to run integration tests</question>
+			<answer>
+				<p>
+					To run integration tests, you will first need to launch the application and start the server on port 2525.<br />
+					You can then run the following command:
+					<pre>mvn integration-test</pre>
+				</p>
+			</answer>
+		</faq>
+
+		<faq id="3">
+			<question>How can I change the default port (2525) for unit/integration test</question>
+			<answer>
+				<p>
+					You then need to configure the "src/test/java/com/nilhcem/fakesmtp/core/test/TestConfig.java" file to change the port <i>(by default 2525)</i>.
+				</p>
+			</answer>
+		</faq>
+
+		<faq id="4">
+			<question>I can't import the project on Eclipse IDE</question>
+			<answer>
+				<p>
+					Run the following command to create eclipse project files:
+					<pre>mvn eclipse:eclipse</pre>
+				</p>
+			</answer>
+		</faq>
+
+		<faq id="5">
+			<question>How to contact you</question>
+			<answer>
+				<p>
+					Use my github's nickname (at) gmail (dot) com.
+				</p>
+			</answer>
+		</faq>
+	</part>
+</faqs>

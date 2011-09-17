@@ -1,0 +1,56 @@
+ -----
+ FakeSMTP - Dummy SMTP server for developers
+ -----
+ Nilhcem
+ -----
+ September 2011
+
+Introduction
+
+ FakeSMTP is a Free Java SMTP Server GUI for testing.\
+Configure your application to use "localhost" as your SMTP server, and all emails will be intercepted and displayed in this software.
+
+[./images/screenshot_mac.png] Screenshot
+
+ FakeSMTP uses {{{http://code.google.com/p/subethasmtp/}SubEtha SMTP}}: an easy-to-use server-side SMTP library for Java.\
+FakeSMTP is free to use for commercial and non-commercial projects and the source code is provided.\
+It is licensed under the very free BSD or GPL license, whichever you prefer.
+
+
+* Requirements
+
+ You need Java JVM 1.6 or newer installed on your machine.\
+If you are on a "Unix-like" machine (Mac, GNU/Linux, BSD...), you may have to be "root" to start the port 25, otherwise, try another port >= 1024.
+
+
+* Usage
+
+ The fakeSMTP.jar is auto-executable.\
+If your desktop environment supports it, you can directly double click on the .jar file.\
+Otherwise, run the following command:
+
++--
+ java -jar fakeSMTP.jar
++--
+
+
+* Alternatives
+
+ FakeSMTP was created because we couldn't find any free (as in freedom) and cross-platform SMTP server UI for testing.\
+Listed below are some greats alternatives to Fake SMTP:
+
+ * {{{http://smtp4dev.codeplex.com/}SMTP4dev}}
+
+    * Nice features;
+
+    * Open source;
+
+    * Written for Windows in .net.
+
+ * {{{http://www.aboutmyip.com/AboutMyXApp/DevNullSmtp.jsp}DevNull SMTP}}
+
+    * Lightweight;
+
+    * Closed source;
+
+    * Written in Java 1.4 (cross platform).

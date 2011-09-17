@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="FakeSMTP">
+	<bannerLeft>
+		<name>FakeSMTP</name>
+		<src>./images/logo.png</src>
+		<href>#</href>
+	</bannerLeft>
+	<body>
+	    <links>
+	      <item name="GitHub" href="http://www.github.com/nilhcem" />
+	      <item name="SubEtha SMTP" href="http://code.google.com/p/subethasmtp/" />
+	    </links>
+
+		<menu name="Introduction">
+	      <item name="Overview" href="index.html"/>
+	      <item name="Screenshots" href="screenshots.html"/>
+	      <!-- <item name="Downloads" href="downloads.html"/> -->
+	      <item name="License" href="license.html"/>
+	      <item name="Developer FAQ" href="faq.html"/>
+		</menu>
+
+		<menu ref="reports" />
+	</body>
+</project>
