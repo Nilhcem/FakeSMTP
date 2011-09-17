@@ -1,0 +1,9 @@
+com.nilhcem.fakesmtp
+com.nilhcem.fakesmtp.core
+com.nilhcem.fakesmtp.core.exception
+com.nilhcem.fakesmtp.gui
+com.nilhcem.fakesmtp.gui.info
+com.nilhcem.fakesmtp.gui.tab
+com.nilhcem.fakesmtp.log
+com.nilhcem.fakesmtp.model
+com.nilhcem.fakesmtp.server

@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>Fake SMTP - Checkstyle report</title>
+    <link>https://www.github.com/nilhcem</link>
+    <description>Fake SMTP - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2011</copyright>
+    <item>
+      <title>File: 34,
+             Errors: 0,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>https://www.github.com/nilhcem/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://www.github.com/nilhcem/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.core.Configuration.java">com/nilhcem/fakesmtp/core/Configuration.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.server.SMTPServerHandler.java">com/nilhcem/fakesmtp/server/SMTPServerHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.server.MailListener.java">com/nilhcem/fakesmtp/server/MailListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.model.EmailModel.java">com/nilhcem/fakesmtp/model/EmailModel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.info.ClearAllButton.java">com/nilhcem/fakesmtp/gui/info/ClearAllButton.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.FakeSMTP.java">com/nilhcem/fakesmtp/FakeSMTP.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.MenuBar.java">com/nilhcem/fakesmtp/gui/MenuBar.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.log.package-info.java">com/nilhcem/fakesmtp/log/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.log.SMTPLogsAppender.java">com/nilhcem/fakesmtp/log/SMTPLogsAppender.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.server.package-info.java">com/nilhcem/fakesmtp/server/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.info.PortTextField.java">com/nilhcem/fakesmtp/gui/info/PortTextField.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.info.NbReceivedLabel.java">com/nilhcem/fakesmtp/gui/info/NbReceivedLabel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.tab.package-info.java">com/nilhcem/fakesmtp/gui/tab/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.core.package-info.java">com/nilhcem/fakesmtp/core/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.log.SMTPLogsObservable.java">com/nilhcem/fakesmtp/log/SMTPLogsObservable.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.DirChooser.java">com/nilhcem/fakesmtp/gui/DirChooser.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.core.exception.OutOfRangePortException.java">com/nilhcem/fakesmtp/core/exception/OutOfRangePortException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.package-info.java">com/nilhcem/fakesmtp/gui/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.core.exception.AbstractPortException.java">com/nilhcem/fakesmtp/core/exception/AbstractPortException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.core.exception.package-info.java">com/nilhcem/fakesmtp/core/exception/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.core.exception.BindPortException.java">com/nilhcem/fakesmtp/core/exception/BindPortException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.MainPanel.java">com/nilhcem/fakesmtp/gui/MainPanel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.tab.LogsPane.java">com/nilhcem/fakesmtp/gui/tab/LogsPane.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.info.StartServerButton.java">com/nilhcem/fakesmtp/gui/info/StartServerButton.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.server.MailSaver.java">com/nilhcem/fakesmtp/server/MailSaver.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.tab.LastMailPane.java">com/nilhcem/fakesmtp/gui/tab/LastMailPane.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.core.exception.InvalidPortException.java">com/nilhcem/fakesmtp/core/exception/InvalidPortException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.model.package-info.java">com/nilhcem/fakesmtp/model/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.model.UIModel.java">com/nilhcem/fakesmtp/model/UIModel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.MainFrame.java">com/nilhcem/fakesmtp/gui/MainFrame.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.info.SaveMsgField.java">com/nilhcem/fakesmtp/gui/info/SaveMsgField.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.info.package-info.java">com/nilhcem/fakesmtp/gui/info/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.gui.tab.MailsListPane.java">com/nilhcem/fakesmtp/gui/tab/MailsListPane.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://www.github.com/nilhcem/checkstyle.html#com.nilhcem.fakesmtp.package-info.java">com/nilhcem/fakesmtp/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
