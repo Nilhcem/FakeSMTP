@@ -19,14 +19,14 @@ public final class SendEmailsIT {
 	@BeforeClass
 	public static void displayInfo() {
 		logger.info("Launching integration tests...");
-		logger.info("You need to run the project and launch the SMTP server on port {} before testing.", TestConfig.PORT);
+		logger.info("You need to run the project and launch the SMTP server on port {} before testing.", TestConfig.PORT_UNIT_TESTS);
 	}
 
 	@Test
 	public void sendSimpleTestEmail() throws EmailException {
 		Email email = new SimpleEmail();
 		email.setHostName(TestConfig.HOST);
-		email.setSmtpPort(TestConfig.PORT);
+		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
 		email.setTLS(true);
 		email.setFrom("user@gmail.com");
 		email.setSubject("TestMail");
@@ -47,7 +47,7 @@ public final class SendEmailsIT {
 		// Create the email message
 		MultiPartEmail email = new MultiPartEmail();
 		email.setHostName(TestConfig.HOST);
-		email.setSmtpPort(TestConfig.PORT);
+		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
 		email.addTo("jdoe@somewhere.org", "John Doe");
 		email.setFrom("me@apache.org", "Me");
 		email.setSubject("The file");
@@ -65,7 +65,7 @@ public final class SendEmailsIT {
 		// Create the email message
 		HtmlEmail email = new HtmlEmail();
 		email.setHostName(TestConfig.HOST);
-		email.setSmtpPort(TestConfig.PORT);
+		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
 		email.addTo("jdoe@somewhere.org", "John Doe");
 		email.setFrom("me@apache.org", "Me");
 		email.setSubject("Test HTML email.");
