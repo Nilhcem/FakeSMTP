@@ -75,7 +75,7 @@ public class MailServerTest {
 			.append("Date: Thu, 15 May 2042 04:42:42 +0800 (CST)").append(br)
 			.append(String.format("From: \"%s\" <%s>%n", from, from))
 			.append(String.format("To: \"%s\" <%s>%n", to, to))
-			.append("Message-ID: <17900022.0.1316148949132.JavaMail.hp@CNSZITWSW00010>").append(br)
+			.append("Message-ID: <17000042.0.1300000000042.JavaMail.wtf@OMG00042>").append(br)
 			.append(String.format("Subject: %s%n", subject))
 			.append("MIME-Version: 1.0").append(br)
 			.append("Content-Type: text/plain; charset=us-ascii").append(br)
