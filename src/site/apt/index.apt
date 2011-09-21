@@ -36,7 +36,7 @@ Otherwise, run the following command:
 
 * Alternatives
 
- FakeSMTP was created because we couldn't find any free (as in freedom) and cross-platform SMTP server UI for testing.\
+ FakeSMTP was created because we couldn't find any free (as in freedom) and cross-platform SMTP server with GUI for testing emails in applications or websites.\
 Listed below are some greats alternatives to Fake SMTP:
 
  * {{{http://smtp4dev.codeplex.com/}SMTP4dev}}

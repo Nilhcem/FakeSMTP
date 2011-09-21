@@ -31,10 +31,12 @@
 		</faq>
 
 		<faq id="3">
-			<question>How can I change the default port (2525) for unit/integration test</question>
+			<question>How can I change the default port for unit/integration tests</question>
 			<answer>
 				<p>
-					You then need to configure the "src/test/java/com/nilhcem/fakesmtp/core/test/TestConfig.java" file to change the port <i>(by default 2525)</i>.
+					Default port for unit tests is <code>2626</code> and default port for integration tests is <code>2525</code>.<br />
+					You then need to configure the "src/test/java/com/nilhcem/fakesmtp/core/test/TestConfig.java" file to change the port.<br />
+					Please note that it is better to have two different ports for unit and integrations tests, to avoid any port binding exception while running Maven's integration-test goal.
 				</p>
 			</answer>
 		</faq>

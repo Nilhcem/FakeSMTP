@@ -40,7 +40,7 @@ Alternatives
 ------------
 
 FakeSMTP was created because we couldn't find any free (as in freedom) and
-cross-platform SMTP server UI for testing.
+cross-platform SMTP server with GUI for testing emails in applications or websites.
 Listed below are some greats alternatives to Fake SMTP:
 
 
@@ -84,11 +84,13 @@ You can then run the following command:
     mvn integration-test
 
 
-Change the default port (2525) for unit/integration test
+Change the default port for unit/integration tests
 --------------------------------------------------------
 
 You need to modify the following file:
 `src/test/java/com/nilhcem/fakesmtp/core/test/TestConfig.java`.
+
+Please note that it is better to have two different ports for unit and integrations tests, to avoid any port binding exception while running Maven's `integration-test` goal.
 
 
 Import the project on Eclipse IDE
