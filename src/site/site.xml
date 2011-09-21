@@ -6,6 +6,11 @@
 		<href>#</href>
 	</bannerLeft>
 	<body>
+		<head>
+			<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+			<link rel="icon" type="image/ico" href="favicon.ico" />
+		</head>
+
 	    <links>
 	      <item name="SubEtha SMTP" href="http://code.google.com/p/subethasmtp/" />
 	      <item name="GitHub page" href="http://github.com/Nilhcem/FakeSMTP" />
