@@ -19,7 +19,7 @@ public final class SendEmailsIT {
 	@BeforeClass
 	public static void displayInfo() {
 		logger.info("Launching integration tests...");
-		logger.info("You need to run the project and launch the SMTP server on port {} before testing.", TestConfig.PORT_UNIT_TESTS);
+		logger.info("You need to run the project and launch the SMTP server on port {} before testing.", TestConfig.PORT_INTEGRATION_TESTS);
 	}
 
 	@Test
