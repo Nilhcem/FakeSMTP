@@ -1,8 +1,9 @@
 package com.nilhcem.fakesmtp;
 
+import java.awt.EventQueue;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.gui.MainFrame;
 
@@ -13,6 +14,8 @@ import com.nilhcem.fakesmtp.gui.MainFrame;
  * @since 1.0
  */
 public final class FakeSMTP {
+	private static final Logger LOGGER = LoggerFactory.getLogger(FakeSMTP.class);
+
 	private FakeSMTP() {
 	}
 
@@ -29,18 +32,22 @@ public final class FakeSMTP {
 	 * </p>
 	 *
 	 * @param args a list of parameters.
-	 * @throws ClassNotFoundException if an error happened while setting the system look and feel.
-	 * @throws InstantiationException if an error happened while setting the system look and feel.
-	 * @throws IllegalAccessException if an error happened while setting the system look and feel.
-	 * @throws UnsupportedLookAndFeelException if an error happened while setting the system look and feel.
 	 */
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException,
-		IllegalAccessException, UnsupportedLookAndFeelException {
-		System.setProperty("apple.laf.useScreenMenuBar", "true");
-		System.setProperty("com.apple.mrj.application.apple.menu.about.name", Configuration.INSTANCE.get("application.name"));
-		UIManager.put("swing.boldMetal", Boolean.FALSE);
-		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
-		new MainFrame();
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				System.setProperty("apple.laf.useScreenMenuBar", "true");
+				System.setProperty("com.apple.mrj.application.apple.menu.about.name", Configuration.INSTANCE.get("application.name"));
+				UIManager.put("swing.boldMetal", Boolean.FALSE);
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				}
+				catch (Exception e) {
+					LOGGER.error("", e);
+				}
+				new MainFrame();
+			}
+		});
 	}
 }
