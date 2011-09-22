@@ -7,7 +7,7 @@
 
 Overview
 
- FakeSMTP is a Free Java SMTP Server with GUI for testing emails in applications easily.\
+ FakeSMTP is a Free Fake SMTP Server with GUI for testing emails in applications easily. It is written in Java.\
 Configure your application to use "localhost" as your SMTP server, and all emails will be intercepted and displayed in this software.
 
 [./images/screenshot_mac.png] Screenshot

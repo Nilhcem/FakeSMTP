@@ -1,7 +1,8 @@
 FakeSMTP
 ========
 
-FakeSMTP is a Free Java SMTP Server with GUI for testing emails in applications easily.
+FakeSMTP is a Free Fake SMTP Server with GUI for testing emails in applications easily.
+It is written in Java.
 
 <img src="http://nilhcem.github.com/FakeSMTP/images/screenshot_mac.png" width="664" height="463" />
 
