@@ -13,3 +13,4 @@ target/*
 
 # Ignore received emails folder
 received-emails/*
+emails-recus/*

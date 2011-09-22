@@ -8,6 +8,7 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.server.MailSaver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
@@ -22,7 +23,7 @@ import com.nilhcem.fakesmtp.server.SMTPServerHandler;
  * @since 1.0
  */
 public final class ClearAllButton extends Observable implements Observer {
-	private final JButton button = new JButton("Clear all");
+	private final JButton button = new JButton(I18n.INSTANCE.get("clearall.title"));
 
 	/**
 	 * Creates the "clear all" button"
@@ -37,7 +38,7 @@ public final class ClearAllButton extends Observable implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int answer = JOptionPane.showConfirmDialog(button.getParent(),
-						"Do you want to delete the saved emails?", "Clear all",
+					I18n.INSTANCE.get("clearall.delete.email"), I18n.INSTANCE.get("clearall.title"),
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 				synchronized (SMTPServerHandler.INSTANCE.getMailSaver().getLock()) {

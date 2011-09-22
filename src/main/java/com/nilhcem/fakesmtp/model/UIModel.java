@@ -2,8 +2,7 @@ package com.nilhcem.fakesmtp.model;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
 import com.nilhcem.fakesmtp.core.exception.InvalidPortException;
 import com.nilhcem.fakesmtp.core.exception.OutOfRangePortException;
@@ -26,7 +25,7 @@ public enum UIModel {
 	private boolean started = false; // server is not started by default
 	private String portStr;
 	private int nbMessageReceived = 0;
-	private String savePath = Configuration.INSTANCE.get("emails.default.dir");
+	private String savePath = I18n.INSTANCE.get("emails.default.dir");
 	private final Map<Integer, String> listMailsMap = new HashMap<Integer, String>();
 
 	private UIModel() {

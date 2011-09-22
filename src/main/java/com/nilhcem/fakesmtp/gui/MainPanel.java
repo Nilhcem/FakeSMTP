@@ -8,6 +8,7 @@ import javax.swing.JTabbedPane;
 
 import net.miginfocom.swing.MigLayout;
 
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
 import com.nilhcem.fakesmtp.gui.info.NbReceivedLabel;
 import com.nilhcem.fakesmtp.gui.info.PortTextField;
@@ -26,6 +27,9 @@ import com.nilhcem.fakesmtp.server.SMTPServerHandler;
  * @since 1.0
  */
 public final class MainPanel {
+	// I18n
+	private final I18n i18n = I18n.INSTANCE;
+
 	// Panel and layout
 	private final MigLayout layout = new MigLayout(
 		"", // Layout constraints
@@ -37,16 +41,16 @@ public final class MainPanel {
 	private final DirChooser dirChooser = new DirChooser(mainPanel);
 
 	// Port
-	private final JLabel portLabel = new JLabel("Listening port:");
+	private final JLabel portLabel = new JLabel(i18n.get("mainpanel.listening.port"));
 	private final PortTextField portText = new PortTextField();
 	private final StartServerButton startServerBtn = new StartServerButton();
 
 	// Messages received
-	private final JLabel receivedLabel = new JLabel("Message(s) received:");
+	private final JLabel receivedLabel = new JLabel(i18n.get("mainpanel.messages.received"));
 	private final NbReceivedLabel nbReceivedLabel = new NbReceivedLabel();
 
 	// Save incoming messages to
-	private final JLabel saveMessages = new JLabel("Save message(s) to: ");
+	private final JLabel saveMessages = new JLabel(i18n.get("mainpanel.save.messages"));
 	private final SaveMsgField saveMsgTextField = new SaveMsgField();
 
 	// Tab pane
@@ -140,9 +144,9 @@ public final class MainPanel {
 		mainPanel.add(nbReceivedLabel.get(), "span");
 
 		// Tab pane
-		tabbedPane.add(mailsListPane.get(), "Mails list");
-		tabbedPane.add(logsPane.get(), "SMTP log");
-		tabbedPane.add(lastMailPane.get(), "Last message");
+		tabbedPane.add(mailsListPane.get(), i18n.get("mainpanel.tab.mailslist"));
+		tabbedPane.add(logsPane.get(), i18n.get("mainpanel.tab.smtplog"));
+		tabbedPane.add(lastMailPane.get(), i18n.get("mainpanel.tab.lastmessage"));
 		mainPanel.add(tabbedPane, "span, grow");
 
 		// Clear all

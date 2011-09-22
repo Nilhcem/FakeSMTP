@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
 import com.nilhcem.fakesmtp.model.EmailModel;
 import com.nilhcem.fakesmtp.model.UIModel;
@@ -38,9 +39,10 @@ public final class MailsListPane implements Observer {
 	private int nbElements = 0;
 	private Desktop desktop = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(MailsListPane.class);
+	private final I18n i18n = I18n.INSTANCE;
 	private final JScrollPane mailsListPane = new JScrollPane();
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
-	private final int[] widths = new int[] {85, 140, 140}; //widths of columns in tab
+	private final int[] widths = new int[] {85, 140, 140}; // widths of columns in tab
 
 	/**
 	 * Table with non-editable cells.
@@ -113,10 +115,10 @@ public final class MailsListPane implements Observer {
 							desktop.open(file);
 						} catch (IOException ioe) {
 							LOGGER.error("", ioe);
-							displayError("Can't open the file: "  + file.getAbsolutePath());
+							displayError(String.format(i18n.get("mailslist.err.open"), file.getAbsolutePath()));
 						}
 					} else {
-						displayError("Can't find the file: "  + file.getAbsolutePath());
+						displayError(String.format(i18n.get("mailslist.err.find"), file.getAbsolutePath()));
 					}
 				}
 			}
@@ -129,10 +131,10 @@ public final class MailsListPane implements Observer {
 			}
 		});
 
-		model.addColumn("Received");
-		model.addColumn("From");
-		model.addColumn("To");
-		model.addColumn("Subject");
+		model.addColumn(i18n.get("mailslist.col.received"));
+		model.addColumn(i18n.get("mailslist.col.from"));
+		model.addColumn(i18n.get("mailslist.col.to"));
+		model.addColumn(i18n.get("mailslist.col.subject"));
 		table.setModel(model);
 
 		mailsListPane.addComponentListener(new ComponentAdapter() {
@@ -206,6 +208,6 @@ public final class MailsListPane implements Observer {
 	 * @param error a String representing an error message to display.
 	 */
 	private void displayError(String error) {
-		JOptionPane.showMessageDialog(mailsListPane.getParent(), error, "Error", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(mailsListPane.getParent(), error, i18n.get("mailslist.err.title"), JOptionPane.ERROR_MESSAGE);
 	}
 }

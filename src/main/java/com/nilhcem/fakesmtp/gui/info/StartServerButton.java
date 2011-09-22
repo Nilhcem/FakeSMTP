@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
 import com.nilhcem.fakesmtp.core.exception.InvalidPortException;
 import com.nilhcem.fakesmtp.core.exception.OutOfRangePortException;
@@ -17,10 +18,9 @@ import com.nilhcem.fakesmtp.model.UIModel;
  * @since 1.0
  */
 public final class StartServerButton extends Observable {
-	private static final String START_SERVER_STR = "Start server";
-	private static final String STOP_SERVER_STR = "Stop server";
+	private final I18n i18n = I18n.INSTANCE;
 
-	private final JButton button = new JButton(StartServerButton.START_SERVER_STR);
+	private final JButton button = new JButton(i18n.get("startsrv.start"));
 
 	/**
 	 * Creates a start / stop button to start and stop the SMTP server.
@@ -36,13 +36,13 @@ public final class StartServerButton extends Observable {
 					UIModel.INSTANCE.toggleButton();
 					toggleButton();
 				} catch (InvalidPortException ipe) {
-					displayError(String.format("Can't start SMTP Server.%n\"Listening port\" is invalid."));
+					displayError(String.format(i18n.get("startsrv.err.invalid")));
 				} catch (BindPortException bpe) {
-					displayError(String.format("Can't start SMTP Server.%nMake sure no other program is listening on port %d.", bpe.getPort()));
+					displayError(String.format(i18n.get("startsrv.err.bound"), bpe.getPort()));
 				} catch (OutOfRangePortException orpe) {
-					displayError(String.format("Can't start SMTP Server.%nPort %d is out of range.", orpe.getPort()));
+					displayError(String.format(i18n.get("startsrv.err.range"), orpe.getPort()));
 				} catch (RuntimeException re) {
-					displayError(String.format("Error starting SMTP Server:%n%s.", re.getMessage()));
+					displayError(String.format(i18n.get("startsrv.err.default"), re.getMessage()));
 				}
 			}
 		});
@@ -56,9 +56,9 @@ public final class StartServerButton extends Observable {
 	private void toggleButton() {
 		String btnText;
 		if (UIModel.INSTANCE.isStarted()) {
-			btnText = StartServerButton.STOP_SERVER_STR;
+			btnText = i18n.get("startsrv.stop");
 		} else {
-			btnText = StartServerButton.START_SERVER_STR;
+			btnText = i18n.get("startsrv.start");
 		}
 		button.setText(btnText);
 		setChanged();
@@ -80,6 +80,6 @@ public final class StartServerButton extends Observable {
 	 * @param error a string representing the error which will be displayed in a message dialog.
 	 */
 	private void displayError(String error) {
-		JOptionPane.showMessageDialog(button.getParent(), error, "Error", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(button.getParent(), error, i18n.get("startsrv.err.title"), JOptionPane.ERROR_MESSAGE);
 	}
 }
