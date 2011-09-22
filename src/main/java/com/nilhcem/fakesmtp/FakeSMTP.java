@@ -5,6 +5,7 @@ import javax.swing.UIManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
 import com.nilhcem.fakesmtp.gui.MainFrame;
 
 /**
@@ -24,6 +25,7 @@ public final class FakeSMTP {
 	 * <p>
 	 * Before opening the main window, this method will:
 	 * <ul>
+	 *   <li>set a default uncaught exception handler to intercept every uncaught exception;</li>
 	 *   <li>set a property for Mac OS X to take the menu bar off the JFrame;</li>
 	 *   <li>set a property for Mac OS X to set the name of the application menu item;</li>
 	 *   <li>turn off the bold font in all components for swing default theme;</li>
@@ -34,6 +36,7 @@ public final class FakeSMTP {
 	 * @param args a list of parameters.
 	 */
 	public static void main(String[] args) {
+		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {

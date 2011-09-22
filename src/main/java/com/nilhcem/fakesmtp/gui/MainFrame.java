@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
 /**
@@ -20,6 +21,7 @@ public final class MainFrame {
 	/**
 	 * Creates the main window and make it visible.
 	 * <p>
+	 * First, assigns the main panel to the default uncaught exception handler to display exceptions in this panel.<br /><br />
 	 * To create the main window, the application will have to set some elements, such as:
 	 * <ul>
 	 *   <li>The minimum and default size;</li>
@@ -32,6 +34,7 @@ public final class MainFrame {
 	 * </p>
 	 */
 	public MainFrame() {
+		((UncaughtExceptionHandler)Thread.getDefaultUncaughtExceptionHandler()).setParentComponent(panel.get());
 		Dimension frameSize = new Dimension(Integer.parseInt(Configuration.INSTANCE.get("application.min.width")),
 			Integer.parseInt(Configuration.INSTANCE.get("application.min.height")));
 
