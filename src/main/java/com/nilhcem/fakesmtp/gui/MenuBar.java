@@ -7,6 +7,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.I18n;
 
 /**
@@ -107,7 +108,8 @@ public final class MenuBar extends Observable {
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(menuBar.getParent(),
 					String.format(i18n.get("menubar.about.dialog")),
-					i18n.get("menubar.about"), JOptionPane.INFORMATION_MESSAGE);
+					String.format(i18n.get("menubar.about.title"), Configuration.INSTANCE.get("application.name")),
+					JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 

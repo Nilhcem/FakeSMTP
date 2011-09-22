@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
 import com.nilhcem.fakesmtp.core.exception.InvalidPortException;
@@ -80,6 +81,8 @@ public final class StartServerButton extends Observable {
 	 * @param error a string representing the error which will be displayed in a message dialog.
 	 */
 	private void displayError(String error) {
-		JOptionPane.showMessageDialog(button.getParent(), error, i18n.get("startsrv.err.title"), JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(button.getParent(), error,
+			String.format(i18n.get("startsrv.err.title"), Configuration.INSTANCE.get("application.name")),
+			JOptionPane.ERROR_MESSAGE);
 	}
 }

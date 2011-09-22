@@ -5,6 +5,8 @@ import java.io.File;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JFileChooser;
+import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.info.SaveMsgField;
 import com.nilhcem.fakesmtp.model.UIModel;
 
@@ -30,6 +32,9 @@ public final class DirChooser extends Observable implements Observer {
 	public DirChooser(Component parent) {
 		this.parent = parent;
 		dirChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		dirChooser.setDialogTitle(String.format(I18n.INSTANCE.get("dirchooser.title"),
+			Configuration.INSTANCE.get("application.name")));
+		dirChooser.setApproveButtonText(I18n.INSTANCE.get("dirchooser.approve.btn"));
 	}
 
 	/**

@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
 import com.nilhcem.fakesmtp.model.EmailModel;
@@ -208,6 +209,8 @@ public final class MailsListPane implements Observer {
 	 * @param error a String representing an error message to display.
 	 */
 	private void displayError(String error) {
-		JOptionPane.showMessageDialog(mailsListPane.getParent(), error, i18n.get("mailslist.err.title"), JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(mailsListPane.getParent(), error,
+			String.format(i18n.get("mailslist.err.title"), Configuration.INSTANCE.get("application.name")),
+			JOptionPane.ERROR_MESSAGE);
 	}
 }

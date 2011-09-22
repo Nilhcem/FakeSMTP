@@ -8,6 +8,7 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.server.MailSaver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
@@ -23,7 +24,8 @@ import com.nilhcem.fakesmtp.server.SMTPServerHandler;
  * @since 1.0
  */
 public final class ClearAllButton extends Observable implements Observer {
-	private final JButton button = new JButton(I18n.INSTANCE.get("clearall.title"));
+	private final I18n i18n = I18n.INSTANCE;
+	private final JButton button = new JButton(i18n.get("clearall.button"));
 
 	/**
 	 * Creates the "clear all" button"
@@ -34,12 +36,12 @@ public final class ClearAllButton extends Observable implements Observer {
 	 * </p>
 	 */
 	public ClearAllButton() {
-		button.setToolTipText(I18n.INSTANCE.get("clearall.tooltip"));
+		button.setToolTipText(i18n.get("clearall.tooltip"));
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int answer = JOptionPane.showConfirmDialog(button.getParent(),
-					I18n.INSTANCE.get("clearall.delete.email"), I18n.INSTANCE.get("clearall.title"),
+				int answer = JOptionPane.showConfirmDialog(button.getParent(), i18n.get("clearall.delete.email"),
+					String.format(i18n.get("clearall.title"), Configuration.INSTANCE.get("application.name")),
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 				synchronized (SMTPServerHandler.INSTANCE.getMailSaver().getLock()) {
