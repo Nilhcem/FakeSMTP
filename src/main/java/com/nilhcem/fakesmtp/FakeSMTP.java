@@ -23,6 +23,7 @@ public final class FakeSMTP {
 	 * <ul>
 	 *   <li>set a property for Mac OS X to take the menu bar off the JFrame;</li>
 	 *   <li>set a property for Mac OS X to set the name of the application menu item;</li>
+	 *   <li>turn off the bold font in all components for swing default theme;</li>
 	 *   <li>use the platform look and feel.</li>
 	 * </ul>
 	 * </p>
@@ -37,6 +38,7 @@ public final class FakeSMTP {
 		IllegalAccessException, UnsupportedLookAndFeelException {
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
 		System.setProperty("com.apple.mrj.application.apple.menu.about.name", Configuration.INSTANCE.get("application.name"));
+		UIManager.put("swing.boldMetal", Boolean.FALSE);
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
 		new MainFrame();
