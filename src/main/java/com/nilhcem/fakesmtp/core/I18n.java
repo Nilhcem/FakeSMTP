@@ -19,7 +19,7 @@ public enum I18n {
 	INSTANCE;
 
 	private static final String RESOURCE_FILE = "i18n/messages";
-	private final Logger LOGGER = LoggerFactory.getLogger(I18n.class);
+	private final Logger logger = LoggerFactory.getLogger(I18n.class);
 	private final ResourceBundle resources;
 
 	/**
@@ -34,8 +34,8 @@ public enum I18n {
 		try {
 			bundle = ResourceBundle.getBundle(I18n.RESOURCE_FILE, Locale.getDefault());
 		} catch (MissingResourceException mre) {
-			LOGGER.error("{}", mre.getMessage());
-			LOGGER.info("Will use default bundle (en_US) instead");
+			logger.error("{}", mre.getMessage());
+			logger.info("Will use default bundle (en_US) instead");
 			bundle = ResourceBundle.getBundle(I18n.RESOURCE_FILE, Locale.US);
 		}
 		resources = bundle;
@@ -54,7 +54,7 @@ public enum I18n {
 		try {
 			return resources.getString(key);
 		} catch (MissingResourceException e) {
-			LOGGER.error("{}", e.getMessage());
+			logger.error("{}", e.getMessage());
 			return "";
 		}
 	}

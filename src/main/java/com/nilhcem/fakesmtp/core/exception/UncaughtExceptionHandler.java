@@ -36,7 +36,7 @@ public class UncaughtExceptionHandler implements Thread.UncaughtExceptionHandler
 					}
 				});
 			}
-		} catch (Throwable excpt) {
+		} catch (Exception excpt) {
 			LOGGER.error("", excpt);
 		}
 	}
