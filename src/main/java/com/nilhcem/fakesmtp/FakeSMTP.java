@@ -45,8 +45,7 @@ public final class FakeSMTP {
 				UIManager.put("swing.boldMetal", Boolean.FALSE);
 				try {
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					LOGGER.error("", e);
 				}
 				new MainFrame();

@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
  * @since 1.1
  * @see "http://stuffthathappens.com/blog/2007/10/07/programmers-notebook-uncaught-exception-handlers/"
  */
-public class UncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
+public final class UncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
 	private Component parentComponent;
 	private static final Logger LOGGER = LoggerFactory.getLogger(UncaughtExceptionHandler.class);
 
@@ -28,8 +28,7 @@ public class UncaughtExceptionHandler implements Thread.UncaughtExceptionHandler
 		try {
 			if (SwingUtilities.isEventDispatchThread()) {
 				showException(t, e);
-			}
-			else {
+			} else {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						showException(t, e);
