@@ -34,6 +34,7 @@ public final class ClearAllButton extends Observable implements Observer {
 	 * </p>
 	 */
 	public ClearAllButton() {
+		button.setToolTipText(I18n.INSTANCE.get("clearall.tooltip"));
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

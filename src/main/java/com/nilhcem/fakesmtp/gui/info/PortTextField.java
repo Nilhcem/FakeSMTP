@@ -6,6 +6,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.model.UIModel;
 
 /**
@@ -25,6 +26,7 @@ public final class PortTextField implements Observer {
 	 * </p>
 	 */
 	public PortTextField() {
+		portTextField.setToolTipText(I18n.INSTANCE.get("porttextfield.tooltip"));
 		portTextField.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void removeUpdate(DocumentEvent e) {

@@ -73,6 +73,7 @@ public final class MainPanel {
 	 * @param menu the menu bar which will notify the directory file chooser.
 	 */
 	public MainPanel(Observable menu) {
+		assignLabelsToFields();
 		addObservers(menu);
 		buildGUI();
 	}
@@ -151,5 +152,14 @@ public final class MainPanel {
 
 		// Clear all
 		mainPanel.add(clearAll.get(), "span, center");
+	}
+
+	/**
+	 * Assigns labels to components, for accessibility purpose.
+	 */
+	private void assignLabelsToFields() {
+		portLabel.setLabelFor(portText.get());
+		saveMessages.setLabelFor(saveMsgTextField.get());
+		receivedLabel.setLabelFor(nbReceivedLabel.get());
 	}
 }

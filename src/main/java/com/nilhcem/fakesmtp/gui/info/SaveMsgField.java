@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JTextField;
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.DirChooser;
 import com.nilhcem.fakesmtp.model.UIModel;
 
@@ -16,7 +17,7 @@ import com.nilhcem.fakesmtp.model.UIModel;
  * @since 1.0
  */
 public final class SaveMsgField extends Observable implements Observer {
-	private final JTextField saveMsgField;
+	private final JTextField saveMsgField = new JTextField(UIModel.INSTANCE.getSavePath());
 
 	/**
 	 * Creates a text field and adds a mouse listener, to display the directory chooser dialog when a user clicks on the field.
@@ -26,7 +27,7 @@ public final class SaveMsgField extends Observable implements Observer {
 	 * </p>
 	 */
 	public SaveMsgField() {
-		this.saveMsgField = new JTextField(UIModel.INSTANCE.getSavePath());
+		saveMsgField.setToolTipText(I18n.INSTANCE.get("savemsgfield.tooltip"));
 
 		// Disable edition but keep the same background color
 		Color bg = saveMsgField.getBackground();
