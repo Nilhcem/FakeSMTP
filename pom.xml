@@ -13,7 +13,6 @@
 
 	<properties>
 		<project.lib.dir>${project.basedir}/lib</project.lib.dir>
-		<project.main.class>com.nilhcem.fakesmtp.FakeSMTP</project.main.class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
 	</properties>
@@ -114,9 +113,7 @@
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
 					<archive>
-						<manifest>
-							<mainClass>${project.main.class}</mainClass>
-						</manifest>
+						<manifestFile>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</manifestFile>
 					</archive>
 					<!-- Remove the "-jar-with-dependencies" at the end of the file -->
 					<appendAssemblyId>false</appendAssemblyId>

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: Nilhcem
+Main-Class: com.nilhcem.fakesmtp.FakeSMTP
+SplashScreen-Image: META-INF/splash.png
