@@ -12,7 +12,6 @@
 	<url>https://github.com/Nilhcem/FakeSMTP</url>
 
 	<properties>
-		<project.lib.dir>${project.basedir}/lib</project.lib.dir>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
 	</properties>
@@ -37,26 +36,26 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.2</version>
+			<version>1.6.3</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>0.9.29</version>
+			<version>0.9.30</version>
 		</dependency>
 
 		<!-- Commons IO: utilities to assist with developing IO functionality -->
 		<dependency>
 		    <groupId>commons-io</groupId>
 		    <artifactId>commons-io</artifactId>
-		    <version>2.0.1</version>
+		    <version>2.1</version>
 		</dependency>
 
 		<!-- Integration test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.9</version>
+			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
