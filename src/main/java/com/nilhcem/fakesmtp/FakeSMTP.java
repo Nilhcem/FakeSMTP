@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
 import com.nilhcem.fakesmtp.gui.MainFrame;
+import com.apple.eawt.Application;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 /**
  * Entry point of the application.
@@ -40,6 +43,12 @@ public final class FakeSMTP {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
+				try {
+					Application.getApplication().setDockIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(Configuration.INSTANCE.get("application.icon.path"))));
+				} catch (Exception e) {
+					LOGGER.error("", e);
+				}
+
 				System.setProperty("apple.laf.useScreenMenuBar", "true");
 				System.setProperty("com.apple.mrj.application.apple.menu.about.name", Configuration.INSTANCE.get("application.name"));
 				UIManager.put("swing.boldMetal", Boolean.FALSE);
