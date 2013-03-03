@@ -1,7 +1,6 @@
 package com.nilhcem.fakesmtp.server;
 
 import org.subethamail.smtp.AuthenticationHandler;
-import org.subethamail.smtp.RejectException;
 
 /**
  * Simulates an authentication handler to allow capturing emails that are set up with login authentication.
@@ -30,7 +29,7 @@ import org.subethamail.smtp.RejectException;
 	 * @throws org.subethamail.smtp.RejectException if authentication fails.
 	 */
 	@Override
-	public String auth(String string) throws RejectException {
+	public String auth(String string) {
 		String prompt;
 
 		if (++pass == 1) {
