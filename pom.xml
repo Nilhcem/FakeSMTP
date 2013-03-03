@@ -248,17 +248,24 @@
 		</plugins>
 	</build>
 
-	<!-- List the core committers -->
+	<!-- List the core committers + contributors -->
 	<developers>
 		<developer>
 			<id>nilhcem</id>
 			<name>Gautier MECHLING</name>
+			<url>http://www.nilhcem.com</url>
 			<roles>
 				<role>developer</role>
 			</roles>
-			<timezone>+8</timezone>
+			<timezone>Europe/Paris</timezone>
 		</developer>
 	</developers>
+	<contributors>
+		<contributor>
+			<name>jasonpenny</name>
+			<url>https://github.com/jasonpenny</url>
+		</contributor>
+	</contributors>
 
 	<!-- License -->
 	<licenses>
