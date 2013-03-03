@@ -24,6 +24,7 @@ public final class FakeSMTP {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FakeSMTP.class);
 
 	private FakeSMTP() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**
