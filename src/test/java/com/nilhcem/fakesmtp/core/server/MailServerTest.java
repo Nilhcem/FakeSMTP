@@ -9,6 +9,8 @@ import java.util.Observable;
 import java.util.Observer;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.model.EmailModel;
 import com.nilhcem.fakesmtp.model.UIModel;
 import com.nilhcem.fakesmtp.server.MailSaver;
@@ -85,7 +87,7 @@ public class MailServerTest {
 	}
 
 	private InputStream fromString(String str) throws UnsupportedEncodingException {
-		byte[] bytes = str.getBytes("UTF-8");
+		byte[] bytes = str.getBytes(I18n.UTF8);
 		return new ByteArrayInputStream(bytes);
 	}
 }

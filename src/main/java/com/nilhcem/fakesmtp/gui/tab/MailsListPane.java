@@ -104,14 +104,16 @@ public final class MailsListPane implements Observer {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2 && desktop != null) {
+					File file = null;
 					JTable target = (JTable) e.getSource();
 					String fileName = UIModel.INSTANCE.getListMailsMap().get(target.getSelectedRow());
 					if (fileName == null) {
 						LOGGER.error("Can't file any associated email for row #{}", target.getSelectedRow());
+					} else {
+						file = new File(fileName);
 					}
 
-					File file = new File(fileName);
-					if (file.exists()) {
+					if (file != null && file.exists()) {
 						try {
 							desktop.open(file);
 						} catch (IOException ioe) {

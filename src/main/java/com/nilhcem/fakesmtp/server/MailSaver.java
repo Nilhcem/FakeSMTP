@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.model.EmailModel;
 import com.nilhcem.fakesmtp.model.UIModel;
 
@@ -103,7 +105,7 @@ public final class MailSaver extends Observable {
 	 */
 	private String convertStreamToString(InputStream is) {
 		final long lineNbToStartCopy = 4; // Do not copy the first 4 lines (received part)
-		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName(I18n.UTF8)));
 		StringBuilder sb = new StringBuilder();
 
 		String line = null;
