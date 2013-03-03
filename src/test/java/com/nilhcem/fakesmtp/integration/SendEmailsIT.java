@@ -29,8 +29,8 @@ public final class SendEmailsIT {
 		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
 		email.setStartTLSEnabled(true);
 		email.setFrom("user@gmail.com");
-		email.setSubject("TestMail");
-		email.setMsg("This is a test mail... :-)");
+		email.setSubject("Simple email");
+		email.setMsg("This is a simple plain text email :-)");
 		email.addTo("foo@bar.com");
 		email.send();
 	}
@@ -49,9 +49,9 @@ public final class SendEmailsIT {
 		email.setHostName(TestConfig.HOST);
 		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
 		email.addTo("jdoe@somewhere.org", "John Doe");
-		email.setFrom("me@apache.org", "Me");
-		email.setSubject("The file");
-		email.setMsg("Here is the file you wanted.");
+		email.setFrom("me@example.org", "Me");
+		email.setSubject("File attachment");
+		email.setMsg("This email contains an enclosed file.");
 
 		// Add the attachment
 		email.attach(attachment);
@@ -67,11 +67,11 @@ public final class SendEmailsIT {
 		email.setHostName(TestConfig.HOST);
 		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
 		email.addTo("jdoe@somewhere.org", "John Doe");
-		email.setFrom("me@apache.org", "Me");
-		email.setSubject("Test HTML email.");
+		email.setFrom("me@example.org", "Me");
+		email.setSubject("HTML email");
 
 		// Set the HTML message
-		email.setHtmlMsg("<html><body>This is a<br /><b>Test</b> email.</body></html>");
+		email.setHtmlMsg("<html><body>This is an <b>HTML</b> email.<br /><br /></body></html>");
 
 		// Set the alternative message
 		email.setTextMsg("Your email client does not support HTML messages");
