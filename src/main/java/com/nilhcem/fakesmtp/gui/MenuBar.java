@@ -125,9 +125,14 @@ public final class MenuBar extends Observable {
 				Font font = label.getFont();
 
 				// create some css from the label's font
-				StringBuffer style = new StringBuffer("font-family:" + font.getFamily() + ";");
-				style.append("font-weight:" + (font.isBold() ? "bold" : "normal") + ";");
-				style.append("font-size:" + font.getSize() + "pt;");
+				StringBuffer style = new StringBuffer("font-family:")
+					.append(font.getFamily()).append(";font-weight:");
+				if (font.isBold()) {
+					style.append("bold");
+				} else {
+					style.append("normal");
+				}
+				style.append(";font-size:").append(font.getSize()).append("pt;");
 
 				// html content
 				String link = i18n.get("menubar.about.dialog.link");

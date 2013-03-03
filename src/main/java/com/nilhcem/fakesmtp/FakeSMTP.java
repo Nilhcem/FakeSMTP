@@ -54,7 +54,7 @@ public final class FakeSMTP {
 						Application.getApplication().setDockIconImage(Toolkit.getDefaultToolkit().getImage(envelopeImage));
 					}
 				} catch (RuntimeException e) {
-					// Do nothing, this is probably because we run on a non-Mac platform and these components are not implemented.
+					LOGGER.debug("Error: {} - This is probably because we run on a non-Mac platform and these components are not implemented", e.getMessage());
 				} catch (Exception e) {
 					LOGGER.error("", e);
 				}

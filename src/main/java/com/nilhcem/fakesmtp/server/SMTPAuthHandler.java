@@ -17,6 +17,7 @@ import org.subethamail.smtp.AuthenticationHandler;
 
 	/**
 	 * Simulates an authentication process.
+	 * <p>
 	 * <ul>
 	 *   <li>first prompts for username;</li>
 	 *   <li>then, prompts for password;</li>

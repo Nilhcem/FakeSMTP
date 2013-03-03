@@ -44,7 +44,7 @@ public final class ClearAllButton extends Observable implements Observer {
 					String.format(i18n.get("clearall.title"), Configuration.INSTANCE.get("application.name")),
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if (answer == JOptionPane.CLOSED_OPTION) {
-					return ;
+					return;
 				}
 
 				synchronized (SMTPServerHandler.INSTANCE.getMailSaver().getLock()) {
