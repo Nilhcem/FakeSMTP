@@ -37,10 +37,10 @@
 <a class="jxr_linenumber" name="27" href="#27">27</a>  		Email email = <strong class="jxr_keyword">new</strong> SimpleEmail();
 <a class="jxr_linenumber" name="28" href="#28">28</a>  		email.setHostName(TestConfig.HOST);
 <a class="jxr_linenumber" name="29" href="#29">29</a>  		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
-<a class="jxr_linenumber" name="30" href="#30">30</a>  		email.setTLS(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="30" href="#30">30</a>  		email.setStartTLSEnabled(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="31" href="#31">31</a>  		email.setFrom(<span class="jxr_string">"user@gmail.com"</span>);
-<a class="jxr_linenumber" name="32" href="#32">32</a>  		email.setSubject(<span class="jxr_string">"TestMail"</span>);
-<a class="jxr_linenumber" name="33" href="#33">33</a>  		email.setMsg(<span class="jxr_string">"This is a test mail... :-)"</span>);
+<a class="jxr_linenumber" name="32" href="#32">32</a>  		email.setSubject(<span class="jxr_string">"Simple email"</span>);
+<a class="jxr_linenumber" name="33" href="#33">33</a>  		email.setMsg(<span class="jxr_string">"This is a simple plain text email :-)"</span>);
 <a class="jxr_linenumber" name="34" href="#34">34</a>  		email.addTo(<span class="jxr_string">"foo@bar.com"</span>);
 <a class="jxr_linenumber" name="35" href="#35">35</a>  		email.send();
 <a class="jxr_linenumber" name="36" href="#36">36</a>  	}
@@ -59,9 +59,9 @@
 <a class="jxr_linenumber" name="49" href="#49">49</a>  		email.setHostName(TestConfig.HOST);
 <a class="jxr_linenumber" name="50" href="#50">50</a>  		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
 <a class="jxr_linenumber" name="51" href="#51">51</a>  		email.addTo(<span class="jxr_string">"jdoe@somewhere.org"</span>, <span class="jxr_string">"John Doe"</span>);
-<a class="jxr_linenumber" name="52" href="#52">52</a>  		email.setFrom(<span class="jxr_string">"me@apache.org"</span>, <span class="jxr_string">"Me"</span>);
-<a class="jxr_linenumber" name="53" href="#53">53</a>  		email.setSubject(<span class="jxr_string">"The file"</span>);
-<a class="jxr_linenumber" name="54" href="#54">54</a>  		email.setMsg(<span class="jxr_string">"Here is the file you wanted."</span>);
+<a class="jxr_linenumber" name="52" href="#52">52</a>  		email.setFrom(<span class="jxr_string">"me@example.org"</span>, <span class="jxr_string">"Me"</span>);
+<a class="jxr_linenumber" name="53" href="#53">53</a>  		email.setSubject(<span class="jxr_string">"File attachment"</span>);
+<a class="jxr_linenumber" name="54" href="#54">54</a>  		email.setMsg(<span class="jxr_string">"This email contains an enclosed file."</span>);
 <a class="jxr_linenumber" name="55" href="#55">55</a>  
 <a class="jxr_linenumber" name="56" href="#56">56</a>  		<em class="jxr_comment">// Add the attachment</em>
 <a class="jxr_linenumber" name="57" href="#57">57</a>  		email.attach(attachment);
@@ -77,11 +77,11 @@
 <a class="jxr_linenumber" name="67" href="#67">67</a>  		email.setHostName(TestConfig.HOST);
 <a class="jxr_linenumber" name="68" href="#68">68</a>  		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
 <a class="jxr_linenumber" name="69" href="#69">69</a>  		email.addTo(<span class="jxr_string">"jdoe@somewhere.org"</span>, <span class="jxr_string">"John Doe"</span>);
-<a class="jxr_linenumber" name="70" href="#70">70</a>  		email.setFrom(<span class="jxr_string">"me@apache.org"</span>, <span class="jxr_string">"Me"</span>);
-<a class="jxr_linenumber" name="71" href="#71">71</a>  		email.setSubject(<span class="jxr_string">"Test HTML email."</span>);
+<a class="jxr_linenumber" name="70" href="#70">70</a>  		email.setFrom(<span class="jxr_string">"me@example.org"</span>, <span class="jxr_string">"Me"</span>);
+<a class="jxr_linenumber" name="71" href="#71">71</a>  		email.setSubject(<span class="jxr_string">"HTML email"</span>);
 <a class="jxr_linenumber" name="72" href="#72">72</a>  
 <a class="jxr_linenumber" name="73" href="#73">73</a>  		<em class="jxr_comment">// Set the HTML message</em>
-<a class="jxr_linenumber" name="74" href="#74">74</a>  		email.setHtmlMsg(<span class="jxr_string">"&lt;html&gt;&lt;body&gt;This is a&lt;br /&gt;&lt;b&gt;Test&lt;/b&gt; email.&lt;/body&gt;&lt;/html&gt;"</span>);
+<a class="jxr_linenumber" name="74" href="#74">74</a>  		email.setHtmlMsg(<span class="jxr_string">"&lt;html&gt;&lt;body&gt;This is an &lt;b&gt;HTML&lt;/b&gt; email.&lt;br /&gt;&lt;br /&gt;&lt;/body&gt;&lt;/html&gt;"</span>);
 <a class="jxr_linenumber" name="75" href="#75">75</a>  
 <a class="jxr_linenumber" name="76" href="#76">76</a>  		<em class="jxr_comment">// Set the alternative message</em>
 <a class="jxr_linenumber" name="77" href="#77">77</a>  		email.setTextMsg(<span class="jxr_string">"Your email client does not support HTML messages"</span>);

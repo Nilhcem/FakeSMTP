@@ -120,59 +120,62 @@
 <a class="jxr_linenumber" name="110" href="#110">110</a> 		<em class="jxr_comment">// When we click on "start/stop server" button</em>
 <a class="jxr_linenumber" name="111" href="#111">111</a> 		startServerBtn.addObserver(portText);
 <a class="jxr_linenumber" name="112" href="#112">112</a> 
-<a class="jxr_linenumber" name="113" href="#113">113</a> 		<em class="jxr_comment">// Once we chose a directory</em>
-<a class="jxr_linenumber" name="114" href="#114">114</a> 		dirChooser.addObserver(saveMsgTextField);
+<a class="jxr_linenumber" name="113" href="#113">113</a> 		<em class="jxr_comment">// When we press "Enter" on the PortTextField</em>
+<a class="jxr_linenumber" name="114" href="#114">114</a> 		portText.addObserver(startServerBtn);
 <a class="jxr_linenumber" name="115" href="#115">115</a> 
-<a class="jxr_linenumber" name="116" href="#116">116</a> 		<em class="jxr_comment">// When a message is received</em>
-<a class="jxr_linenumber" name="117" href="#117">117</a> 		MailSaver mailSaver = SMTPServerHandler.INSTANCE.getMailSaver();
-<a class="jxr_linenumber" name="118" href="#118">118</a> 		mailSaver.addObserver(nbReceivedLabel);
-<a class="jxr_linenumber" name="119" href="#119">119</a> 		mailSaver.addObserver(mailsListPane);
-<a class="jxr_linenumber" name="120" href="#120">120</a> 		mailSaver.addObserver(lastMailPane);
-<a class="jxr_linenumber" name="121" href="#121">121</a> 		mailSaver.addObserver(clearAll);
-<a class="jxr_linenumber" name="122" href="#122">122</a> 
-<a class="jxr_linenumber" name="123" href="#123">123</a> 		<em class="jxr_comment">// When we click on "clear all"</em>
-<a class="jxr_linenumber" name="124" href="#124">124</a> 		clearAll.addObserver(nbReceivedLabel);
-<a class="jxr_linenumber" name="125" href="#125">125</a> 		clearAll.addObserver(mailsListPane);
-<a class="jxr_linenumber" name="126" href="#126">126</a> 		clearAll.addObserver(logsPane);
-<a class="jxr_linenumber" name="127" href="#127">127</a> 		clearAll.addObserver(lastMailPane);
-<a class="jxr_linenumber" name="128" href="#128">128</a> 	}
-<a class="jxr_linenumber" name="129" href="#129">129</a> 
-<a class="jxr_linenumber" name="130" href="#130">130</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="131" href="#131">131</a> <em class="jxr_javadoccomment">	 * Places all components in the panel.</em>
-<a class="jxr_linenumber" name="132" href="#132">132</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="133" href="#133">133</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> buildGUI() {
-<a class="jxr_linenumber" name="134" href="#134">134</a> 		<em class="jxr_comment">// Port / Start server</em>
-<a class="jxr_linenumber" name="135" href="#135">135</a> 		mainPanel.add(portLabel);
-<a class="jxr_linenumber" name="136" href="#136">136</a> 		mainPanel.add(portText.get(), <span class="jxr_string">"w 60!"</span>);
-<a class="jxr_linenumber" name="137" href="#137">137</a> 		mainPanel.add(startServerBtn.get(), <span class="jxr_string">"span, w 165!"</span>);
-<a class="jxr_linenumber" name="138" href="#138">138</a> 
-<a class="jxr_linenumber" name="139" href="#139">139</a> 		<em class="jxr_comment">// Save messages to...</em>
-<a class="jxr_linenumber" name="140" href="#140">140</a> 		mainPanel.add(saveMessages);
-<a class="jxr_linenumber" name="141" href="#141">141</a> 		mainPanel.add(saveMsgTextField.get(), <span class="jxr_string">"span, w 230!"</span>);
-<a class="jxr_linenumber" name="142" href="#142">142</a> 
-<a class="jxr_linenumber" name="143" href="#143">143</a> 		<em class="jxr_comment">// Nb received</em>
-<a class="jxr_linenumber" name="144" href="#144">144</a> 		mainPanel.add(receivedLabel);
-<a class="jxr_linenumber" name="145" href="#145">145</a> 		mainPanel.add(nbReceivedLabel.get(), <span class="jxr_string">"span"</span>);
-<a class="jxr_linenumber" name="146" href="#146">146</a> 
-<a class="jxr_linenumber" name="147" href="#147">147</a> 		<em class="jxr_comment">// Tab pane</em>
-<a class="jxr_linenumber" name="148" href="#148">148</a> 		tabbedPane.add(mailsListPane.get(), i18n.get(<span class="jxr_string">"mainpanel.tab.mailslist"</span>));
-<a class="jxr_linenumber" name="149" href="#149">149</a> 		tabbedPane.add(logsPane.get(), i18n.get(<span class="jxr_string">"mainpanel.tab.smtplog"</span>));
-<a class="jxr_linenumber" name="150" href="#150">150</a> 		tabbedPane.add(lastMailPane.get(), i18n.get(<span class="jxr_string">"mainpanel.tab.lastmessage"</span>));
-<a class="jxr_linenumber" name="151" href="#151">151</a> 		mainPanel.add(tabbedPane, <span class="jxr_string">"span, grow"</span>);
-<a class="jxr_linenumber" name="152" href="#152">152</a> 
-<a class="jxr_linenumber" name="153" href="#153">153</a> 		<em class="jxr_comment">// Clear all</em>
-<a class="jxr_linenumber" name="154" href="#154">154</a> 		mainPanel.add(clearAll.get(), <span class="jxr_string">"span, center"</span>);
-<a class="jxr_linenumber" name="155" href="#155">155</a> 	}
-<a class="jxr_linenumber" name="156" href="#156">156</a> 
-<a class="jxr_linenumber" name="157" href="#157">157</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="158" href="#158">158</a> <em class="jxr_javadoccomment">	 * Assigns labels to components, for accessibility purpose.</em>
-<a class="jxr_linenumber" name="159" href="#159">159</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="160" href="#160">160</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> assignLabelsToFields() {
-<a class="jxr_linenumber" name="161" href="#161">161</a> 		portLabel.setLabelFor(portText.get());
-<a class="jxr_linenumber" name="162" href="#162">162</a> 		saveMessages.setLabelFor(saveMsgTextField.get());
-<a class="jxr_linenumber" name="163" href="#163">163</a> 		receivedLabel.setLabelFor(nbReceivedLabel.get());
-<a class="jxr_linenumber" name="164" href="#164">164</a> 	}
-<a class="jxr_linenumber" name="165" href="#165">165</a> }
+<a class="jxr_linenumber" name="116" href="#116">116</a> 		<em class="jxr_comment">// Once we chose a directory</em>
+<a class="jxr_linenumber" name="117" href="#117">117</a> 		dirChooser.addObserver(saveMsgTextField);
+<a class="jxr_linenumber" name="118" href="#118">118</a> 
+<a class="jxr_linenumber" name="119" href="#119">119</a> 		<em class="jxr_comment">// When a message is received</em>
+<a class="jxr_linenumber" name="120" href="#120">120</a> 		MailSaver mailSaver = SMTPServerHandler.INSTANCE.getMailSaver();
+<a class="jxr_linenumber" name="121" href="#121">121</a> 		mailSaver.addObserver(nbReceivedLabel);
+<a class="jxr_linenumber" name="122" href="#122">122</a> 		mailSaver.addObserver(mailsListPane);
+<a class="jxr_linenumber" name="123" href="#123">123</a> 		mailSaver.addObserver(lastMailPane);
+<a class="jxr_linenumber" name="124" href="#124">124</a> 		mailSaver.addObserver(clearAll);
+<a class="jxr_linenumber" name="125" href="#125">125</a> 
+<a class="jxr_linenumber" name="126" href="#126">126</a> 		<em class="jxr_comment">// When we click on "clear all"</em>
+<a class="jxr_linenumber" name="127" href="#127">127</a> 		clearAll.addObserver(nbReceivedLabel);
+<a class="jxr_linenumber" name="128" href="#128">128</a> 		clearAll.addObserver(mailsListPane);
+<a class="jxr_linenumber" name="129" href="#129">129</a> 		clearAll.addObserver(logsPane);
+<a class="jxr_linenumber" name="130" href="#130">130</a> 		clearAll.addObserver(lastMailPane);
+<a class="jxr_linenumber" name="131" href="#131">131</a> 	}
+<a class="jxr_linenumber" name="132" href="#132">132</a> 
+<a class="jxr_linenumber" name="133" href="#133">133</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="134" href="#134">134</a> <em class="jxr_javadoccomment">	 * Places all components in the panel.</em>
+<a class="jxr_linenumber" name="135" href="#135">135</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="136" href="#136">136</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> buildGUI() {
+<a class="jxr_linenumber" name="137" href="#137">137</a> 		<em class="jxr_comment">// Port / Start server</em>
+<a class="jxr_linenumber" name="138" href="#138">138</a> 		mainPanel.add(portLabel);
+<a class="jxr_linenumber" name="139" href="#139">139</a> 		mainPanel.add(portText.get(), <span class="jxr_string">"w 60!"</span>);
+<a class="jxr_linenumber" name="140" href="#140">140</a> 		mainPanel.add(startServerBtn.get(), <span class="jxr_string">"span, w 165!"</span>);
+<a class="jxr_linenumber" name="141" href="#141">141</a> 
+<a class="jxr_linenumber" name="142" href="#142">142</a> 		<em class="jxr_comment">// Save messages to...</em>
+<a class="jxr_linenumber" name="143" href="#143">143</a> 		mainPanel.add(saveMessages);
+<a class="jxr_linenumber" name="144" href="#144">144</a> 		mainPanel.add(saveMsgTextField.get(), <span class="jxr_string">"span, w 230!"</span>);
+<a class="jxr_linenumber" name="145" href="#145">145</a> 
+<a class="jxr_linenumber" name="146" href="#146">146</a> 		<em class="jxr_comment">// Nb received</em>
+<a class="jxr_linenumber" name="147" href="#147">147</a> 		mainPanel.add(receivedLabel);
+<a class="jxr_linenumber" name="148" href="#148">148</a> 		mainPanel.add(nbReceivedLabel.get(), <span class="jxr_string">"span"</span>);
+<a class="jxr_linenumber" name="149" href="#149">149</a> 
+<a class="jxr_linenumber" name="150" href="#150">150</a> 		<em class="jxr_comment">// Tab pane</em>
+<a class="jxr_linenumber" name="151" href="#151">151</a> 		tabbedPane.add(mailsListPane.get(), i18n.get(<span class="jxr_string">"mainpanel.tab.mailslist"</span>));
+<a class="jxr_linenumber" name="152" href="#152">152</a> 		tabbedPane.add(logsPane.get(), i18n.get(<span class="jxr_string">"mainpanel.tab.smtplog"</span>));
+<a class="jxr_linenumber" name="153" href="#153">153</a> 		tabbedPane.add(lastMailPane.get(), i18n.get(<span class="jxr_string">"mainpanel.tab.lastmessage"</span>));
+<a class="jxr_linenumber" name="154" href="#154">154</a> 		mainPanel.add(tabbedPane, <span class="jxr_string">"span, grow"</span>);
+<a class="jxr_linenumber" name="155" href="#155">155</a> 
+<a class="jxr_linenumber" name="156" href="#156">156</a> 		<em class="jxr_comment">// Clear all</em>
+<a class="jxr_linenumber" name="157" href="#157">157</a> 		mainPanel.add(clearAll.get(), <span class="jxr_string">"span, center"</span>);
+<a class="jxr_linenumber" name="158" href="#158">158</a> 	}
+<a class="jxr_linenumber" name="159" href="#159">159</a> 
+<a class="jxr_linenumber" name="160" href="#160">160</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="161" href="#161">161</a> <em class="jxr_javadoccomment">	 * Assigns labels to components, for accessibility purpose.</em>
+<a class="jxr_linenumber" name="162" href="#162">162</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="163" href="#163">163</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> assignLabelsToFields() {
+<a class="jxr_linenumber" name="164" href="#164">164</a> 		portLabel.setLabelFor(portText.get());
+<a class="jxr_linenumber" name="165" href="#165">165</a> 		saveMessages.setLabelFor(saveMsgTextField.get());
+<a class="jxr_linenumber" name="166" href="#166">166</a> 		receivedLabel.setLabelFor(nbReceivedLabel.get());
+<a class="jxr_linenumber" name="167" href="#167">167</a> 	}
+<a class="jxr_linenumber" name="168" href="#168">168</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
