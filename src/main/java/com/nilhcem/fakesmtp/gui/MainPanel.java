@@ -110,6 +110,9 @@ public final class MainPanel {
 		// When we click on "start/stop server" button
 		startServerBtn.addObserver(portText);
 
+		// When we press "Enter" on the PortTextField
+		portText.addObserver(startServerBtn);
+
 		// Once we chose a directory
 		dirChooser.addObserver(saveMsgTextField);
 

@@ -1,10 +1,14 @@
 package com.nilhcem.fakesmtp.gui.info;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.model.UIModel;
@@ -15,7 +19,7 @@ import com.nilhcem.fakesmtp.model.UIModel;
  * @author Nilhcem
  * @since 1.0
  */
-public final class PortTextField implements Observer {
+public final class PortTextField extends Observable implements Observer {
 	private final JTextField portTextField = new JTextField();
 
 	/**
@@ -49,6 +53,13 @@ public final class PortTextField implements Observer {
 		});
 
 		portTextField.setText(Configuration.INSTANCE.get("smtp.default.port"));
+		portTextField.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setChanged();
+				notifyObservers();
+			}
+		});
 	}
 
 	/**

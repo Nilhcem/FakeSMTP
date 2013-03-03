@@ -3,8 +3,11 @@ package com.nilhcem.fakesmtp.gui.info;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
@@ -18,7 +21,7 @@ import com.nilhcem.fakesmtp.model.UIModel;
  * @author Nilhcem
  * @since 1.0
  */
-public final class StartServerButton extends Observable {
+public final class StartServerButton extends Observable implements Observer {
 	private final I18n i18n = I18n.INSTANCE;
 
 	private final JButton button = new JButton(i18n.get("startsrv.start"));
@@ -33,18 +36,7 @@ public final class StartServerButton extends Observable {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					UIModel.INSTANCE.toggleButton();
-					toggleButton();
-				} catch (InvalidPortException ipe) {
-					displayError(String.format(i18n.get("startsrv.err.invalid")));
-				} catch (BindPortException bpe) {
-					displayError(String.format(i18n.get("startsrv.err.bound"), bpe.getPort()));
-				} catch (OutOfRangePortException orpe) {
-					displayError(String.format(i18n.get("startsrv.err.range"), orpe.getPort()));
-				} catch (RuntimeException re) {
-					displayError(String.format(i18n.get("startsrv.err.default"), re.getMessage()));
-				}
+				toggleButton();
 			}
 		});
 	}
@@ -55,6 +47,18 @@ public final class StartServerButton extends Observable {
 	 * @see PortTextField
 	 */
 	private void toggleButton() {
+		try {
+			UIModel.INSTANCE.toggleButton();
+		} catch (InvalidPortException ipe) {
+			displayError(String.format(i18n.get("startsrv.err.invalid")));
+		} catch (BindPortException bpe) {
+			displayError(String.format(i18n.get("startsrv.err.bound"), bpe.getPort()));
+		} catch (OutOfRangePortException orpe) {
+			displayError(String.format(i18n.get("startsrv.err.range"), orpe.getPort()));
+		} catch (RuntimeException re) {
+			displayError(String.format(i18n.get("startsrv.err.default"), re.getMessage()));
+		}
+
 		String btnText;
 		if (UIModel.INSTANCE.isStarted()) {
 			btnText = i18n.get("startsrv.stop");
@@ -84,5 +88,12 @@ public final class StartServerButton extends Observable {
 		JOptionPane.showMessageDialog(button.getParent(), error,
 			String.format(i18n.get("startsrv.err.title"), Configuration.INSTANCE.get("application.name")),
 			JOptionPane.ERROR_MESSAGE);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if (o instanceof PortTextField) {
+			toggleButton();
+		}
 	}
 }
