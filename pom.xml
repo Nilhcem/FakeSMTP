@@ -51,6 +51,13 @@
 		    <version>2.4</version>
 		</dependency>
 
+		<!-- Apple java extensions (to use a custom icon in the Mac Dock) -->
+		<dependency>
+		    <groupId>com.apple</groupId>
+		    <artifactId>AppleJavaExtensions</artifactId>
+		    <version>1.4</version>
+		</dependency>
+
 		<!-- Integration test -->
 		<dependency>
 			<groupId>junit</groupId>
