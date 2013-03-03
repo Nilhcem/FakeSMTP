@@ -78,7 +78,7 @@ public final class ClearAllButton extends Observable implements Observer {
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		if ((o instanceof MailSaver) && (!button.isEnabled())) {
+		if (o instanceof MailSaver && !button.isEnabled()) {
 			button.setEnabled(true);
 		}
 	}

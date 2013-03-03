@@ -135,7 +135,7 @@ public final class MailSaver extends Observable {
 		// Create file
 		int i = 0;
 		File file = null;
-		while (file == null || (file != null && file.exists())) {
+		while (file == null || file.exists()) {
 			String iStr;
 			if (i++ > 0) {
 				iStr = Integer.toString(i);
