@@ -1,15 +1,18 @@
 package com.nilhcem.fakesmtp;
 
 import java.awt.EventQueue;
+import java.awt.Toolkit;
+import java.net.URL;
+
 import javax.swing.UIManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.apple.eawt.Application;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
 import com.nilhcem.fakesmtp.gui.MainFrame;
-import com.apple.eawt.Application;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 /**
  * Entry point of the application.
@@ -29,6 +32,7 @@ public final class FakeSMTP {
 	 * Before opening the main window, this method will:
 	 * <ul>
 	 *   <li>set a default uncaught exception handler to intercept every uncaught exception;</li>
+	 *   <li>use a custom icon in the Mac Dock;</li>
 	 *   <li>set a property for Mac OS X to take the menu bar off the JFrame;</li>
 	 *   <li>set a property for Mac OS X to set the name of the application menu item;</li>
 	 *   <li>turn off the bold font in all components for swing default theme;</li>
@@ -44,7 +48,12 @@ public final class FakeSMTP {
 			@Override
 			public void run() {
 				try {
-					Application.getApplication().setDockIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(Configuration.INSTANCE.get("application.icon.path"))));
+					URL envelopeImage = getClass().getResource(Configuration.INSTANCE.get("application.icon.path"));
+					if (envelopeImage != null) {
+						Application.getApplication().setDockIconImage(Toolkit.getDefaultToolkit().getImage(envelopeImage));
+					}
+				} catch (RuntimeException e) {
+					// Do nothing, this is probably because we run on a non-Mac platform and these components are not implemented.
 				} catch (Exception e) {
 					LOGGER.error("", e);
 				}
