@@ -27,7 +27,7 @@ public final class SendEmailsIT {
 		Email email = new SimpleEmail();
 		email.setHostName(TestConfig.HOST);
 		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
-		email.setTLS(true);
+		email.setStartTLSEnabled(true);
 		email.setFrom("user@gmail.com");
 		email.setSubject("TestMail");
 		email.setMsg("This is a test mail... :-)");
