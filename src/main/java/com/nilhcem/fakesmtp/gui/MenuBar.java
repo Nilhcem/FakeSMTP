@@ -1,12 +1,24 @@
 package com.nilhcem.fakesmtp.gui;
 
+import java.awt.Desktop;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 import java.util.Observable;
+
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.I18n;
 
@@ -19,6 +31,8 @@ import com.nilhcem.fakesmtp.core.I18n;
 public final class MenuBar extends Observable {
 	private final I18n i18n = I18n.INSTANCE;
 	private final JMenuBar menuBar = new JMenuBar();
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(MenuBar.class);
 
 	/**
 	 * Creates the menu bar and the different menus (file / edit / help).
@@ -106,14 +120,53 @@ public final class MenuBar extends Observable {
 		about.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(menuBar.getParent(),
-					String.format(i18n.get("menubar.about.dialog")),
-					String.format(i18n.get("menubar.about.title"), Configuration.INSTANCE.get("application.name")),
-					JOptionPane.INFORMATION_MESSAGE);
+				// for copying style
+				JLabel label = new JLabel();
+				Font font = label.getFont();
+
+				// create some css from the label's font
+				StringBuffer style = new StringBuffer("font-family:" + font.getFamily() + ";");
+				style.append("font-weight:" + (font.isBold() ? "bold" : "normal") + ";");
+				style.append("font-size:" + font.getSize() + "pt;");
+
+				// html content
+				String link = i18n.get("menubar.about.dialog.link");
+				JEditorPane ep = new JEditorPane("text/html",
+						String.format("<html><body style=\"%s\">%s<br /><a href=\"%s\">%s</a></body></html>",
+								style, i18n.get("menubar.about.dialog"), link, link));
+
+				// handle link events
+				ep.addHyperlinkListener(new HyperlinkListener() {
+					@Override
+					public void hyperlinkUpdate(HyperlinkEvent e) {
+						if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED)) {
+							MenuBar.launchUrl(e.getURL().toString());
+						}
+					}
+				});
+				ep.setEditable(false);
+				ep.setBackground(label.getBackground());
+
+				// show
+				JOptionPane.showMessageDialog(menuBar.getParent(), ep, String.format(i18n.get("menubar.about.title"),
+						Configuration.INSTANCE.get("application.name")), JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
 		helpMenu.add(about);
 		return helpMenu;
+	}
+
+	private static void launchUrl(String url) {
+		if (Desktop.isDesktopSupported()) {
+			try {
+				Desktop desktop = Desktop.getDesktop();
+				if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+					desktop.browse(new URI(url));
+				}
+			} catch (Exception e) {
+				LOGGER.error("", e);
+			}
+		}
 	}
 }
