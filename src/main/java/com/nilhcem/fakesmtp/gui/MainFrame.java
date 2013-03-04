@@ -19,10 +19,10 @@ public final class MainFrame {
 	private final MainPanel panel = new MainPanel(menu);
 
 	/**
-	 * Creates the main window and make it visible.
+	 * Creates the main window and makes it visible.
 	 * <p>
 	 * First, assigns the main panel to the default uncaught exception handler to display exceptions in this panel.<br /><br />
-	 * To create the main window, the application will have to set some elements, such as:
+	 * Before creating the main window, the application will have to set some elements, such as:
 	 * <ul>
 	 *   <li>The minimum and default size;</li>
 	 *   <li>The menu bar and the main panel;</li>

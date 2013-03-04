@@ -27,10 +27,9 @@ import org.subethamail.smtp.AuthenticationHandler;
 	 *
 	 * @return <code>null</code> if the authentication process is finished, otherwise a string to hand back to the client.
 	 * @param clientInput The client's input, eg "AUTH PLAIN dGVzdAB0ZXN0ADEyMzQ="
-	 * @throws org.subethamail.smtp.RejectException if authentication fails.
 	 */
 	@Override
-	public String auth(String string) {
+	public String auth(String clientInput) {
 		String prompt;
 
 		if (++pass == 1) {

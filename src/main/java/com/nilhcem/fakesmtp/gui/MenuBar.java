@@ -162,6 +162,11 @@ public final class MenuBar extends Observable {
 		return helpMenu;
 	}
 
+	/**
+	 * Opens a web browser to launch the url specified in parameters.
+	 *
+	 * @param url the URL to launch.
+	 */
 	private static void launchUrl(String url) {
 		if (Desktop.isDesktopSupported()) {
 			try {
