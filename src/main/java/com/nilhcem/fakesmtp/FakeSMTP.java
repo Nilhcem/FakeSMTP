@@ -6,10 +6,12 @@ import java.net.URL;
 
 import javax.swing.UIManager;
 
+import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.apple.eawt.Application;
+import com.nilhcem.fakesmtp.core.ArgsHandler;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
 import com.nilhcem.fakesmtp.gui.MainFrame;
@@ -28,10 +30,11 @@ public final class FakeSMTP {
 	}
 
 	/**
-	 * Sets some specific properties, and runs the main window.
+	 * Checks command line arguments, sets some specific properties, and runs the main window.
 	 * <p>
 	 * Before opening the main window, this method will:
 	 * <ul>
+	 *   <li>check command line arguments, and possibly display an error dialog,</li>
 	 *   <li>set a default uncaught exception handler to intercept every uncaught exception;</li>
 	 *   <li>use a custom icon in the Mac Dock;</li>
 	 *   <li>set a property for Mac OS X to take the menu bar off the JFrame;</li>
@@ -41,9 +44,16 @@ public final class FakeSMTP {
 	 * </ul>
 	 * </p>
 	 *
-	 * @param args a list of parameters.
+	 * @param args a list of command line parameters.
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
+		try {
+			ArgsHandler.INSTANCE.handleArgs(args);
+		} catch (ParseException e) {
+			ArgsHandler.INSTANCE.displayUsage(e);
+			return ;
+		}
+
 		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -67,6 +77,7 @@ public final class FakeSMTP {
 				} catch (Exception e) {
 					LOGGER.error("", e);
 				}
+
 				new MainFrame();
 			}
 		});
