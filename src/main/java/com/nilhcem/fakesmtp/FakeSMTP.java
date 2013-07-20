@@ -51,7 +51,7 @@ public final class FakeSMTP {
 			ArgsHandler.INSTANCE.handleArgs(args);
 		} catch (ParseException e) {
 			ArgsHandler.INSTANCE.displayUsage(e);
-			return ;
+			return;
 		}
 
 		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());
