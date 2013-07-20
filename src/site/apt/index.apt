@@ -3,7 +3,7 @@
  -----
  Nilhcem
  -----
- March 2013
+ July 2013
 
 Overview
 
@@ -31,6 +31,13 @@ Otherwise, run the following command:
 
 +--
  java -jar fakeSMTP.jar
++--
+
+ Should you want to specify the directory where emails will be saved when starting the application,\
+you can use the `-o` argument:
+
++--
+java -jar fakeSMTP.jar -o output_directory_name
 +--
 
 
