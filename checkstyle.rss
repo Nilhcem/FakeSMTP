@@ -8,7 +8,7 @@
     <language>en-us</language>
     <copyright>&#169;2013</copyright>
     <item>
-      <title>File: 38,
+      <title>File: 46,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -27,6 +27,20 @@
             </tr>
           </thead>
           <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#i18n.messages_zh_SG.properties">i18n/messages_zh_SG.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
                           <tr>
                 <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.Configuration.java">com/nilhcem/fakesmtp/core/Configuration.java</a>
@@ -197,6 +211,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#i18n.messages_zh_CN.properties">i18n/messages_zh_CN.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.info.NbReceivedLabel.java">com/nilhcem/fakesmtp/gui/info/NbReceivedLabel.java</a>
                 </td>
                 <td>
@@ -295,6 +323,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#configuration.properties">configuration.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.server.SMTPAuthHandler.java">com/nilhcem/fakesmtp/server/SMTPAuthHandler.java</a>
                 </td>
                 <td>
@@ -338,6 +380,20 @@
                           <tr>
                 <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.exception.AbstractPortException.java">com/nilhcem/fakesmtp/core/exception/AbstractPortException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#i18n.messages_zh.properties">i18n/messages_zh.properties</a>
                 </td>
                 <td>
                   0
@@ -421,6 +477,34 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#i18n.messages_pt_BR.properties">i18n/messages_pt_BR.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#i18n.messages_en_US.properties">i18n/messages_en_US.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.tab.LastMailPane.java">com/nilhcem/fakesmtp/gui/tab/LastMailPane.java</a>
                 </td>
                 <td>
@@ -491,6 +575,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.ArgsHandler.java">com/nilhcem/fakesmtp/core/ArgsHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.MainFrame.java">com/nilhcem/fakesmtp/gui/MainFrame.java</a>
                 </td>
                 <td>
@@ -548,6 +646,20 @@
                           <tr>
                 <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.info.package-info.java">com/nilhcem/fakesmtp/gui/info/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#i18n.messages_fr_FR.properties">i18n/messages_fr_FR.properties</a>
                 </td>
                 <td>
                   0
