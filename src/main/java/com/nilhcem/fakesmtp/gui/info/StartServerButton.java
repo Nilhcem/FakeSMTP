@@ -46,7 +46,7 @@ public final class StartServerButton extends Observable implements Observer {
 	 *
 	 * @see PortTextField
 	 */
-	private void toggleButton() {
+	public void toggleButton() {
 		try {
 			UIModel.INSTANCE.toggleButton();
 		} catch (InvalidPortException ipe) {

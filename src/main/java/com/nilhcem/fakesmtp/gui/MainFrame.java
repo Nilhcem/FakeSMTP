@@ -2,7 +2,9 @@ package com.nilhcem.fakesmtp.gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import javax.swing.JFrame;
+
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;

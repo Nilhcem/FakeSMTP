@@ -8,6 +8,7 @@ import javax.swing.JTabbedPane;
 
 import net.miginfocom.swing.MigLayout;
 
+import com.nilhcem.fakesmtp.core.ArgsHandler;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
 import com.nilhcem.fakesmtp.gui.info.NbReceivedLabel;
@@ -76,6 +77,7 @@ public final class MainPanel {
 		assignLabelsToFields();
 		addObservers(menu);
 		buildGUI();
+		checkArgs();
 	}
 
 	/**
@@ -155,6 +157,18 @@ public final class MainPanel {
 
 		// Clear all
 		mainPanel.add(clearAll.get(), "span, center");
+	}
+
+	/**
+	 * Checks command line arguments and toggles components if necessary.
+	 * <p>
+	 * If the user has chosen to auto-start the SMTP server, then it toggles automatically the "start server" button.
+	 * </p>
+	 */
+	private void checkArgs() {
+		if (ArgsHandler.INSTANCE.shouldStartServerAtLaunch()) {
+			startServerBtn.toggleButton();
+		}
 	}
 
 	/**

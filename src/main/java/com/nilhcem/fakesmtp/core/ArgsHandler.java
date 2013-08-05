@@ -24,14 +24,21 @@ public enum ArgsHandler {
 	private static final String OPT_EMAILS_DIR_LONG = "output-dir";
 	private static final String OPT_EMAILS_DESC = "Emails output directory";
 
+	private static final String OPT_AUTOSTART_SHORT = "s";
+	private static final String OPT_AUTOSTART_LONG = "start-server";
+	private static final String OPT_AUTOSTART_DESC = "Automatically starts the SMTP server at launch";
+
 	private final Options options;
 
+	private boolean startServerAtLaunch;
+
 	/**
-	 * Opens the "{@code configuration.properties}" file and maps data.
+	 * Handles command line arguments.
 	 */
 	private ArgsHandler() {
 		options = new Options();
 		options.addOption(OPT_EMAILS_DIR_SHORT, OPT_EMAILS_DIR_LONG, true, OPT_EMAILS_DESC);
+		options.addOption(OPT_AUTOSTART_SHORT, OPT_AUTOSTART_LONG, false, OPT_AUTOSTART_DESC);
 	}
 
 	/**
@@ -48,6 +55,8 @@ public enum ArgsHandler {
 		if (outputDir != null) {
 			UIModel.INSTANCE.setSavePath(outputDir);
 		}
+
+		startServerAtLaunch = cmd.hasOption(OPT_AUTOSTART_SHORT);
 	}
 
 	/**
@@ -58,6 +67,13 @@ public enum ArgsHandler {
 	public void displayUsage(ParseException exception) {
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.printHelp(String.format(Locale.US, "java -jar %s [OPTION]...", getJarName()), options);
+	}
+
+	/**
+	 * @return whether or not the SMTP server must be started automatically at launch.
+	 */
+	public boolean shouldStartServerAtLaunch() {
+		return startServerAtLaunch;
 	}
 
 	private String getJarName() {

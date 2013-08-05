@@ -36,10 +36,15 @@ Otherwise, run the following command:
 
     java -jar fakeSMTP-VERSION.jar
 
-Should you want to specify the directory where emails will be saved when starting the application, you can use the `-o` argument:
+If you want to specify the directory where emails will be saved when starting the application, you can use the `-o` argument:
 
     java -jar fakeSMTP-VERSION.jar -o output_directory_name
     java -jar fakeSMTP-VERSION.jar --output-dir output_directory_name
+
+If you want to autostart the SMTP server at launch, you can use the `-s` argument:
+
+    java -jar fakeSMTP-VERSION.jar -s
+    java -jar fakeSMTP-VERSION.jar --start-server
 
 
 Alternatives
