@@ -162,11 +162,18 @@ public final class MainPanel {
 	/**
 	 * Checks command line arguments and toggles components if necessary.
 	 * <p>
-	 * If the user has chosen to auto-start the SMTP server, then it toggles automatically the "start server" button.
+	 * <ul><li>if the user has chosen a different port, then specifies it in the port text field.</li>
+	 * <li>if the user has chosen to auto-start the SMTP server, then it toggles automatically the "start server" button.</li></ul>
 	 * </p>
 	 */
 	private void checkArgs() {
-		if (ArgsHandler.INSTANCE.shouldStartServerAtLaunch()) {
+		ArgsHandler args = ArgsHandler.INSTANCE;
+
+		if (args.getPort() != null) {
+			portText.setText(args.getPort());
+		}
+
+		if (args.shouldStartServerAtLaunch()) {
 			startServerBtn.toggleButton();
 		}
 	}

@@ -28,9 +28,14 @@ public enum ArgsHandler {
 	private static final String OPT_AUTOSTART_LONG = "start-server";
 	private static final String OPT_AUTOSTART_DESC = "Automatically starts the SMTP server at launch";
 
+	private static final String OPT_PORT_SHORT = "p";
+	private static final String OPT_PORT_LONG = "port";
+	private static final String OPT_PORT_DESC = "SMTP port number";
+
 	private final Options options;
 
 	private boolean startServerAtLaunch;
+	private String port;
 
 	/**
 	 * Handles command line arguments.
@@ -39,12 +44,13 @@ public enum ArgsHandler {
 		options = new Options();
 		options.addOption(OPT_EMAILS_DIR_SHORT, OPT_EMAILS_DIR_LONG, true, OPT_EMAILS_DESC);
 		options.addOption(OPT_AUTOSTART_SHORT, OPT_AUTOSTART_LONG, false, OPT_AUTOSTART_DESC);
+		options.addOption(OPT_PORT_SHORT, OPT_PORT_LONG, true, OPT_PORT_DESC);
 	}
 
 	/**
 	 * Interprets command line arguments.
 	 *
-	 * @param args Program's arguments.
+	 * @param args program's arguments.
 	 * @throws ParseException when arguments are invalid.
 	 */
 	public void handleArgs(String[] args) throws ParseException {
@@ -56,6 +62,7 @@ public enum ArgsHandler {
 			UIModel.INSTANCE.setSavePath(outputDir);
 		}
 
+		port = cmd.getOptionValue(OPT_PORT_SHORT);
 		startServerAtLaunch = cmd.hasOption(OPT_AUTOSTART_SHORT);
 	}
 
@@ -76,6 +83,16 @@ public enum ArgsHandler {
 		return startServerAtLaunch;
 	}
 
+	/**
+	 * @return the port, as specified by the user, or a {@code null} string if unspecified.
+	 */
+	public String getPort() {
+		return port;
+	}
+
+	/**
+	 * @return the file name of the program.
+	 */
 	private String getJarName() {
 		return new java.io.File(
 				ArgsHandler.class.getProtectionDomain()

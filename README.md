@@ -46,6 +46,11 @@ If you want to autostart the SMTP server at launch, you can use the `-s` argumen
     java -jar fakeSMTP-VERSION.jar -s
     java -jar fakeSMTP-VERSION.jar --start-server
 
+If you want to autostart the SMTP server on a different port, you can also use the `-p` argument:
+
+    java -jar fakeSMTP-VERSION.jar -s -p 2525
+    java -jar fakeSMTP-VERSIon.jar --start-server --port 2525
+
 
 Alternatives
 ------------
@@ -89,6 +94,8 @@ Running integration tests
 
 To run integration tests, you will first need to launch the application
 and start the server on port `2525`.
+
+    java -jar fakeSMTP-VERSION.jar -p 2525 -s
 
 You can then run the following command:
 

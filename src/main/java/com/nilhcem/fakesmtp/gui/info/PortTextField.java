@@ -72,6 +72,17 @@ public final class PortTextField extends Observable implements Observer {
 	}
 
 	/**
+	 * Sets the specified port in the text field only if this latter is not {@code null}.
+	 *
+	 * @param portStr the port to set.
+	 */
+	public void setText(String portStr) {
+		if (portStr != null) {
+			portTextField.setText(portStr);
+		}
+	}
+
+	/**
 	 * Enables or disables the port text field.
 	 * <p>
 	 * When the element will receive an action from the {@link StartServerButton} object,
