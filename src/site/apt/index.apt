@@ -3,7 +3,7 @@
  -----
  Nilhcem
  -----
- July 2013
+ August 2013
 
 Overview
 
@@ -33,11 +33,18 @@ Otherwise, run the following command:
  java -jar fakeSMTP.jar
 +--
 
- Should you want to specify the directory where emails will be saved when starting the application,\
+ If you want to specify the directory where emails will be saved when starting the application,\
 you can use the -o argument:
 
 +--
-java -jar fakeSMTP.jar -o output_directory_name
+ java -jar fakeSMTP.jar -o output_directory_name
++--
+
+ You can also start the SMTP server automatically at launch (-s argument) on a different port (-p argument),\
+the following example will autostart the SMTP server on the port 2525:
+
++--
+ java -jar fakeSMTP.jar -s -p 2525
 +--
 
 
