@@ -186,4 +186,18 @@ public final class MainPanel {
 		saveMessages.setLabelFor(saveMsgTextField.get());
 		receivedLabel.setLabelFor(nbReceivedLabel.get());
 	}
+
+        /**
+         * Returns reference to portText field. Used for saving last values to file
+         */
+        public PortTextField getPortText() {
+            return portText;
+        }
+
+        /**
+         * Returns reference to saveMsgTextField. Used for saving last values to file
+         */
+        public SaveMsgField getSaveMsgTextField() {
+            return saveMsgTextField;
+        }
 }

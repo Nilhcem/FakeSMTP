@@ -64,10 +64,8 @@ public final class DirChooser extends Observable implements Observer {
 	 * </p>
 	 */
 	private void openFolderSelection() {
-		File filePath = new File(UIModel.INSTANCE.getSavePath());
-		if (filePath != null) {
-			dirChooser.setCurrentDirectory(filePath);
-		}
+		File filePath = new File(Configuration.INSTANCE.get("emails.default.dir"));
+		dirChooser.setCurrentDirectory(filePath);
 
 		int result = dirChooser.showOpenDialog(parent);
 
