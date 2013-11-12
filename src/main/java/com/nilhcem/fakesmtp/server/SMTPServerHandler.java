@@ -73,10 +73,10 @@ public enum SMTPServerHandler {
 		return mailSaver;
 	}
 
-        /**
-         * Returns the {@code SMTPServer} object
-         */
-        public SMTPServer getSmtpServer() {
-            return smtpServer;
-        }
+	/**
+	 * Returns the {@code SMTPServer} object
+	 */
+	public SMTPServer getSmtpServer() {
+		return smtpServer;
+	}
 }

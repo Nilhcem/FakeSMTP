@@ -45,7 +45,7 @@ public final class MainFrame extends WindowAdapter {
 			Integer.parseInt(Configuration.INSTANCE.get("application.min.height")));
 
 		mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                mainFrame.addWindowListener(this); // for catching windowClosing event
+		mainFrame.addWindowListener(this); // for catching windowClosing event
 		mainFrame.setSize(frameSize);
 		mainFrame.setMinimumSize(frameSize);
 
@@ -62,34 +62,33 @@ public final class MainFrame extends WindowAdapter {
 			};
 		});
 
-                // Restore last saved smtp port and emails directory
-                String smtpPort = Configuration.INSTANCE.get("smtp.default.port");
-                if(smtpPort != null && !smtpPort.isEmpty()) {
-                        panel.getPortText().get().setText(smtpPort);
-                }
-                String emailsDir = Configuration.INSTANCE.get("emails.default.dir");
-                if(emailsDir != null && !emailsDir.isEmpty()) {
-                        panel.getSaveMsgTextField().get().setText(emailsDir);
-                }
-                
-                
+		// Restore last saved smtp port and emails directory
+		String smtpPort = Configuration.INSTANCE.get("smtp.default.port");
+		if (smtpPort != null && !smtpPort.isEmpty()) {
+			panel.getPortText().get().setText(smtpPort);
+		}
+		String emailsDir = Configuration.INSTANCE.get("emails.default.dir");
+		if (emailsDir != null && !emailsDir.isEmpty()) {
+			panel.getSaveMsgTextField().get().setText(emailsDir);
+		}
+
 		mainFrame.setVisible(true);
 	}
 
-        @Override
-        public void windowClosing(WindowEvent e) {
-                // Save configuration
-                Configuration.INSTANCE.set("smtp.default.port", panel.getPortText().get().getText());
-                Configuration.INSTANCE.set("emails.default.dir", panel.getSaveMsgTextField().get().getText());
-                try {
-                    Configuration.INSTANCE.saveToUserProfile();
-                } catch(IOException ex) {
-                    LoggerFactory.getLogger(MainFrame.class).error("Could not save configuration", ex);
-                }
-                // Check for SMTP server running and stop it
-                if(SMTPServerHandler.INSTANCE.getSmtpServer().isRunning()) {
-                    SMTPServerHandler.INSTANCE.getSmtpServer().stop();
-                }
-                mainFrame.dispose();
-        }
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// Save configuration
+		Configuration.INSTANCE.set("smtp.default.port", panel.getPortText().get().getText());
+		Configuration.INSTANCE.set("emails.default.dir", panel.getSaveMsgTextField().get().getText());
+		try {
+			Configuration.INSTANCE.saveToUserProfile();
+		} catch (IOException ex) {
+			LoggerFactory.getLogger(MainFrame.class).error("Could not save configuration", ex);
+		}
+		// Check for SMTP server running and stop it
+		if (SMTPServerHandler.INSTANCE.getSmtpServer().isRunning()) {
+			SMTPServerHandler.INSTANCE.getSmtpServer().stop();
+		}
+		mainFrame.dispose();
+	}
 }
