@@ -8,7 +8,7 @@
     <language>en-us</language>
     <copyright>&#169;2013</copyright>
     <item>
-      <title>File: 46,
+      <title>File: 47,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -128,6 +128,20 @@
                           <tr>
                 <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.server.SMTPAuthHandlerFactory.java">com/nilhcem/fakesmtp/server/SMTPAuthHandlerFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#i18n.messages_ru_RU.properties">i18n/messages_ru_RU.properties</a>
                 </td>
                 <td>
                   0
