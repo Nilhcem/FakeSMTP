@@ -15,6 +15,7 @@ import com.nilhcem.fakesmtp.core.ArgsHandler;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
 import com.nilhcem.fakesmtp.gui.MainFrame;
+import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
 /**
  * Entry point of the application.
@@ -55,31 +56,48 @@ public final class FakeSMTP {
 		}
 
 		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					URL envelopeImage = getClass().getResource(Configuration.INSTANCE.get("application.icon.path"));
-					if (envelopeImage != null) {
-						Application.getApplication().setDockIconImage(Toolkit.getDefaultToolkit().getImage(envelopeImage));
-					}
-				} catch (RuntimeException e) {
-					LOGGER.debug("Error: {} - This is probably because we run on a non-Mac platform and these components are not implemented", e.getMessage());
-				} catch (Exception e) {
-					LOGGER.error("", e);
-				}
 
-				System.setProperty("apple.laf.useScreenMenuBar", "true");
-				System.setProperty("com.apple.mrj.application.apple.menu.about.name", Configuration.INSTANCE.get("application.name"));
-				UIManager.put("swing.boldMetal", Boolean.FALSE);
-				try {
-					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-				} catch (Exception e) {
-					LOGGER.error("", e);
-				}
+		if (ArgsHandler.INSTANCE.shouldStartInBackground()) {
+			int p = 25;
+			try {
+				p = Integer.parseInt(ArgsHandler.INSTANCE.getPort());
 
-				new MainFrame();
+			} catch (NumberFormatException e) { 
+				LOGGER.debug("Error: Invalid port number", e);
 			}
-		});
+
+			try {
+				SMTPServerHandler.INSTANCE.startServer(p);
+			} catch (Exception e) {
+				LOGGER.error("Fails to auto-start server in background", e);
+			}
+		} else {
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					try {
+						URL envelopeImage = getClass().getResource(Configuration.INSTANCE.get("application.icon.path"));
+						if (envelopeImage != null) {
+							Application.getApplication().setDockIconImage(Toolkit.getDefaultToolkit().getImage(envelopeImage));
+						}
+					} catch (RuntimeException e) {
+						LOGGER.debug("Error: {} - This is probably because we run on a non-Mac platform and these components are not implemented", e.getMessage());
+					} catch (Exception e) {
+						LOGGER.error("", e);
+					}
+
+					System.setProperty("apple.laf.useScreenMenuBar", "true");
+					System.setProperty("com.apple.mrj.application.apple.menu.about.name", Configuration.INSTANCE.get("application.name"));
+					UIManager.put("swing.boldMetal", Boolean.FALSE);
+					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					} catch (Exception e) {
+						LOGGER.error("", e);
+					}
+
+					new MainFrame();
+				}
+			});
+		}
 	}
 }
