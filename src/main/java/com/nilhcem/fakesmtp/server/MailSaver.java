@@ -9,6 +9,7 @@ import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.regex.Matcher;
@@ -43,6 +44,23 @@ public final class MailSaver extends Observable {
 	 * @see com.nilhcem.fakesmtp.gui.MainPanel#addObservers to see which observers will be notified
 	 */
 	public void saveEmailAndNotify(String from, String to, InputStream data) {
+		List<String> relayDomains = UIModel.INSTANCE.getRelayDomains();
+
+		if (relayDomains != null) {
+			boolean matches = false;
+			for (final String d : relayDomains) {
+				if (to.endsWith(d)) {
+					matches = true;
+					break;
+				}
+			}
+
+			if (!matches) {
+				LOGGER.debug("Destination {} doesn't match relay domains", to);
+				return;
+			}
+		}
+            
 		synchronized (getLock()) {
 			String mailContent = convertStreamToString(data);
 			String filePath = saveEmailToFile(mailContent);

@@ -1,6 +1,7 @@
 package com.nilhcem.fakesmtp.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
@@ -27,6 +28,7 @@ public enum UIModel {
 	private int nbMessageReceived = 0;
 	private String savePath = I18n.INSTANCE.get("emails.default.dir");
 	private final Map<Integer, String> listMailsMap = new HashMap<Integer, String>();
+        private List<String> relayDomains = null;
 
 	private UIModel() {
 	}
@@ -93,5 +95,13 @@ public enum UIModel {
 
 	public Map<Integer, String> getListMailsMap() {
 		return listMailsMap;
+	}
+
+	public List<String> getRelayDomains() {
+		return relayDomains;
+	}
+
+	public void setRelayDomains(List<String> relayDomains) {
+		this.relayDomains = relayDomains;
 	}
 }
