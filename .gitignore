@@ -1,16 +1,20 @@
-# Ignore temporary files
+# Temporary files
 *~
 \#*
 
-# Ignore target folder
+# Target folder
 target/*
 
-# Ignore eclipse files
+# Eclipse files
 .classpath
 .pmd
 .project
 .settings/*
 
-# Ignore received emails folder
+# IntelliJ files
+.idea
+*.iml
+
+# Received emails folder
 received-emails/*
 emails-recus/*
