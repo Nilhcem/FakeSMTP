@@ -111,7 +111,7 @@ public enum ArgsHandler {
 	 * @see #shouldStartServerAtLaunch
 	 */
 	public boolean shouldStartInBackground() {
-		return (startServerAtLaunch && backgroundStart);
+		return startServerAtLaunch && backgroundStart;
 	}
 
 	/**
