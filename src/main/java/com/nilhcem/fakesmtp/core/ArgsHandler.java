@@ -36,18 +36,19 @@ public enum ArgsHandler {
 	private static final String OPT_PORT_DESC = "SMTP port number";
 
 	private static final String OPT_BACKGROUNDSTART_SHORT = "b";
-	private static final String OPT_BACKGROUNDSTART_LONG = "background-start";
-	private static final String OPT_BACKGROUNDSTART_DESC = "If automatically start server (-s, --start-server), do it in background (without launching GUI)";
+	private static final String OPT_BACKGROUNDSTART_LONG = "background";
+	private static final String OPT_BACKGROUNDSTART_DESC = "If specified, does not start the GUI. Must be used with the -" + OPT_AUTOSTART_SHORT + " (--" +  OPT_AUTOSTART_LONG + ") argument";
 
 	private static final String OPT_RELAYDOMAINS_SHORT = "r";
 	private static final String OPT_RELAYDOMAINS_LONG = "relay-domains";
-	private static final String OPT_RELAYDOMAINS_DESC = "Comma separated email domain(s) for which relay is accepted. If not specified relay to any domain. If specified, relay only to these domain(s), message for other are dropped (not saved).";
+	private static final String OPT_RELAYDOMAINS_DESC = "Comma separated email domain(s) for which relay is accepted. If not specified, relays to any domain. If specified, relays only emails matching these domain(s), dropping (not saving) others";
+	private static final String OPT_RELAYDOMAINS_SEPARATOR = ",";
 
 	private final Options options;
 
-	private boolean startServerAtLaunch;
 	private String port;
 	private boolean backgroundStart;
+	private boolean startServerAtLaunch;
 
 	/**
 	 * Handles command line arguments.
@@ -58,7 +59,7 @@ public enum ArgsHandler {
 		options.addOption(OPT_AUTOSTART_SHORT, OPT_AUTOSTART_LONG, false, OPT_AUTOSTART_DESC);
 		options.addOption(OPT_PORT_SHORT, OPT_PORT_LONG, true, OPT_PORT_DESC);
 		options.addOption(OPT_BACKGROUNDSTART_SHORT, OPT_BACKGROUNDSTART_LONG, false, OPT_BACKGROUNDSTART_DESC);
-		options.addOption(OPT_RELAYDOMAINS_SHORT, OPT_RELAYDOMAINS_LONG, true, OPT_EMAILS_DESC);
+		options.addOption(OPT_RELAYDOMAINS_SHORT, OPT_RELAYDOMAINS_LONG, true, OPT_RELAYDOMAINS_DESC);
 	}
 
 	/**
@@ -82,23 +83,18 @@ public enum ArgsHandler {
 
 		String relaydomains = cmd.getOptionValue(OPT_RELAYDOMAINS_SHORT);
 		if (relaydomains != null) {
-			List<String> rd = Arrays.asList(relaydomains.split(","));
-			ArrayList<String> l = new ArrayList<String>();
-
-			for (final String str : rd) {
-				l.add(str.trim());
+			List<String> domains = new ArrayList<String>();
+			for (String domain : Arrays.asList(relaydomains.split(OPT_RELAYDOMAINS_SEPARATOR))) {
+				domains.add(domain.trim());
 			}
-
-			UIModel.INSTANCE.setRelayDomains(l);
+			UIModel.INSTANCE.setRelayDomains(domains);
 		}
 	}
 
 	/**
 	 * Displays the app's usage in the standard output.
-	 *
-	 * @param exception an exception that contains an error message to display, or {@code null} if none.
 	 */
-	public void displayUsage(ParseException exception) {
+	public void displayUsage() {
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.printHelp(String.format(Locale.US, "java -jar %s [OPTION]...", getJarName()), options);
 	}
@@ -111,8 +107,8 @@ public enum ArgsHandler {
 	}
 
 	/**
-	 * @return whether or not the SMTP server must be running in background, only if started at launch (if {@code shouldStartServerAtLaunch()} return true}).
-         * @see #shouldStartServerAtLaunch
+	 * @return whether or not the SMTP server must be running without a GUI, only if started at launch (if {@code shouldStartServerAtLaunch()} returns true}).
+	 * @see #shouldStartServerAtLaunch
 	 */
 	public boolean shouldStartInBackground() {
 		return (startServerAtLaunch && backgroundStart);

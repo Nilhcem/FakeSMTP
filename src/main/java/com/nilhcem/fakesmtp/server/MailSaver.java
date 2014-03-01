@@ -48,8 +48,8 @@ public final class MailSaver extends Observable {
 
 		if (relayDomains != null) {
 			boolean matches = false;
-			for (final String d : relayDomains) {
-				if (to.endsWith(d)) {
+			for (String domain : relayDomains) {
+				if (to.endsWith(domain)) {
 					matches = true;
 					break;
 				}
@@ -60,7 +60,7 @@ public final class MailSaver extends Observable {
 				return;
 			}
 		}
-            
+
 		synchronized (getLock()) {
 			String mailContent = convertStreamToString(data);
 			String filePath = saveEmailToFile(mailContent);
@@ -126,7 +126,7 @@ public final class MailSaver extends Observable {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is, Charset.forName(I18n.UTF8)));
 		StringBuilder sb = new StringBuilder();
 
-		String line = null;
+		String line;
 		long lineNb = 0;
 		try {
 			while ((line = reader.readLine()) != null) {
@@ -184,7 +184,7 @@ public final class MailSaver extends Observable {
 		try {
 			BufferedReader reader = new BufferedReader(new StringReader(data));
 
-			String line = null;
+			String line;
 			while ((line = reader.readLine()) != null) {
 				 Matcher matcher = subjectPattern.matcher(line);
 				 if (matcher.matches()) {

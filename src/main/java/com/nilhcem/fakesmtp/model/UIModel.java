@@ -28,7 +28,7 @@ public enum UIModel {
 	private int nbMessageReceived = 0;
 	private String savePath = I18n.INSTANCE.get("emails.default.dir");
 	private final Map<Integer, String> listMailsMap = new HashMap<Integer, String>();
-        private List<String> relayDomains = null;
+	private List<String> relayDomains;
 
 	private UIModel() {
 	}

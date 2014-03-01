@@ -51,28 +51,22 @@ public final class FakeSMTP {
 		try {
 			ArgsHandler.INSTANCE.handleArgs(args);
 		} catch (ParseException e) {
-			ArgsHandler.INSTANCE.displayUsage(e);
+			ArgsHandler.INSTANCE.displayUsage();
 			return;
 		}
 
-		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());
-
 		if (ArgsHandler.INSTANCE.shouldStartInBackground()) {
-			int p = 25;
 			try {
-				p = Integer.parseInt(ArgsHandler.INSTANCE.getPort());
-
-			} catch (NumberFormatException e) { 
-				LOGGER.debug("Error: Invalid port number", e);
-			}
-
-			try {
-				SMTPServerHandler.INSTANCE.startServer(p);
+				SMTPServerHandler.INSTANCE.startServer(getPort());
+			} catch (NumberFormatException e) {
+				LOGGER.error("Error: Invalid port number", e);
 			} catch (Exception e) {
-				LOGGER.error("Fails to auto-start server in background", e);
+				LOGGER.error("Failed to auto-start server in background", e);
 			}
 		} else {
-			EventQueue.invokeLater(new Runnable() {
+            Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());
+
+            EventQueue.invokeLater(new Runnable() {
 				@Override
 				public void run() {
 					try {
@@ -99,5 +93,17 @@ public final class FakeSMTP {
 				}
 			});
 		}
+	}
+
+	/**
+	 * @return either the default port, or the custom port, if specified.
+	 * @throws NumberFormatException if the specified port cannot be parsed to an integer.
+	 */
+	private static int getPort() throws NumberFormatException {
+		String portStr = ArgsHandler.INSTANCE.getPort();
+		if (portStr == null) {
+			portStr = Configuration.INSTANCE.get("smtp.default.port");
+		}
+		return Integer.parseInt(portStr);
 	}
 }
