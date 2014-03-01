@@ -40,11 +40,17 @@ you can use the -o argument:
  java -jar fakeSMTP.jar -o output_directory_name
 +--
 
- You can also start the SMTP server automatically at launch (-s argument) on a different port (-p argument),\
+ You can also start the SMTP server automatically at launch (-s argument) on a different port (-p argument) with no gui (-b argument),\
 the following example will autostart the SMTP server on the port 2525:
 
 +--
- java -jar fakeSMTP.jar -s -p 2525
+ java -jar fakeSMTP.jar -s -b -p 2525
++--
+
+ To see the available options (relay domains...), run:
+
++--
+ java -jar fakeSMTP.jar --help
 +--
 
 
