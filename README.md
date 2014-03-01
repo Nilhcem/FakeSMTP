@@ -46,10 +46,14 @@ If you want to autostart the SMTP server at launch, you can use the `-s` argumen
     java -jar fakeSMTP-VERSION.jar -s
     java -jar fakeSMTP-VERSION.jar --start-server
 
-If you want to autostart the SMTP server on a different port, you can also use the `-p` argument:
+If you want to autostart the SMTP server without a GUI (background) on a different port:
 
-    java -jar fakeSMTP-VERSION.jar -s -p 2525
-    java -jar fakeSMTP-VERSIon.jar --start-server --port 2525
+    java -jar fakeSMTP-VERSION.jar -s -b -p 2525
+    java -jar fakeSMTP-VERSIon.jar --start-server --background --port 2525
+
+To see all the available options (relay domains...):
+
+    java -jar fakeSMTP-VERSION.jar --help
 
 
 Alternatives
@@ -80,7 +84,7 @@ Building it
 You need to download and setup Maven.
 Once installed, go to project directory and run the following command:
 
-    mvn package -Dmaven.test.skip=true
+    mvn package -Dmaven.test.skip
 
 This command will create an executable jar on the target folder.
 
