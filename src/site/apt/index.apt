@@ -3,7 +3,7 @@
  -----
  Nilhcem
  -----
- March 2014
+ May 2014
 
 Overview
 
@@ -45,6 +45,12 @@ the following example will autostart the SMTP server on the port 2525:
 
 +--
  java -jar fakeSMTP.jar -s -b -p 2525
++--
+
+ If you don't need to save emails on the filesystem (to improve the overall performances), you can use the `-m` (memory mode) argument:
+
++--
+ java -jar fakeSMTP-VERSION.jar -m
 +--
 
  To see the available options (relay domains...), run:
