@@ -110,7 +110,7 @@ public final class MailsListPane implements Observer {
 						JTable target = (JTable) e.getSource();
 						String fileName = UIModel.INSTANCE.getListMailsMap().get(target.getSelectedRow());
 						if (fileName == null) {
-							LOGGER.error("Can't file any associated email for row #{}", target.getSelectedRow());
+							LOGGER.error("Can't find any associated email for row #{}", target.getSelectedRow());
 						} else {
 							file = new File(fileName);
 						}
