@@ -85,6 +85,11 @@ public enum ArgsHandler {
 		backgroundStart = cmd.hasOption(OPT_BACKGROUNDSTART_SHORT);
 		memoryModeEnabled = cmd.hasOption(OPT_MEMORYMODE_SHORT);
 
+		// Change SMTP server log level to info if memory mode was enabled to improve performance
+		if (memoryModeEnabled) {
+			((Logger) LoggerFactory.getLogger(org.subethamail.smtp.server.Session.class)).setLevel(Level.INFO);
+		}
+
 		String relaydomains = cmd.getOptionValue(OPT_RELAYDOMAINS_SHORT);
 		if (relaydomains != null) {
 			List<String> domains = new ArrayList<String>();

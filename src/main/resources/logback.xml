@@ -9,7 +9,7 @@
 	<!-- Custom appender, for sending the SMTP logs in the swing application directly -->
 	<!-- If you modify this part, please change also the "logback.appender.name" key in the configuration.properties file -->
 	<appender name="SMTPLOGS" class="com.nilhcem.fakesmtp.log.SMTPLogsAppender" />
-	<logger name="org.subethamail.smtp.server.Session" level="INFO">
+	<logger name="org.subethamail.smtp.server.Session" level="DEBUG">
 		<appender-ref ref="SMTPLOGS" />
 	</logger>
 	<logger name="org.subethamail.smtp.server.ServerThread" level="INFO">
