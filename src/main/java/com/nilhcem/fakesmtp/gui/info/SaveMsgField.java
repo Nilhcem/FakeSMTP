@@ -5,13 +5,12 @@ import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.DirChooser;
 import com.nilhcem.fakesmtp.model.UIModel;
 
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.swing.JTextField;
 
 /**
  * Text field in which will be written the path where emails will be automatically saved.
@@ -20,6 +19,7 @@ import javax.swing.JTextField;
  * @since 1.0
  */
 public final class SaveMsgField extends Observable implements Observer {
+
 	private final JTextField saveMsgField = new JTextField(UIModel.INSTANCE.getSavePath());
 
 	/**

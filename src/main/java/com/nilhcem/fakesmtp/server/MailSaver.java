@@ -5,17 +5,11 @@ import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.model.EmailModel;
 import com.nilhcem.fakesmtp.model.UIModel;
-
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +26,7 @@ import java.util.regex.Pattern;
  * @since 1.0
  */
 public final class MailSaver extends Observable {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(MailSaver.class);
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 	// This can be a static variable since it is Thread Safe
@@ -89,8 +84,9 @@ public final class MailSaver extends Observable {
 	 */
 	public void deleteEmails() {
 		Map<Integer, String> mails = UIModel.INSTANCE.getListMailsMap();
-		if (ArgsHandler.INSTANCE.memoryModeEnabled())
+		if (ArgsHandler.INSTANCE.memoryModeEnabled()) {
 			return;
+		}
 		for (String value : mails.values()) {
 			File file = new File(value);
 			if (file.exists()) {
@@ -154,8 +150,9 @@ public final class MailSaver extends Observable {
 	 * @return the path of the created file.
 	 */
 	private String saveEmailToFile(String mailContent) {
-		if (ArgsHandler.INSTANCE.memoryModeEnabled())
+		if (ArgsHandler.INSTANCE.memoryModeEnabled()) {
 			return null;
+		}
 		String filePath = String.format("%s%s%s", UIModel.INSTANCE.getSavePath(), File.separator,
 				dateFormat.format(new Date()));
 

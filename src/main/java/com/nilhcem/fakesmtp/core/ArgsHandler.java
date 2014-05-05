@@ -1,13 +1,10 @@
 package com.nilhcem.fakesmtp.core;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import com.nilhcem.fakesmtp.model.UIModel;
-
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.GnuParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.*;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -128,10 +125,10 @@ public enum ArgsHandler {
 		return port;
 	}
 
-   /**
-    * @return whether or not the SMTP server should disable the persistence in order to avoid the overhead that it adds. 
-    * This is particularly useful when we launch performance tests that massively send emails.
-    */
+	/**
+	 * @return whether or not the SMTP server should disable the persistence in order to avoid the overhead that it adds.
+	 * This is particularly useful when we launch performance tests that massively send emails.
+	 */
 	public boolean memoryModeEnabled() {
 	   return memoryModeEnabled;
 	}
