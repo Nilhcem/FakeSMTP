@@ -1,14 +1,17 @@
 package com.nilhcem.fakesmtp.gui.info;
 
+import com.nilhcem.fakesmtp.core.ArgsHandler;
+import com.nilhcem.fakesmtp.core.I18n;
+import com.nilhcem.fakesmtp.gui.DirChooser;
+import com.nilhcem.fakesmtp.model.UIModel;
+
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
+
 import javax.swing.JTextField;
-import com.nilhcem.fakesmtp.core.I18n;
-import com.nilhcem.fakesmtp.gui.DirChooser;
-import com.nilhcem.fakesmtp.model.UIModel;
 
 /**
  * Text field in which will be written the path where emails will be automatically saved.
@@ -34,34 +37,36 @@ public final class SaveMsgField extends Observable implements Observer {
 		saveMsgField.setEditable(false);
 		saveMsgField.setBackground(bg);
 
-		// Add a MouseListener
-		saveMsgField.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
+		if (!ArgsHandler.INSTANCE.memoryModeEnabled()) {
+			// Add a MouseListener
+			saveMsgField.addMouseListener(new MouseListener() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+				}
 
-			@Override
-			public void mousePressed(MouseEvent e) {
-				openFolderSelection();
-			}
+				@Override
+				public void mousePressed(MouseEvent e) {
+					openFolderSelection();
+				}
 
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
+				@Override
+				public void mouseReleased(MouseEvent e) {
+				}
 
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+				}
 
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
+				@Override
+				public void mouseExited(MouseEvent e) {
+				}
 
-			private void openFolderSelection() {
-				setChanged();
-				notifyObservers();
-			}
-		});
+				private void openFolderSelection() {
+					setChanged();
+					notifyObservers();
+				}
+			});
+		}
 	}
 
 	/**
