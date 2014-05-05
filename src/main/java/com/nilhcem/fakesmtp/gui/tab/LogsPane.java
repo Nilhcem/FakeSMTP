@@ -1,19 +1,19 @@
 package com.nilhcem.fakesmtp.gui.tab;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Observable;
-import java.util.Observer;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.spi.AppenderAttachable;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
 import com.nilhcem.fakesmtp.log.SMTPLogsAppender;
 import com.nilhcem.fakesmtp.log.SMTPLogsObservable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Scrolled text area where will be displayed the SMTP logs.
@@ -22,6 +22,7 @@ import com.nilhcem.fakesmtp.log.SMTPLogsObservable;
  * @since 1.0
  */
 public final class LogsPane implements Observer {
+
 	private final JScrollPane logsPane = new JScrollPane();
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
 	private final JTextArea logsArea = new JTextArea();
@@ -47,7 +48,7 @@ public final class LogsPane implements Observer {
 	/**
 	 * Adds this object to the SMTP logs appender observable, to intercept logs.
 	 * <p>
-	 * The goal is to be informed when the log appender will received some debug SMTP logs.<br />
+	 * The goal is to be informed when the log appender will received some debug SMTP logs.<br>
 	 * When a log is written, the appender will notify this class which will display it in the text area.
 	 * </p>
 	 */
@@ -69,11 +70,11 @@ public final class LogsPane implements Observer {
 	 * Updates the content of the text area.
 	 * <p>
 	 * This method will be called by an observable element.
+     * </p>
 	 * <ul>
 	 *   <li>If the observable is a {@link SMTPLogsObservable} object, the text area will display the received log.</li>
 	 *   <li>If the observable is a {@link ClearAllButton} object, the text area will be cleared.</li>
 	 * </ul>
-	 * </p>
 	 *
 	 * @param o the observable element which will notify this class.
 	 * @param log optional parameter (a {@code String} object, when the observable is a {@code SMTPLogsObservable} object, which will contain the log).

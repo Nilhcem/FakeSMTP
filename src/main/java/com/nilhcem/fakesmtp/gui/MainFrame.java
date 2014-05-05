@@ -1,17 +1,15 @@
 package com.nilhcem.fakesmtp.gui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import org.slf4j.LoggerFactory;
 
 /**
  * Provides the main window of the application.
@@ -20,6 +18,7 @@ import org.slf4j.LoggerFactory;
  * @since 1.0
  */
 public final class MainFrame extends WindowAdapter {
+
 	private final JFrame mainFrame = new JFrame(Configuration.INSTANCE.get("application.title"));
 	private final MenuBar menu = new MenuBar();
 	private final MainPanel panel = new MainPanel(menu);
@@ -27,17 +26,19 @@ public final class MainFrame extends WindowAdapter {
 	/**
 	 * Creates the main window and makes it visible.
 	 * <p>
-	 * First, assigns the main panel to the default uncaught exception handler to display exceptions in this panel.<br /><br />
+	 * First, assigns the main panel to the default uncaught exception handler to display exceptions in this panel.<br><br>
 	 * Before creating the main window, the application will have to set some elements, such as:
+     * </p>
 	 * <ul>
 	 *   <li>The minimum and default size;</li>
 	 *   <li>The menu bar and the main panel;</li>
 	 *   <li>An icon image;</li>
 	 *   <li>A shutdown hook to stop the server, once the main window is closed.</li>
-	 * </ul><br />
+	 * </ul><br>
+     * <p>
 	 * The icon of the application is a modified version from the one provided in "{@code WebAppers.com}"
 	 * <i>(Creative Commons Attribution 3.0 License)</i>.
-	 * </p>
+     * </p>
 	 */
 	public MainFrame() {
 		((UncaughtExceptionHandler) Thread.getDefaultUncaughtExceptionHandler()).setParentComponent(panel.get());

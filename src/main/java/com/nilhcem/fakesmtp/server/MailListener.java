@@ -25,7 +25,7 @@ public final class MailListener implements SimpleMessageListener {
 	/**
 	 * Accepts all kind of email <i>(always return true)</i>.
 	 * <p>
-	 * Called once for every RCPT TO during a SMTP exchange.<br />
+	 * Called once for every RCPT TO during a SMTP exchange.<br>
      * Each accepted recipient will result in a separate deliver() call later.
      * </p>
      *

@@ -117,7 +117,7 @@ public final class MailSaver extends Observable {
 	/**
 	 * Converts an {@code InputStream} into a {@code String} object.
 	 * <p>
-	 * The method will not copy the first 4 lines of the input stream.<br />
+	 * The method will not copy the first 4 lines of the input stream.<br>
 	 * These 4 lines are SubEtha SMTP additional information.
 	 * </p>
 	 *

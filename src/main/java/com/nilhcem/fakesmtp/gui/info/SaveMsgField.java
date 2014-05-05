@@ -25,7 +25,7 @@ public final class SaveMsgField extends Observable implements Observer {
 	/**
 	 * Creates a text field and adds a mouse listener, to display the directory chooser dialog when a user clicks on the field.
 	 * <p>
-	 * The text field will be disabled by default to avoid the user to type any folder directly.<br />
+	 * The text field will be disabled by default to avoid the user to type any folder directly.<br>
 	 * Instead, he can use the directory chooser dialog to select the path he wants.
 	 * </p>
 	 */

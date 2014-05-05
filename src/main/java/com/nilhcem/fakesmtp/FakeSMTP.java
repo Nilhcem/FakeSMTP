@@ -34,6 +34,7 @@ public final class FakeSMTP {
 	 * Checks command line arguments, sets some specific properties, and runs the main window.
 	 * <p>
 	 * Before opening the main window, this method will:
+     * </p>
 	 * <ul>
 	 *   <li>check command line arguments, and possibly display an error dialog,</li>
 	 *   <li>set a default uncaught exception handler to intercept every uncaught exception;</li>
@@ -43,7 +44,6 @@ public final class FakeSMTP {
 	 *   <li>turn off the bold font in all components for swing default theme;</li>
 	 *   <li>use the platform look and feel.</li>
 	 * </ul>
-	 * </p>
 	 *
 	 * @param args a list of command line parameters.
 	 */

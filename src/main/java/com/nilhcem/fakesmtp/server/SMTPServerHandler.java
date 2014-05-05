@@ -75,6 +75,8 @@ public enum SMTPServerHandler {
 
 	/**
 	 * Returns the {@code SMTPServer} object.
+     *
+     * @return the {@code SMTPServer} object.
 	 */
 	public SMTPServer getSmtpServer() {
 		return smtpServer;

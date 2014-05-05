@@ -13,7 +13,7 @@ import com.nilhcem.fakesmtp.model.UIModel;
 /**
  * Provides a graphical directory chooser dialog.
  * <p>
- * The directory chooser is used to select the folder where emails will be saved in.<br />
+ * The directory chooser is used to select the folder where emails will be saved in.<br>
  * It can be launched from the menu bar, or from the main panel.
  * </p>
  *
@@ -21,6 +21,7 @@ import com.nilhcem.fakesmtp.model.UIModel;
  * @since 1.0
  */
 public final class DirChooser extends Observable implements Observer {
+
 	private final JFileChooser dirChooser = new JFileChooser();
 	private Component parent = null;
 
@@ -41,11 +42,11 @@ public final class DirChooser extends Observable implements Observer {
 	 * Opens the folder selection.
 	 * <p>
 	 * This method will be called by an {@code Observable} element:
+     * </p>
 	 * <ul>
 	 *   <li>The {@link MenuBar};</li>
 	 *   <li>Or the {@link SaveMsgField}.</li>
 	 * </ul>
-	 * </p>
 	 *
 	 * @param o the observable element which will notify this class.
 	 * @param arg optional parameters (not used).

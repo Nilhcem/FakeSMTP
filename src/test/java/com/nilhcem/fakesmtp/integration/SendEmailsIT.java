@@ -1,19 +1,15 @@
 package com.nilhcem.fakesmtp.integration;
 
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.EmailAttachment;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.HtmlEmail;
-import org.apache.commons.mail.MultiPartEmail;
-import org.apache.commons.mail.SimpleEmail;
+import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.test.TestConfig;
+import org.apache.commons.mail.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.nilhcem.fakesmtp.core.Configuration;
-import com.nilhcem.fakesmtp.core.test.TestConfig;
 
 public final class SendEmailsIT {
+
 	private static final Logger logger = LoggerFactory.getLogger(SendEmailsIT.class);
 
 	@BeforeClass

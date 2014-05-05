@@ -22,6 +22,7 @@ import java.util.Observable;
  * @since 1.0
  */
 public final class MenuBar extends Observable {
+
 	private final I18n i18n = I18n.INSTANCE;
 	private final JMenuBar menuBar = new JMenuBar();
 

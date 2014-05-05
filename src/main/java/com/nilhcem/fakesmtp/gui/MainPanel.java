@@ -185,14 +185,16 @@ public final class MainPanel {
 
 	/**
 	 * Returns reference to portText field. Used for saving last values to file
+	 * @return reference to portText field. Used for saving last values to file
 	 */
 	public PortTextField getPortText() {
 		return portText;
 	}
 
 	/**
-	 * Returns reference to saveMsgTextField. Used for saving last values to
-	 * file
+	 * Returns reference to saveMsgTextField. Used for saving last values to file
+     *
+     * @return reference to saveMsgTextField. Used for saving last values to file
 	 */
 	public SaveMsgField getSaveMsgTextField() {
 		return saveMsgTextField;

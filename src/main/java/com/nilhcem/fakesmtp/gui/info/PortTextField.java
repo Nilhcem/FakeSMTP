@@ -1,17 +1,16 @@
 package com.nilhcem.fakesmtp.gui.info;
 
+import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.I18n;
+import com.nilhcem.fakesmtp.model.UIModel;
+
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import com.nilhcem.fakesmtp.core.Configuration;
-import com.nilhcem.fakesmtp.core.I18n;
-import com.nilhcem.fakesmtp.model.UIModel;
 
 /**
  * Text field in which will be written the desired SMTP port.
@@ -20,12 +19,13 @@ import com.nilhcem.fakesmtp.model.UIModel;
  * @since 1.0
  */
 public final class PortTextField extends Observable implements Observer {
+
 	private final JTextField portTextField = new JTextField();
 
 	/**
 	 * Creates the port field object and adds a listener on change to alert the presentation model.
 	 * <p>
-	 * The default port's value is defined in the configuration.properties file.<br />
+	 * The default port's value is defined in the configuration.properties file.<br>
 	 * Each time the port is modified, the port from the {@link UIModel} will be reset.
 	 * </p>
 	 */

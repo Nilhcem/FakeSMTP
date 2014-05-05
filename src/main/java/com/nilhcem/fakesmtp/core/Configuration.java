@@ -65,7 +65,7 @@ public enum Configuration {
 	 * Saves configuration to file.
 	 *
 	 * @param file file to save configuration.
-	 * @throws IOException.
+	 * @throws IOException
 	 */
 	public void saveToFile(File file) throws IOException {
 		FileOutputStream fos = new FileOutputStream(file);
@@ -80,7 +80,7 @@ public enum Configuration {
 	 * Saves configuration to the {@code .fakesmtp.properties} file in user profile directory.
 	 * Calls {@link Configuration#saveToFile(java.io.File)}.
 	 *
-	 * @throws IOException.
+	 * @throws IOException
 	 */
 	public void saveToUserProfile() throws IOException {
 		saveToFile(new File(System.getProperty("user.home"), USER_CONFIG_FILE));
@@ -91,7 +91,7 @@ public enum Configuration {
 	 *
 	 * @param file file to load configuration.
 	 * @return INSTANCE.
-	 * @throws IOException.
+	 * @throws IOException
 	 */
 	public Configuration loadFromFile(File file) throws IOException {
 		if (file.exists() && file.canRead()) {
@@ -110,7 +110,7 @@ public enum Configuration {
 	 * Calls {@link Configuration#loadFromFile(java.io.File)}.
 	 *
 	 * @return INSTANCE.
-	 * @throws IOException.
+	 * @throws IOException
 	 */
 	public Configuration loadFromUserProfile() throws IOException {
 		return loadFromFile(new File(System.getProperty("user.home"), USER_CONFIG_FILE));

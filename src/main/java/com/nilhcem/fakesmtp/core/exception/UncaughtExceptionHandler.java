@@ -1,19 +1,20 @@
 package com.nilhcem.fakesmtp.core.exception;
 
-import java.awt.Component;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Intercepts every uncaught exception.
  *
  * @author Nilhcem
  * @since 1.1
- * @see "http://stuffthathappens.com/blog/2007/10/07/programmers-notebook-uncaught-exception-handlers/"
+ * @see <a href="link">http://stuffthathappens.com/blog/2007/10/07/programmers-notebook-uncaught-exception-handlers/</a>
  */
 public final class UncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
+
 	private Component parentComponent;
 	private static final Logger LOGGER = LoggerFactory.getLogger(UncaughtExceptionHandler.class);
 

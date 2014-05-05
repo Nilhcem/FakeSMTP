@@ -1,22 +1,20 @@
 package com.nilhcem.fakesmtp.gui.info;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
-
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.server.MailSaver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Button to clear all the information from the main panel.
  * <p>
- * The button will ask the user if he wants to delete the received emails or not.<br />
+ * The button will ask the user if he wants to delete the received emails or not.<br>
  * If yes, emails will be deleted from file system.
  * </p>
  *
@@ -24,14 +22,15 @@ import com.nilhcem.fakesmtp.server.SMTPServerHandler;
  * @since 1.0
  */
 public final class ClearAllButton extends Observable implements Observer {
+
 	private final I18n i18n = I18n.INSTANCE;
 	private final JButton button = new JButton(i18n.get("clearall.button"));
 
 	/**
 	 * Creates the "clear all" button"
 	 * <p>
-	 * The button will be disabled by default, since no email is received when the application starts.<br />
-	 * The button will display a confirmation dialog to know if it needs to delete the received emails or not.<br />
+	 * The button will be disabled by default, since no email is received when the application starts.<br>
+	 * The button will display a confirmation dialog to know if it needs to delete the received emails or not.<br>
 	 * If yes, emails will be deleted from the file system.
 	 * </p>
 	 */

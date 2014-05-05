@@ -18,7 +18,7 @@ import com.nilhcem.fakesmtp.server.SMTPServerHandler;
  *
  * @author Nilhcem
  * @since 1.0
- * @see "http://martinfowler.com/eaaDev/PresentationModel.html"
+ * @see <a href="link">http://martinfowler.com/eaaDev/PresentationModel.html</a>
  */
 public enum UIModel {
 	INSTANCE;

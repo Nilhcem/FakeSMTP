@@ -1,7 +1,18 @@
 package com.nilhcem.fakesmtp.gui.tab;
 
-import java.awt.Desktop;
-import java.awt.Rectangle;
+import com.nilhcem.fakesmtp.core.ArgsHandler;
+import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.I18n;
+import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
+import com.nilhcem.fakesmtp.model.EmailModel;
+import com.nilhcem.fakesmtp.model.UIModel;
+import com.nilhcem.fakesmtp.server.MailSaver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
@@ -11,22 +22,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import com.nilhcem.fakesmtp.core.ArgsHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.nilhcem.fakesmtp.core.Configuration;
-import com.nilhcem.fakesmtp.core.I18n;
-import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
-import com.nilhcem.fakesmtp.model.EmailModel;
-import com.nilhcem.fakesmtp.model.UIModel;
-import com.nilhcem.fakesmtp.server.MailSaver;
 
 /**
  * Scrolled table where will be displayed every received email (one line for each email).
@@ -38,6 +33,7 @@ import com.nilhcem.fakesmtp.server.MailSaver;
  * @since 1.0
  */
 public final class MailsListPane implements Observer {
+
 	private int nbElements = 0;
 	private Desktop desktop = null;
 	private static final Logger LOGGER = LoggerFactory.getLogger(MailsListPane.class);
@@ -73,8 +69,8 @@ public final class MailsListPane implements Observer {
 	 * Creates the table and sets its cells as non editable.
 	 * <p>
 	 * Adds some mouse events on the table, to display emails, when a user click on
-	 * a specific row.<br />
-	 * If the email can't be found, an error message will be displayed.<br />
+	 * a specific row.<br>
+	 * If the email can't be found, an error message will be displayed.<br>
 	 * The table will reset the size of its column every time the size of the table changed
 	 * (for example when the user maximize the window).
 	 * </p>
@@ -174,13 +170,13 @@ public final class MailsListPane implements Observer {
 	 * Updates the content of the table.
 	 * <p>
 	 * This method will be called by an observable element.
+     * </p>
 	 * <ul>
 	 *   <li>If the observable is a {@link MailSaver} object, a new row will be added
 	 *   to the table, and the {@link UIModel} will be updated;</li>
 	 *   <li>If the observable is a {@link ClearAllButton} object, all the cells
 	 *   of the table will be removed, and the {@link UIModel} will be updated.</li>
 	 * </ul>
-	 * </p>
 	 *
 	 * @param o the observable element which will notify this class.
 	 * @param arg optional parameters (an {@code EmailModel} object, for the case of

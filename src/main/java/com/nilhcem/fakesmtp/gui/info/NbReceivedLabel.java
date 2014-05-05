@@ -37,14 +37,12 @@ public final class NbReceivedLabel implements Observer {
 
 	/**
 	 * Actions which will be done when the component will be notified by an Observable object.
-	 * <p>
 	 * <ul>
 	 *   <li>If the observable element is a {@link MailSaver} object, the method will increment
 	 *   the number of received messages and update the {@link UIModel};</li>
 	 *   <li>If the observable element is a {@link ClearAllButton}, the method will reinitialize
 	 *   the number of received messages and update the {@link UIModel}.</li>
 	 * </ul>
-	 * </p>
 	 *
 	 * @param o the observable element which will notify this class.
 	 * @param arg optional parameters (not used).
