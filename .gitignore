@@ -1,0 +1,20 @@
+# Temporary files
+*~
+\#*
+
+# Target folder
+target/*
+
+# Eclipse files
+.classpath
+.pmd
+.project
+.settings/*
+
+# IntelliJ files
+.idea
+*.iml
+
+# Received emails folder
+received-emails/*
+emails-recus/*
