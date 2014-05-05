@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.nilhcem.fakesmtp.core.ArgsHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,48 +85,50 @@ public final class MailsListPane implements Observer {
 			desktop = Desktop.getDesktop();
 		}
 
-		table.addMouseListener(new MouseListener() {
-			@Override
-			public void mouseReleased(MouseEvent e) {
-			}
+		if (!ArgsHandler.INSTANCE.memoryModeEnabled()) {
+			table.addMouseListener(new MouseListener() {
+				@Override
+				public void mouseReleased(MouseEvent e) {
+				}
 
-			@Override
-			public void mousePressed(MouseEvent e) {
-			}
+				@Override
+				public void mousePressed(MouseEvent e) {
+				}
 
-			@Override
-			public void mouseExited(MouseEvent e) {
-			}
+				@Override
+				public void mouseExited(MouseEvent e) {
+				}
 
-			@Override
-			public void mouseEntered(MouseEvent e) {
-			}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+				}
 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2 && desktop != null) {
-					File file = null;
-					JTable target = (JTable) e.getSource();
-					String fileName = UIModel.INSTANCE.getListMailsMap().get(target.getSelectedRow());
-					if (fileName == null) {
-						LOGGER.error("Can't file any associated email for row #{}", target.getSelectedRow());
-					} else {
-						file = new File(fileName);
-					}
-
-					if (file != null && file.exists()) {
-						try {
-							desktop.open(file);
-						} catch (IOException ioe) {
-							LOGGER.error("", ioe);
-							displayError(String.format(i18n.get("mailslist.err.open"), file.getAbsolutePath()));
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount() == 2 && desktop != null) {
+						File file = null;
+						JTable target = (JTable) e.getSource();
+						String fileName = UIModel.INSTANCE.getListMailsMap().get(target.getSelectedRow());
+						if (fileName == null) {
+							LOGGER.error("Can't file any associated email for row #{}", target.getSelectedRow());
+						} else {
+							file = new File(fileName);
 						}
-					} else {
-						displayError(String.format(i18n.get("mailslist.err.find"), file.getAbsolutePath()));
+
+						if (file != null && file.exists()) {
+							try {
+								desktop.open(file);
+							} catch (IOException ioe) {
+								LOGGER.error("", ioe);
+								displayError(String.format(i18n.get("mailslist.err.open"), file.getAbsolutePath()));
+							}
+						} else {
+							displayError(String.format(i18n.get("mailslist.err.find"), file.getAbsolutePath()));
+						}
 					}
 				}
-			}
-		});
+			});
+        }
 
 		// Auto scroll tab to bottom when a new element is inserted
 		table.addComponentListener(new ComponentAdapter() {
