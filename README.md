@@ -51,6 +51,10 @@ If you want to autostart the SMTP server without a GUI (background) on a differe
     java -jar fakeSMTP-VERSION.jar -s -b -p 2525
     java -jar fakeSMTP-VERSIon.jar --start-server --background --port 2525
 
+If you don't need to save emails on the filesystem (to improve the overall performances), you can use the `-m` (memory mode) argument:
+
+    java -jar fakeSMTP-VERSION.jar -m
+
 To see all the available options (relay domains...):
 
     java -jar fakeSMTP-VERSION.jar --help
