@@ -1,9 +1,6 @@
 package com.nilhcem.fakesmtp.core;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.List;
+import com.nilhcem.fakesmtp.model.UIModel;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -12,7 +9,10 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.nilhcem.fakesmtp.model.UIModel;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 
 /**
  * Handles command line arguments.
@@ -44,11 +44,16 @@ public enum ArgsHandler {
 	private static final String OPT_RELAYDOMAINS_DESC = "Comma separated email domain(s) for which relay is accepted. If not specified, relays to any domain. If specified, relays only emails matching these domain(s), dropping (not saving) others";
 	private static final String OPT_RELAYDOMAINS_SEPARATOR = ",";
 
+	private static final String OPT_MEMORYMODE_SHORT = "m";
+	private static final String OPT_MEMORYMODE_LONG = "memory-mode";
+	private static final String OPT_MEMORYMODE_DESC = "Disable the persistence in order to avoid the overhead that it adds";
+
 	private final Options options;
 
 	private String port;
 	private boolean backgroundStart;
 	private boolean startServerAtLaunch;
+	private boolean memoryModeEnabled;
 
 	/**
 	 * Handles command line arguments.
@@ -60,6 +65,7 @@ public enum ArgsHandler {
 		options.addOption(OPT_PORT_SHORT, OPT_PORT_LONG, true, OPT_PORT_DESC);
 		options.addOption(OPT_BACKGROUNDSTART_SHORT, OPT_BACKGROUNDSTART_LONG, false, OPT_BACKGROUNDSTART_DESC);
 		options.addOption(OPT_RELAYDOMAINS_SHORT, OPT_RELAYDOMAINS_LONG, true, OPT_RELAYDOMAINS_DESC);
+		options.addOption(OPT_MEMORYMODE_SHORT, OPT_MEMORYMODE_LONG, false, OPT_MEMORYMODE_DESC);
 	}
 
 	/**
@@ -80,6 +86,7 @@ public enum ArgsHandler {
 		port = cmd.getOptionValue(OPT_PORT_SHORT);
 		startServerAtLaunch = cmd.hasOption(OPT_AUTOSTART_SHORT);
 		backgroundStart = cmd.hasOption(OPT_BACKGROUNDSTART_SHORT);
+		memoryModeEnabled = cmd.hasOption(OPT_MEMORYMODE_SHORT);
 
 		String relaydomains = cmd.getOptionValue(OPT_RELAYDOMAINS_SHORT);
 		if (relaydomains != null) {
@@ -119,6 +126,14 @@ public enum ArgsHandler {
 	 */
 	public String getPort() {
 		return port;
+	}
+
+   /**
+    * @return whether or not the SMTP server should disable the persistence in order to avoid the overhead that it adds. 
+    * This is particularly useful when we launch performance tests that massively send emails.
+    */
+	public boolean memoryModeEnabled() {
+	   return memoryModeEnabled;
 	}
 
 	/**

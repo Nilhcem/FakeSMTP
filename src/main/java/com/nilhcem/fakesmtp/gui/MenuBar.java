@@ -1,5 +1,12 @@
 package com.nilhcem.fakesmtp.gui;
 
+import com.nilhcem.fakesmtp.core.ArgsHandler;
+import com.nilhcem.fakesmtp.core.Configuration;
+import com.nilhcem.fakesmtp.core.I18n;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,12 +22,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.nilhcem.fakesmtp.core.Configuration;
-import com.nilhcem.fakesmtp.core.I18n;
 
 /**
  * Provides the menu bar of the application.
@@ -91,13 +92,17 @@ public final class MenuBar extends Observable {
 
 		JMenuItem mailsLocation = new JMenuItem(i18n.get("menubar.messages.location"));
 		mailsLocation.setMnemonic(i18n.get("menubar.mnemo.msglocation").charAt(0));
-		mailsLocation.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setChanged();
-				notifyObservers();
-			}
-		});
+		if (ArgsHandler.INSTANCE.memoryModeEnabled()) {
+			mailsLocation.setEnabled(false);
+		} else {
+			mailsLocation.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					setChanged();
+					notifyObservers();
+				}
+			});
+		}
 
 		editMenu.add(mailsLocation);
 		return editMenu;

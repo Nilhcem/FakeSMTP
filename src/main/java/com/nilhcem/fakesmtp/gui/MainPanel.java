@@ -1,13 +1,5 @@
 package com.nilhcem.fakesmtp.gui;
 
-import java.util.Observable;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-
-import net.miginfocom.swing.MigLayout;
-
 import com.nilhcem.fakesmtp.core.ArgsHandler;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
@@ -20,6 +12,13 @@ import com.nilhcem.fakesmtp.gui.tab.LogsPane;
 import com.nilhcem.fakesmtp.gui.tab.MailsListPane;
 import com.nilhcem.fakesmtp.server.MailSaver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
+import net.miginfocom.swing.MigLayout;
+
+import java.util.Observable;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 /**
  * Provides the main panel of the application, which will contain all the components.
@@ -175,6 +174,10 @@ public final class MainPanel {
 
 		if (args.shouldStartServerAtLaunch()) {
 			startServerBtn.toggleButton();
+		}
+
+		if (args.memoryModeEnabled()) {
+			saveMsgTextField.get().setEnabled(false);
 		}
 	}
 
