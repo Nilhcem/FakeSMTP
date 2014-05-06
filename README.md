@@ -72,14 +72,14 @@ Listed below are some greats alternatives to Fake SMTP:
 
 * Nice features;
 * Open source;
-* Written for Windows in .net.
+* Windows only (written in .Net).
 
 
 **[DevNull SMTP](http://www.aboutmyip.com/AboutMyXApp/DevNullSmtp.jsp)**
 
 * Lightweight;
 * Closed source;
-* Written in Java 1.4 (cross platform).
+* Cross-Platform (written in Java 1.4).
 
 
 Building it
