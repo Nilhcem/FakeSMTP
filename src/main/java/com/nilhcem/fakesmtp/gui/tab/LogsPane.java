@@ -9,7 +9,8 @@ import com.nilhcem.fakesmtp.log.SMTPLogsObservable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Observable;

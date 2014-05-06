@@ -3,7 +3,12 @@ package com.nilhcem.fakesmtp.core;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import com.nilhcem.fakesmtp.model.UIModel;
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.GnuParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;

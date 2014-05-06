@@ -2,7 +2,11 @@ package com.nilhcem.fakesmtp.gui;
 
 import com.nilhcem.fakesmtp.core.ArgsHandler;
 import com.nilhcem.fakesmtp.core.I18n;
-import com.nilhcem.fakesmtp.gui.info.*;
+import com.nilhcem.fakesmtp.gui.info.ClearAllButton;
+import com.nilhcem.fakesmtp.gui.info.NbReceivedLabel;
+import com.nilhcem.fakesmtp.gui.info.PortTextField;
+import com.nilhcem.fakesmtp.gui.info.SaveMsgField;
+import com.nilhcem.fakesmtp.gui.info.StartServerButton;
 import com.nilhcem.fakesmtp.gui.tab.LastMailPane;
 import com.nilhcem.fakesmtp.gui.tab.LogsPane;
 import com.nilhcem.fakesmtp.gui.tab.MailsListPane;
@@ -10,7 +14,9 @@ import com.nilhcem.fakesmtp.server.MailSaver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 import net.miginfocom.swing.MigLayout;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import java.util.Observable;
 
 /**

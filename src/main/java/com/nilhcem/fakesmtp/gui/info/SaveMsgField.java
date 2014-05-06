@@ -5,8 +5,8 @@ import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.DirChooser;
 import com.nilhcem.fakesmtp.model.UIModel;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JTextField;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Observable;
