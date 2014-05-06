@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
 
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
 <rss version="0.91">
   <channel>
     <title>Fake SMTP - Checkstyle report</title>
@@ -113,7 +130,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.I18n.java">com/nilhcem/fakesmtp/core/I18n.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.server.SMTPAuthHandlerFactory.java">com/nilhcem/fakesmtp/server/SMTPAuthHandlerFactory.java</a>
                 </td>
                 <td>
                   0
@@ -127,7 +144,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.server.SMTPAuthHandlerFactory.java">com/nilhcem/fakesmtp/server/SMTPAuthHandlerFactory.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.I18n.java">com/nilhcem/fakesmtp/core/I18n.java</a>
                 </td>
                 <td>
                   0
@@ -183,7 +200,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.MenuBar.java">com/nilhcem/fakesmtp/gui/MenuBar.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.FakeSMTP.java">com/nilhcem/fakesmtp/FakeSMTP.java</a>
                 </td>
                 <td>
                   0
@@ -197,7 +214,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.FakeSMTP.java">com/nilhcem/fakesmtp/FakeSMTP.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.MenuBar.java">com/nilhcem/fakesmtp/gui/MenuBar.java</a>
                 </td>
                 <td>
                   0
@@ -239,7 +256,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.info.NbReceivedLabel.java">com/nilhcem/fakesmtp/gui/info/NbReceivedLabel.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.server.package-info.java">com/nilhcem/fakesmtp/server/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -253,7 +270,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.server.package-info.java">com/nilhcem/fakesmtp/server/package-info.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.info.NbReceivedLabel.java">com/nilhcem/fakesmtp/gui/info/NbReceivedLabel.java</a>
                 </td>
                 <td>
                   0
@@ -365,7 +382,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.package-info.java">com/nilhcem/fakesmtp/gui/package-info.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.exception.OutOfRangePortException.java">com/nilhcem/fakesmtp/core/exception/OutOfRangePortException.java</a>
                 </td>
                 <td>
                   0
@@ -379,7 +396,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.exception.OutOfRangePortException.java">com/nilhcem/fakesmtp/core/exception/OutOfRangePortException.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.package-info.java">com/nilhcem/fakesmtp/gui/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -449,6 +466,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.info.StartServerButton.java">com/nilhcem/fakesmtp/gui/info/StartServerButton.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.MainPanel.java">com/nilhcem/fakesmtp/gui/MainPanel.java</a>
                 </td>
                 <td>
@@ -464,20 +495,6 @@
                           <tr>
                 <td>
                   <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.tab.LogsPane.java">com/nilhcem/fakesmtp/gui/tab/LogsPane.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.info.StartServerButton.java">com/nilhcem/fakesmtp/gui/info/StartServerButton.java</a>
                 </td>
                 <td>
                   0
@@ -519,7 +536,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.tab.LastMailPane.java">com/nilhcem/fakesmtp/gui/tab/LastMailPane.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.server.MailSaver.java">com/nilhcem/fakesmtp/server/MailSaver.java</a>
                 </td>
                 <td>
                   0
@@ -533,7 +550,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.server.MailSaver.java">com/nilhcem/fakesmtp/server/MailSaver.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.tab.LastMailPane.java">com/nilhcem/fakesmtp/gui/tab/LastMailPane.java</a>
                 </td>
                 <td>
                   0
