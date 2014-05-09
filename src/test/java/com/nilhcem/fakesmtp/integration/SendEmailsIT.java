@@ -75,4 +75,16 @@ public final class SendEmailsIT {
 		// Send the email
 		email.send();
 	}
+
+    @Test
+    public void sendEmailWithBase64Subject() throws EmailException {
+        Email email = new SimpleEmail();
+        email.setHostName(TestConfig.HOST);
+        email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
+        email.setFrom("spammy@example.org");
+        email.addTo("foo@bar.com");
+        email.setSubject("=?UTF-8?B?4pyIIEJvc3RvbiBhaXJmYXJlIGRlYWxzIC0gd2hpbGUgdGhleSBsYXN0IQ==?=");
+        email.setMsg("Not really interesting, huh?");
+        email.send();
+    }
 }
