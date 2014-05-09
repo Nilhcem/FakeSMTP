@@ -10,6 +10,7 @@ import com.nilhcem.fakesmtp.server.MailSaver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.mail.internet.MimeUtility;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,6 +23,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Observable;
 import java.util.Observer;
@@ -189,8 +191,15 @@ public final class MailsListPane implements Observer {
 	public void update(Observable o, Object arg) {
 		if (o instanceof MailSaver) {
 			EmailModel email = (EmailModel) arg;
-			model.addRow(new Object[] {dateFormat.format(email.getReceivedDate()),
-					email.getFrom(), email.getTo(), email.getSubject()});
+			String subject;
+			try {
+				subject = MimeUtility.decodeText(email.getSubject());
+			} catch (UnsupportedEncodingException e) {
+				LOGGER.error("", e);
+				subject = email.getSubject();
+			}
+
+			model.addRow(new Object[] {dateFormat.format(email.getReceivedDate()), email.getFrom(), email.getTo(), subject});
 			UIModel.INSTANCE.getListMailsMap().put(nbElements++, email.getFilePath());
 		} else if (o instanceof ClearAllButton) {
 			// Delete information from the map

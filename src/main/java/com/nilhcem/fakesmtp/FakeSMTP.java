@@ -64,6 +64,7 @@ public final class FakeSMTP {
 				LOGGER.error("Failed to auto-start server in background", e);
 			}
 		} else {
+            System.setProperty("mail.mime.decodetext.strict", "false");
             Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler());
 
             EventQueue.invokeLater(new Runnable() {
