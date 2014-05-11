@@ -50,9 +50,14 @@ public enum ArgsHandler {
 	private static final String OPT_MEMORYMODE_LONG = "memory-mode";
 	private static final String OPT_MEMORYMODE_DESC = "Disable the persistence in order to avoid the overhead that it adds";
 
+	private static final String OPT_BINDADDRESS_SHORT = "a";
+	private static final String OPT_BINDADDRESS_LONG = "bind-address";
+	private static final String OPT_BINDADDRESS_DESC = "IP address or hostname to bind to. Binds to all local IP addresses if not specified. Only works together with the -" + OPT_BACKGROUNDSTART_SHORT + " (--" +  OPT_BACKGROUNDSTART_LONG + ") argument.";
+
 	private final Options options;
 
 	private String port;
+	private String bindAddress;
 	private boolean backgroundStart;
 	private boolean startServerAtLaunch;
 	private boolean memoryModeEnabled;
@@ -65,6 +70,7 @@ public enum ArgsHandler {
 		options.addOption(OPT_EMAILS_DIR_SHORT, OPT_EMAILS_DIR_LONG, true, OPT_EMAILS_DESC);
 		options.addOption(OPT_AUTOSTART_SHORT, OPT_AUTOSTART_LONG, false, OPT_AUTOSTART_DESC);
 		options.addOption(OPT_PORT_SHORT, OPT_PORT_LONG, true, OPT_PORT_DESC);
+		options.addOption(OPT_BINDADDRESS_SHORT, OPT_BINDADDRESS_LONG, true, OPT_BINDADDRESS_DESC);
 		options.addOption(OPT_BACKGROUNDSTART_SHORT, OPT_BACKGROUNDSTART_LONG, false, OPT_BACKGROUNDSTART_DESC);
 		options.addOption(OPT_RELAYDOMAINS_SHORT, OPT_RELAYDOMAINS_LONG, true, OPT_RELAYDOMAINS_DESC);
 		options.addOption(OPT_MEMORYMODE_SHORT, OPT_MEMORYMODE_LONG, false, OPT_MEMORYMODE_DESC);
@@ -86,6 +92,7 @@ public enum ArgsHandler {
 		}
 
 		port = cmd.getOptionValue(OPT_PORT_SHORT);
+		bindAddress = cmd.getOptionValue(OPT_BINDADDRESS_SHORT);
 		startServerAtLaunch = cmd.hasOption(OPT_AUTOSTART_SHORT);
 		backgroundStart = cmd.hasOption(OPT_BACKGROUNDSTART_SHORT);
 		memoryModeEnabled = cmd.hasOption(OPT_MEMORYMODE_SHORT);
@@ -133,6 +140,13 @@ public enum ArgsHandler {
 	 */
 	public String getPort() {
 		return port;
+	}
+
+	/**
+	 * @return the bind address, as specified by the user, or a {@code null} string if unspecified.
+	 */
+	public String getBindAddress() {
+		return bindAddress;
 	}
 
 	/**
