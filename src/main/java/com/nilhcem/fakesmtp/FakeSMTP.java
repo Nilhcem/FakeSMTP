@@ -2,7 +2,9 @@ package com.nilhcem.fakesmtp;
 
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 import javax.swing.UIManager;
 
@@ -57,9 +59,11 @@ public final class FakeSMTP {
 
 		if (ArgsHandler.INSTANCE.shouldStartInBackground()) {
 			try {
-				SMTPServerHandler.INSTANCE.startServer(getPort());
+				SMTPServerHandler.INSTANCE.startServer(getPort(), getBindAddress());
 			} catch (NumberFormatException e) {
 				LOGGER.error("Error: Invalid port number", e);
+			} catch (UnknownHostException e) {
+				LOGGER.error("Error: Invalid bind address", e);
 			} catch (Exception e) {
 				LOGGER.error("Failed to auto-start server in background", e);
 			}
@@ -106,5 +110,17 @@ public final class FakeSMTP {
 			portStr = Configuration.INSTANCE.get("smtp.default.port");
 		}
 		return Integer.parseInt(portStr);
+	}
+
+	/**
+	 * @return an InetAddress representing the specified bind address, or null, if not specified
+	 * @throws UnknownHostException if the bind address is invalid
+	 */
+	private static InetAddress getBindAddress() throws UnknownHostException {
+		String bindAddressStr = ArgsHandler.INSTANCE.getBindAddress();
+		if (bindAddressStr == null || bindAddressStr.isEmpty()) {
+			return null;
+		}
+		return InetAddress.getByName(bindAddressStr);
 	}
 }

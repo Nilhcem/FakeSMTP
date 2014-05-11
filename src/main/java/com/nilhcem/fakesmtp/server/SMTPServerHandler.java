@@ -1,5 +1,7 @@
 package com.nilhcem.fakesmtp.server;
 
+import java.net.InetAddress;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.subethamail.smtp.helper.SimpleMessageListenerAdapter;
@@ -25,16 +27,18 @@ public enum SMTPServerHandler {
 	}
 
 	/**
-	 * Starts the server on the port specified in parameters.
+	 * Starts the server on the port and address specified in parameters.
 	 *
 	 * @param port the SMTP port to be opened.
+	 * @param bindAddress the address to bind to. null means bind to all.
 	 * @throws BindPortException when the port can't be opened.
 	 * @throws OutOfRangePortException when port is out of range.
 	 * @throws IllegalArgumentException when port is out of range.
 	 */
-	public void startServer(int port) throws BindPortException, OutOfRangePortException {
+	public void startServer(int port, InetAddress bindAddress) throws BindPortException, OutOfRangePortException {
 		LOGGER.debug("Starting server on port {}", port);
 		try {
+			smtpServer.setBindAddress(bindAddress);
 			smtpServer.setPort(port);
 			smtpServer.start();
 		} catch (RuntimeException exception) {

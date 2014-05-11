@@ -55,7 +55,7 @@ public enum UIModel {
 			} catch (NumberFormatException e) {
 				throw new InvalidPortException(e);
 			}
-			SMTPServerHandler.INSTANCE.startServer(port);
+			SMTPServerHandler.INSTANCE.startServer(port, null);
 		}
 		started = !started;
 	}
