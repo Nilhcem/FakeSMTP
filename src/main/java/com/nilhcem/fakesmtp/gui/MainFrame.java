@@ -2,6 +2,7 @@ package com.nilhcem.fakesmtp.gui;
 
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
+import com.nilhcem.fakesmtp.model.UIModel;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 import org.slf4j.LoggerFactory;
 
@@ -72,6 +73,7 @@ public final class MainFrame extends WindowAdapter {
 		String emailsDir = Configuration.INSTANCE.get("emails.default.dir");
 		if (emailsDir != null && !emailsDir.isEmpty()) {
 			panel.getSaveMsgTextField().get().setText(emailsDir);
+            UIModel.INSTANCE.setSavePath(emailsDir);
 		}
 
 		mainFrame.setVisible(true);
