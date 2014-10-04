@@ -69,10 +69,6 @@ public enum UIModel {
 		return started;
 	}
 
-	public String getPort() {
-		return portStr;
-	}
-
 	public void setPort(String port) {
 		this.portStr = port;
 	}

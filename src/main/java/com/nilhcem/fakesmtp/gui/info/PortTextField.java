@@ -77,7 +77,7 @@ public final class PortTextField extends Observable implements Observer {
 	 * @param portStr the port to set.
 	 */
 	public void setText(String portStr) {
-		if (portStr != null) {
+		if (portStr != null && !portStr.isEmpty()) {
 			portTextField.setText(portStr);
 		}
 	}

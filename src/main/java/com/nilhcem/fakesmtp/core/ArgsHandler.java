@@ -58,6 +58,7 @@ public enum ArgsHandler {
 
 	private String port;
 	private String bindAddress;
+	private String outputDirectory;
 	private boolean backgroundStart;
 	private boolean startServerAtLaunch;
 	private boolean memoryModeEnabled;
@@ -86,9 +87,9 @@ public enum ArgsHandler {
 		CommandLineParser parser = new GnuParser();
 		CommandLine cmd = parser.parse(options, args);
 
-		String outputDir = cmd.getOptionValue(OPT_EMAILS_DIR_SHORT);
-		if (outputDir != null) {
-			UIModel.INSTANCE.setSavePath(outputDir);
+		outputDirectory = cmd.getOptionValue(OPT_EMAILS_DIR_SHORT);
+		if (outputDirectory != null) {
+			UIModel.INSTANCE.setSavePath(outputDirectory);
 		}
 
 		port = cmd.getOptionValue(OPT_PORT_SHORT);
@@ -147,6 +148,13 @@ public enum ArgsHandler {
 	 */
 	public String getBindAddress() {
 		return bindAddress;
+	}
+
+	/**
+	 * @return the output directory, as specified by the user, or a {@code null} string if unspecified.
+	 */
+	public String getOutputDirectory() {
+		return outputDirectory;
 	}
 
 	/**

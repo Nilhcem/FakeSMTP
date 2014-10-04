@@ -1,5 +1,6 @@
 package com.nilhcem.fakesmtp.gui;
 
+import com.nilhcem.fakesmtp.core.ArgsHandler;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
 import com.nilhcem.fakesmtp.model.UIModel;
@@ -65,15 +66,21 @@ public final class MainFrame extends WindowAdapter {
 			};
 		});
 
-		// Restore last saved smtp port and emails directory
-		String smtpPort = Configuration.INSTANCE.get("smtp.default.port");
-		if (smtpPort != null && !smtpPort.isEmpty()) {
-			panel.getPortText().get().setText(smtpPort);
+		// Restore last saved smtp port (if not overridden by the user)
+		String smtpPort = ArgsHandler.INSTANCE.getPort();
+		if (smtpPort == null) {
+			smtpPort = Configuration.INSTANCE.get("smtp.default.port");
 		}
-		String emailsDir = Configuration.INSTANCE.get("emails.default.dir");
+		panel.getPortText().setText(smtpPort);
+
+		// Restore last emails directory (if not overridden by the user)
+		String emailsDir = ArgsHandler.INSTANCE.getOutputDirectory();
+		if (emailsDir == null) {
+			emailsDir = Configuration.INSTANCE.get("emails.default.dir");
+		}
 		if (emailsDir != null && !emailsDir.isEmpty()) {
 			panel.getSaveMsgTextField().get().setText(emailsDir);
-            UIModel.INSTANCE.setSavePath(emailsDir);
+			UIModel.INSTANCE.setSavePath(emailsDir);
 		}
 
 		mainFrame.setVisible(true);
