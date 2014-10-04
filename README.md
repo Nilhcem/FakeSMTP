@@ -49,7 +49,7 @@ If you want to autostart the SMTP server at launch, you can use the `-s` argumen
 If you want to autostart the SMTP server without a GUI (background) on a different port and bound to the loopback address:
 
     java -jar fakeSMTP-VERSION.jar -s -b -p 2525 -a 127.0.0.1
-    java -jar fakeSMTP-VERSIon.jar --start-server --background --port 2525 --bind-address 127.0.0.1
+    java -jar fakeSMTP-VERSION.jar --start-server --background --port 2525 --bind-address 127.0.0.1
 
 If you don't need to save emails on the filesystem (to improve the overall performances), you can use the `-m` (memory mode) argument:
 
