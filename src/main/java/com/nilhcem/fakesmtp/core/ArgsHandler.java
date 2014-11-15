@@ -54,11 +54,16 @@ public enum ArgsHandler {
 	private static final String OPT_BINDADDRESS_LONG = "bind-address";
 	private static final String OPT_BINDADDRESS_DESC = "IP address or hostname to bind to. Binds to all local IP addresses if not specified. Only works together with the -" + OPT_BACKGROUNDSTART_SHORT + " (--" +  OPT_BACKGROUNDSTART_LONG + ") argument.";
 
+    private static final String OPT_EMLVIEWER_SHORT = "e";
+    private static final String OPT_EMLVIEWER_LONG = "eml-viewer";
+    private static final String OPT_EMLVIEWER_DESC = "Executable of program used for viewing emails.";
+
 	private final Options options;
 
 	private String port;
 	private String bindAddress;
 	private String outputDirectory;
+    private String emlViewer;
 	private boolean backgroundStart;
 	private boolean startServerAtLaunch;
 	private boolean memoryModeEnabled;
@@ -75,6 +80,7 @@ public enum ArgsHandler {
 		options.addOption(OPT_BACKGROUNDSTART_SHORT, OPT_BACKGROUNDSTART_LONG, false, OPT_BACKGROUNDSTART_DESC);
 		options.addOption(OPT_RELAYDOMAINS_SHORT, OPT_RELAYDOMAINS_LONG, true, OPT_RELAYDOMAINS_DESC);
 		options.addOption(OPT_MEMORYMODE_SHORT, OPT_MEMORYMODE_LONG, false, OPT_MEMORYMODE_DESC);
+        options.addOption(OPT_EMLVIEWER_SHORT, OPT_EMLVIEWER_LONG, true, OPT_EMLVIEWER_DESC);
 	}
 
 	/**
@@ -97,6 +103,7 @@ public enum ArgsHandler {
 		startServerAtLaunch = cmd.hasOption(OPT_AUTOSTART_SHORT);
 		backgroundStart = cmd.hasOption(OPT_BACKGROUNDSTART_SHORT);
 		memoryModeEnabled = cmd.hasOption(OPT_MEMORYMODE_SHORT);
+        emlViewer = cmd.getOptionValue(OPT_EMLVIEWER_SHORT);
 
 		// Change SMTP server log level to info if memory mode was enabled to improve performance
 		if (memoryModeEnabled) {
@@ -164,6 +171,13 @@ public enum ArgsHandler {
 	public boolean memoryModeEnabled() {
 	   return memoryModeEnabled;
 	}
+
+    /**
+     * @return the name of executable used for viewing eml files, as specified by the user, or a {@code null} string if unspecified.
+     */
+    public String getEmlViewer() {
+        return emlViewer;
+    }
 
 	/**
 	 * @return the file name of the program.
