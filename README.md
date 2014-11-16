@@ -55,7 +55,7 @@ If you don't need to save emails on the filesystem (to improve the overall perfo
 
     java -jar fakeSMTP-VERSION.jar -m
 
-To see all the available options (relay domains...):
+To see all the available options (relay domains, custom eml-viewer...):
 
     java -jar fakeSMTP-VERSION.jar --help
 

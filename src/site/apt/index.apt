@@ -53,7 +53,7 @@ the following example will autostart the SMTP server on the port 2525 and bound 
  java -jar fakeSMTP-VERSION.jar -m
 +--
 
- To see the available options (relay domains...), run:
+ To see the available options (relay domains, custom eml-viewer...), run:
 
 +--
  java -jar fakeSMTP.jar --help
