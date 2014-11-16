@@ -106,7 +106,8 @@ public final class MailsListPane implements Observer {
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
-                    String emlViewer = ArgsHandler.INSTANCE.getEmlViewer();
+
+					String emlViewer = ArgsHandler.INSTANCE.getEmlViewer();
 
 					if (e.getClickCount() == 2 && (emlViewer != null || desktop != null)) {
 						File file = null;
@@ -120,11 +121,11 @@ public final class MailsListPane implements Observer {
 
 						if (file != null && file.exists()) {
 							try {
-                                if (emlViewer != null) {
-                                    Runtime.getRuntime().exec(emlViewer + " " + file.getAbsolutePath());
-                                } else {
-                                    desktop.open(file);
-                                }
+								if (emlViewer != null) {
+									Runtime.getRuntime().exec(emlViewer + " " + file.getAbsolutePath());
+								} else {
+									desktop.open(file);
+								}
 							} catch (IOException ioe) {
 								LOGGER.error("", ioe);
 								displayError(String.format(i18n.get("mailslist.err.open"), file.getAbsolutePath()));
