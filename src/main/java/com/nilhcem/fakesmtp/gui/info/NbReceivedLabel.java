@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import com.nilhcem.fakesmtp.model.UIModel;
 import com.nilhcem.fakesmtp.server.MailSaver;
 
+import com.apple.eawt.Application;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Label class to display the number of received emails.
  *
@@ -16,6 +20,8 @@ import com.nilhcem.fakesmtp.server.MailSaver;
  * @since 1.0
  */
 public final class NbReceivedLabel implements Observer {
+    private static final Logger LOGGER = LoggerFactory.getLogger(NbReceivedLabel.class);
+
 	private final JLabel nbReceived = new JLabel("0");
 
 	/**
@@ -42,6 +48,8 @@ public final class NbReceivedLabel implements Observer {
 	 *   the number of received messages and update the {@link UIModel};</li>
 	 *   <li>If the observable element is a {@link ClearAllButton}, the method will reinitialize
 	 *   the number of received messages and update the {@link UIModel}.</li>
+     *   <li>When running on OS X the method will also update the Dock Icon with the number of
+     *   received messages.</li>
 	 * </ul>
 	 *
 	 * @param o the observable element which will notify this class.
@@ -53,10 +61,22 @@ public final class NbReceivedLabel implements Observer {
 			UIModel model = UIModel.INSTANCE;
 			int countMsg = model.getNbMessageReceived() + 1;
 			model.setNbMessageReceived(countMsg);
+            updateDockIconBadge(Integer.toString(countMsg));
 			nbReceived.setText(Integer.toString(countMsg));
 		} else if (o instanceof ClearAllButton) {
 			UIModel.INSTANCE.setNbMessageReceived(0);
+            updateDockIconBadge("");
 			nbReceived.setText("0");
 		}
 	}
+
+    private void updateDockIconBadge(String badgeValue) {
+        try {
+            Application.getApplication().setDockIconBadge(badgeValue);
+        } catch (RuntimeException e) {
+            LOGGER.debug("Error: {} - This is probably because we run on a non-Mac platform and these components are not implemented", e.getMessage());
+        } catch (Exception e) {
+            LOGGER.error("", e);
+        }
+    }
 }
