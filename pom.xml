@@ -25,12 +25,13 @@
 		</dependency>
 
 		<!-- SubEtha SMTP: easy-to-use server-side SMTP library for Java -->
-		<!-- Do not upgrade, as version 3.1.7 prevents us from restarting the SMTP server -->
-		<!-- See http://code.google.com/p/subethasmtp/issues/detail?id=48 -->
+		<!-- Warning: version 3.1.7 prevents us from restarting the SMTP server -->
+		<!-- If you need to be able to restart the server, use version 3.1.6 -->
+		<!-- See https://github.com/voodoodyne/subethasmtp/issues/75 -->
 		<dependency>
 		    <groupId>org.subethamail</groupId>
 		    <artifactId>subethasmtp</artifactId>
-		    <version>3.1.6</version>
+		    <version>3.1.7</version>
 		</dependency>
 
 		<!-- Logging: slf4j + logback -->
