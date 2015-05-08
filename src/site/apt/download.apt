@@ -3,11 +3,15 @@
  -----
  Nilhcem
  -----
- January 2015
+ May 2015
 
 Download
 
- Click {{{http://nilhcem.github.com/FakeSMTP/downloads/fakeSMTP-latest.zip}here}} to download the latest version (1.14).
+ Click {{{http://nilhcem.github.com/FakeSMTP/downloads/fakeSMTP-latest.zip}here}} to download the latest version (2.0).
+
+ Since version 2.0 you cannot restart the SMTP server within the app (closing the app will stop the server).\
+ It is recommended to use the latest version, as it fixes various issues.\
+ Version 1.13 is still available {{{http://nilhcem.github.com/FakeSMTP/downloads/fakeSMTP-1.13.zip}here}} for legacy purposes.
 
 
 * Get the sources
