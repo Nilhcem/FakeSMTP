@@ -30,13 +30,13 @@ public enum UIModel {
 	private final Map<Integer, String> listMailsMap = new HashMap<Integer, String>();
 	private List<String> relayDomains;
 
-	private UIModel() {
+	UIModel() {
 	}
 
 	/**
-	 * Happens when a user click on the start / stop button.
+	 * Happens when a user clicks on the start button.
 	 * <p>
-	 * This method will notify the {@code SMTPServerHandler} to start and stop the server.
+	 * This method will notify the {@code SMTPServerHandler} to start the server.
 	 * </p>
 	 *
 	 * @throws InvalidPortException when the port is invalid.
@@ -46,7 +46,7 @@ public enum UIModel {
 	 */
 	public void toggleButton() throws BindPortException, OutOfRangePortException, InvalidPortException {
 		if (started) {
-			SMTPServerHandler.INSTANCE.stopServer();
+			// Do nothing. We can't stop the server. User has to quit the app (issue with SubethaSMTP)
 		} else {
 			int port;
 

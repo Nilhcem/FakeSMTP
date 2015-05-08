@@ -16,7 +16,7 @@ import com.nilhcem.fakesmtp.core.exception.OutOfRangePortException;
 import com.nilhcem.fakesmtp.model.UIModel;
 
 /**
- * Button to start / stop the SMTP server.
+ * Button to start the SMTP server.
  *
  * @author Nilhcem
  * @since 1.0
@@ -27,7 +27,7 @@ public final class StartServerButton extends Observable implements Observer {
 	private final JButton button = new JButton(i18n.get("startsrv.start"));
 
 	/**
-	 * Creates a start / stop button to start and stop the SMTP server.
+	 * Creates a start button to start the SMTP server.
 	 * <p>
 	 * If the user selects a wrong port before starting the server, the method will display an error message.
 	 * </p>
@@ -59,13 +59,10 @@ public final class StartServerButton extends Observable implements Observer {
 			displayError(String.format(i18n.get("startsrv.err.default"), re.getMessage()));
 		}
 
-		String btnText;
 		if (UIModel.INSTANCE.isStarted()) {
-			btnText = i18n.get("startsrv.stop");
-		} else {
-			btnText = i18n.get("startsrv.start");
+			button.setText(i18n.get("startsrv.started"));
+			button.setEnabled(false);
 		}
-		button.setText(btnText);
 		setChanged();
 		notifyObservers();
 	}

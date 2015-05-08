@@ -93,7 +93,7 @@ public final class MainPanel {
 	 * The interactions are the following:
 	 * <ul>
 	 *   <li>Open the directory chooser when clicking on the menu/the save message field;</li>
-	 *   <li>Enable/Disable the port field when the server starts/stops;</li>
+	 *   <li>Enable/Disable the port field when the server starts;</li>
 	 *   <li>Set the new directory, once a folder is selected;<li>
 	 *   <li>Notify components when a message is received;</li>
 	 *   <li>Notify components when the user wants to clear them all.</li>
@@ -107,7 +107,7 @@ public final class MainPanel {
 		menu.addObserver(dirChooser);
 		saveMsgTextField.addObserver(dirChooser);
 
-		// When we click on "start/stop server" button
+		// When we click on "start server" button
 		startServerBtn.addObserver(portText);
 
 		// When we press "Enter" on the PortTextField
@@ -191,6 +191,7 @@ public final class MainPanel {
 
 	/**
 	 * Returns reference to portText field. Used for saving last values to file
+	 *
 	 * @return reference to portText field. Used for saving last values to file
 	 */
 	public PortTextField getPortText() {

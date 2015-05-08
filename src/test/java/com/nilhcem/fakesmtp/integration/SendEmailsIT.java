@@ -87,4 +87,19 @@ public final class SendEmailsIT {
         email.setMsg("Not really interesting, huh?");
         email.send();
     }
+
+	@Test
+	public void sendEmailToManyRecipientsWithTwoHeaders() throws EmailException {
+		Email email = new SimpleEmail();
+		email.setHostName(TestConfig.HOST);
+		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
+		email.setFrom("info@example.com");
+		email.addTo("test1@example.com");
+		email.addTo("test2@example.com");
+		email.addHeader("Foo", "Bar");
+		email.addHeader("Foo2", "Bar2");
+		email.setSubject("Hi");
+		email.setMsg("Just to check if everything is OK");
+		email.send();
+	}
 }

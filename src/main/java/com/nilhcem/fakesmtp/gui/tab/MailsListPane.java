@@ -73,11 +73,11 @@ public final class MailsListPane implements Observer {
 	/**
 	 * Creates the table and sets its cells as non editable.
 	 * <p>
-	 * Adds some mouse events on the table, to display emails, when a user click on
+	 * Adds some mouse events on the table, to display emails, when a user clicks on
 	 * a specific row.<br>
 	 * If the email can't be found, an error message will be displayed.<br>
 	 * The table will reset the size of its column every time the size of the table changed
-	 * (for example when the user maximize the window).
+	 * (for example when the user maximizes the window).
 	 * </p>
 	 */
 	public MailsListPane() {
