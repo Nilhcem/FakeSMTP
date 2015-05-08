@@ -38,13 +38,13 @@
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Map&lt;Integer, String&gt; listMailsMap = <strong class="jxr_keyword">new</strong> HashMap&lt;Integer, String&gt;();
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  	<strong class="jxr_keyword">private</strong> List&lt;String&gt; relayDomains;
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../com/nilhcem/fakesmtp/model/UIModel.html">UIModel</a>() {
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	UIModel() {
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  	}
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">	 * Happens when a user click on the start / stop button.</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">	 * Happens when a user clicks on the start button.</em>
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">	 * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">	 * This method will notify the {@code SMTPServerHandler} to start and stop the server.</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">	 * This method will notify the {@code SMTPServerHandler} to start the server.</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">	 * &lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">	 *</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">	 * @throws InvalidPortException when the port is invalid.</em>
@@ -54,7 +54,7 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> toggleButton() <strong class="jxr_keyword">throws</strong> BindPortException, OutOfRangePortException, InvalidPortException {
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  		<strong class="jxr_keyword">if</strong> (started) {
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  			SMTPServerHandler.INSTANCE.stopServer();
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  			<em class="jxr_comment">// Do nothing. We can't stop the server. User has to quit the app (issue with SubethaSMTP)</em>
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  		} <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  			<strong class="jxr_keyword">int</strong> port;
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  

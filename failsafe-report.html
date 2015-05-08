@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>FakeSMTP &#x2013; FindBugs Bug Detector Report</title>
+    <title>FakeSMTP &#x2013; Surefire Report</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -75,8 +75,8 @@
                           <a href="project-reports.html" title="Project Reports">Project Reports</a>
                     <ul>
                       <li class="none">
-                          <a href="failsafe-report.html" title="Failsafe Report">Failsafe Report</a>
-            </li>
+            <strong>Failsafe Report</strong>
+          </li>
                       <li class="none">
                           <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
             </li>
@@ -84,8 +84,8 @@
                           <a href="apidocs/index.html" title="JavaDocs">JavaDocs</a>
             </li>
                       <li class="none">
-            <strong>FindBugs</strong>
-          </li>
+                          <a href="findbugs.html" title="FindBugs">FindBugs</a>
+            </li>
                       <li class="none">
                           <a href="pmd.html" title="PMD">PMD</a>
             </li>
@@ -119,31 +119,112 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section">
-<h2><a name="FindBugs_Bug_Detector_Report"></a>FindBugs Bug Detector Report</h2>
-<p>The following document contains the results of <a class="externalLink" href="http://findbugs.sourceforge.net">FindBugs</a></p>
-<p>FindBugs Version is <i>3.0.1</i></p>
-<p>Threshold is <i>high</i></p>
-<p>Effort is <i>min</i></p></div>
+        <script type="text/javascript">
+//<![CDATA[
+function toggleDisplay(elementId) {
+ var elm = document.getElementById(elementId + 'error');
+ if (elm && typeof elm.style != "undefined") {
+ if (elm.style.display == "none") {
+ elm.style.display = "";
+ document.getElementById(elementId + 'off').style.display = "none";
+ document.getElementById(elementId + 'on').style.display = "inline";
+ } else if (elm.style.display == "") { elm.style.display = "none";
+ document.getElementById(elementId + 'off').style.display = "inline";
+ document.getElementById(elementId + 'on').style.display = "none";
+ } 
+ } 
+ }
+//]]>
+</script>
 <div class="section">
-<h2><a name="Summary"></a>Summary</h2>
-<table border="0" class="bodyTable">
+<h2><a name="Surefire_Report"></a>Surefire Report</h2></div>
+<div class="section">
+<h2><a name="Summary"></a>Summary</h2><a name="Summary"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
+<table border="1" class="bodyTable">
 <tr class="a">
-<th>Classes</th>
-<th>Bugs</th>
-<th>Errors</th>
-<th>Missing Classes</th></tr>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
 <tr class="b">
-<td>47</td>
+<td>5</td>
 <td>0</td>
 <td>0</td>
-<td>0</td></tr></table></div>
+<td>0</td>
+<td>100%</td>
+<td>0.135</td></tr></table><br />
+<p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
-<h2><a name="Files"></a>Files</h2>
-<table border="0" class="bodyTable">
+<h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
+<table border="1" class="bodyTable">
 <tr class="a">
+<th>Package</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#com.nilhcem.fakesmtp.integration">com.nilhcem.fakesmtp.integration</a></td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.135</td></tr></table><br />
+<p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
+<div class="section">
+<h3><a name="com.nilhcem.fakesmtp.integration"></a>com.nilhcem.fakesmtp.integration</h3><a name="com.nilhcem.fakesmtp.integration"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<th></th>
 <th>Class</th>
-<th>Bugs</th></tr></table></div>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#com.nilhcem.fakesmtp.integrationSendEmailsIT"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.nilhcem.fakesmtp.integrationSendEmailsIT">SendEmailsIT</a></td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.135</td></tr></table></div><br /></div>
+<div class="section">
+<h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
+<div class="section">
+<h3><a name="SendEmailsIT"></a>SendEmailsIT</h3><a name="com.nilhcem.fakesmtp.integrationSendEmailsIT"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>sendSimpleTestEmail</td>
+<td>0.085</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>sendHTMLFormattedEmail</td>
+<td>0.012</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>sendEmailWithAttachment</td>
+<td>0.02</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>sendEmailToManyRecipientsWithTwoHeaders</td>
+<td>0.009</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>sendEmailWithBase64Subject</td>
+<td>0.009</td></tr></table></div><br /></div>
       </div>
     </div>
     <div class="clear">

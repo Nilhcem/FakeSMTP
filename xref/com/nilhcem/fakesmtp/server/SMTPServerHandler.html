@@ -31,7 +31,7 @@
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../com/nilhcem/fakesmtp/server/MailListener.html">MailListener</a> myListener = <strong class="jxr_keyword">new</strong> <a href="../../../../com/nilhcem/fakesmtp/server/MailListener.html">MailListener</a>(mailSaver);
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> SMTPServer smtpServer = <strong class="jxr_keyword">new</strong> SMTPServer(<strong class="jxr_keyword">new</strong> SimpleMessageListenerAdapter(myListener), <strong class="jxr_keyword">new</strong> <a href="../../../../com/nilhcem/fakesmtp/server/SMTPAuthHandlerFactory.html">SMTPAuthHandlerFactory</a>());
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../com/nilhcem/fakesmtp/server/SMTPServerHandler.html">SMTPServerHandler</a>() {
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  	SMTPServerHandler() {
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  	}
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  	<em class="jxr_javadoccomment">/**</em>

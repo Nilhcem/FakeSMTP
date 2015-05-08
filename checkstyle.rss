@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2015</copyright>
     <item>
       <title>File: 48,
-             Errors: 0,
+             Errors: 1,
              Warnings: 0,
              Infos: 0
       </title>
@@ -83,7 +83,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
               </tr>
                           <tr>
@@ -298,7 +298,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.MainPanel.java">com/nilhcem/fakesmtp/gui/MainPanel.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.exception.OutOfRangePortException.java">com/nilhcem/fakesmtp/core/exception/OutOfRangePortException.java</a>
                 </td>
                 <td>
                   0
@@ -312,7 +312,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.exception.OutOfRangePortException.java">com/nilhcem/fakesmtp/core/exception/OutOfRangePortException.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.MainPanel.java">com/nilhcem/fakesmtp/gui/MainPanel.java</a>
                 </td>
                 <td>
                   0
@@ -368,7 +368,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.info.PortTextField.java">com/nilhcem/fakesmtp/gui/info/PortTextField.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.exception.package-info.java">com/nilhcem/fakesmtp/core/exception/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -382,7 +382,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.core.exception.package-info.java">com/nilhcem/fakesmtp/core/exception/package-info.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.info.PortTextField.java">com/nilhcem/fakesmtp/gui/info/PortTextField.java</a>
                 </td>
                 <td>
                   0
@@ -634,7 +634,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.DirChooser.java">com/nilhcem/fakesmtp/gui/DirChooser.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.log.SMTPLogsAppender.java">com/nilhcem/fakesmtp/log/SMTPLogsAppender.java</a>
                 </td>
                 <td>
                   0
@@ -648,7 +648,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.log.SMTPLogsAppender.java">com/nilhcem/fakesmtp/log/SMTPLogsAppender.java</a>
+                  <a href="https://github.com/Nilhcem/FakeSMTP/checkstyle.html#com.nilhcem.fakesmtp.gui.DirChooser.java">com/nilhcem/fakesmtp/gui/DirChooser.java</a>
                 </td>
                 <td>
                   0
