@@ -72,7 +72,7 @@ public enum ArgsHandler {
 	/**
 	 * Handles command line arguments.
 	 */
-	private ArgsHandler() {
+	ArgsHandler() {
 		options = new Options();
 		options.addOption(OPT_EMAILS_DIR_SHORT, OPT_EMAILS_DIR_LONG, true, OPT_EMAILS_DESC);
 		options.addOption(OPT_AUTOSTART_SHORT, OPT_AUTOSTART_LONG, false, OPT_AUTOSTART_DESC);

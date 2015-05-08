@@ -63,7 +63,7 @@ public final class MainFrame extends WindowAdapter {
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			public void run() {
 				SMTPServerHandler.INSTANCE.stopServer();
-			};
+			}
 		});
 
 		// Restore last saved smtp port (if not overridden by the user)

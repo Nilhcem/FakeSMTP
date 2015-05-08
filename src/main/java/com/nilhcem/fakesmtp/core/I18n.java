@@ -29,7 +29,7 @@ public enum I18n {
 	 * If the JVM's default locale doesn't have any resource file, will take the en_US resources instead.
 	 * </p>
 	 */
-	private I18n() {
+	I18n() {
 		ResourceBundle bundle;
 
 		try {

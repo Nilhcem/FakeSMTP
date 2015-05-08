@@ -25,7 +25,7 @@ public enum Configuration {
 	/**
 	 * Opens the "{@code configuration.properties}" file and maps data.
 	 */
-	private Configuration() {
+	Configuration() {
 		InputStream in = getClass().getResourceAsStream(CONFIG_FILE);
 		try {
 			// Load defaults settings

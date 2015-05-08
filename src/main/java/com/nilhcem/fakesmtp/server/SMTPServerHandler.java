@@ -23,7 +23,7 @@ public enum SMTPServerHandler {
 	private final MailListener myListener = new MailListener(mailSaver);
 	private final SMTPServer smtpServer = new SMTPServer(new SimpleMessageListenerAdapter(myListener), new SMTPAuthHandlerFactory());
 
-	private SMTPServerHandler() {
+	SMTPServerHandler() {
 	}
 
 	/**
