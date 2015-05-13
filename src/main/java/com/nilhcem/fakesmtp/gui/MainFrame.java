@@ -3,15 +3,15 @@ package com.nilhcem.fakesmtp.gui;
 import com.nilhcem.fakesmtp.core.ArgsHandler;
 import com.nilhcem.fakesmtp.core.Configuration;
 import com.nilhcem.fakesmtp.core.exception.UncaughtExceptionHandler;
+import com.nilhcem.fakesmtp.gui.listeners.MainWindowListener;
 import com.nilhcem.fakesmtp.model.UIModel;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 import org.slf4j.LoggerFactory;
 
 import javax.swing.JFrame;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 /**
@@ -20,10 +20,10 @@ import java.io.IOException;
  * @author Nilhcem
  * @since 1.0
  */
-public final class MainFrame extends WindowAdapter {
+public final class MainFrame {
 
 	private final JFrame mainFrame = new JFrame(Configuration.INSTANCE.get("application.title"));
-	private final MenuBar menu = new MenuBar();
+	private final MenuBar menu = new MenuBar(this);
 	private final MainPanel panel = new MainPanel(menu);
 
 	/**
@@ -31,36 +31,41 @@ public final class MainFrame extends WindowAdapter {
 	 * <p>
 	 * First, assigns the main panel to the default uncaught exception handler to display exceptions in this panel.<br><br>
 	 * Before creating the main window, the application will have to set some elements, such as:
-     * </p>
+	 * </p>
 	 * <ul>
 	 *   <li>The minimum and default size;</li>
 	 *   <li>The menu bar and the main panel;</li>
 	 *   <li>An icon image;</li>
 	 *   <li>A shutdown hook to stop the server, once the main window is closed.</li>
 	 * </ul><br>
-     * <p>
+	 * <p>
 	 * The icon of the application is a modified version from the one provided in "{@code WebAppers.com}"
 	 * <i>(Creative Commons Attribution 3.0 License)</i>.
-     * </p>
+	 * </p>
 	 */
 	public MainFrame() {
 		((UncaughtExceptionHandler) Thread.getDefaultUncaughtExceptionHandler()).setParentComponent(panel.get());
 		Dimension frameSize = new Dimension(Integer.parseInt(Configuration.INSTANCE.get("application.min.width")),
 			Integer.parseInt(Configuration.INSTANCE.get("application.min.height")));
 
+                Image iconImage = Toolkit.getDefaultToolkit().getImage(getClass().
+                        getResource(Configuration.INSTANCE.get("application.icon.path")));
+
+                MainWindowListener windowListener = new MainWindowListener(this);
+                
 		mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		mainFrame.addWindowListener(this); // for catching windowClosing event
+		mainFrame.addWindowListener(windowListener); // for catching windowClosing event
 		mainFrame.setSize(frameSize);
 		mainFrame.setMinimumSize(frameSize);
 
 		mainFrame.setJMenuBar(menu.get());
 		mainFrame.getContentPane().add(panel.get());
 		mainFrame.setLocationRelativeTo(null); // Center main frame
-		mainFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().
-			getResource(Configuration.INSTANCE.get("application.icon.path"))));
+		mainFrame.setIconImage(iconImage);
 
 		// Add shutdown hook to stop server if enabled
 		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
 			public void run() {
 				SMTPServerHandler.INSTANCE.stopServer();
 			}
@@ -86,11 +91,11 @@ public final class MainFrame extends WindowAdapter {
 		mainFrame.setVisible(true);
 	}
 
-	@Override
-	public void windowClosing(WindowEvent e) {
+	public void close() {
 		// Save configuration
 		Configuration.INSTANCE.set("smtp.default.port", panel.getPortText().get().getText());
 		Configuration.INSTANCE.set("emails.default.dir", panel.getSaveMsgTextField().get().getText());
+
 		try {
 			Configuration.INSTANCE.saveToUserProfile();
 		} catch (IOException ex) {
@@ -100,6 +105,9 @@ public final class MainFrame extends WindowAdapter {
 		if (SMTPServerHandler.INSTANCE.getSmtpServer().isRunning()) {
 			SMTPServerHandler.INSTANCE.getSmtpServer().stop();
 		}
+                
 		mainFrame.dispose();
+
+		System.exit(0);
 	}
 }
