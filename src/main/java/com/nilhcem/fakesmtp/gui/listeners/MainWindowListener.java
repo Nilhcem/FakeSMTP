@@ -28,6 +28,7 @@ public class MainWindowListener extends WindowAdapter {
 
 	private final MainFrame mainFrame;
 	private TrayIcon trayIcon = null;
+	private final boolean useTray;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MainWindowListener.class);
 
@@ -36,8 +37,9 @@ public class MainWindowListener extends WindowAdapter {
 	 */
 	public MainWindowListener(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
+		useTray = (SystemTray.isSupported() && Boolean.parseBoolean(Configuration.INSTANCE.get("application.tray.use")));
 
-		if (SystemTray.isSupported()) {
+		if (useTray) {
 			final TrayPopup trayPopup = new TrayPopup(mainFrame);
 
 			final Image iconImage = Toolkit.getDefaultToolkit().getImage(getClass().
@@ -54,14 +56,14 @@ public class MainWindowListener extends WindowAdapter {
 	public void windowIconified(final WindowEvent e) {
 		super.windowIconified(e);
 
-		if (SystemTray.isSupported()) {
+		if (useTray) {
 			minimizeFrameIntoTray((JFrame) e.getSource());
 		}
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
-		if (SystemTray.isSupported() && minimizeFrameIntoTray((JFrame) e.getSource())) {
+		if (useTray && minimizeFrameIntoTray((JFrame) e.getSource())) {
 			return;
 		}
 
@@ -75,8 +77,8 @@ public class MainWindowListener extends WindowAdapter {
 	 * @return a boolean value whether the window has been minimized or not.
 	 */
 	private boolean minimizeFrameIntoTray(final JFrame frame) {
-		if (frame == null || trayIcon == null) {
-			LOGGER.warn("It is not possible to minimize the frame in the current system");
+		if (!useTray) {
+			LOGGER.warn("It is not allowed to use the system tray");
 
 			return false;
 		}

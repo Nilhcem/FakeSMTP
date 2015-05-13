@@ -48,7 +48,7 @@ public final class MainFrame {
 		Dimension frameSize = new Dimension(Integer.parseInt(Configuration.INSTANCE.get("application.min.width")),
 			Integer.parseInt(Configuration.INSTANCE.get("application.min.height")));
 
-                Image iconImage = Toolkit.getDefaultToolkit().getImage(getClass().
+                final Image iconImage = Toolkit.getDefaultToolkit().getImage(getClass().
                         getResource(Configuration.INSTANCE.get("application.icon.path")));
 
                 MainWindowListener windowListener = new MainWindowListener(this);
