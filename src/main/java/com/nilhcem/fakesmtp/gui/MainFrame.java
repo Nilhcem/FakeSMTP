@@ -48,10 +48,10 @@ public final class MainFrame {
 		Dimension frameSize = new Dimension(Integer.parseInt(Configuration.INSTANCE.get("application.min.width")),
 			Integer.parseInt(Configuration.INSTANCE.get("application.min.height")));
 
-                final Image iconImage = Toolkit.getDefaultToolkit().getImage(getClass().
-                        getResource(Configuration.INSTANCE.get("application.icon.path")));
+		Image iconImage = Toolkit.getDefaultToolkit().getImage(
+			getClass().getResource(Configuration.INSTANCE.get("application.icon.path")));
 
-                MainWindowListener windowListener = new MainWindowListener(this);
+		MainWindowListener windowListener = new MainWindowListener(this);
                 
 		mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		mainFrame.addWindowListener(windowListener); // for catching windowClosing event
@@ -107,7 +107,6 @@ public final class MainFrame {
 		}
                 
 		mainFrame.dispose();
-
 		System.exit(0);
 	}
 }

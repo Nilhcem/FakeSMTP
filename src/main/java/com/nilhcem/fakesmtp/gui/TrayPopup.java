@@ -5,8 +5,6 @@ import com.nilhcem.fakesmtp.gui.listeners.AboutActionListener;
 import com.nilhcem.fakesmtp.gui.listeners.ExitActionListener;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Provides the popup menu for the SystemTray icon.
@@ -17,8 +15,6 @@ import org.slf4j.LoggerFactory;
 public class TrayPopup {
 
 	private final I18n i18n = I18n.INSTANCE;
-	private static final Logger LOGGER = LoggerFactory.getLogger(TrayPopup.class);
-
 	private final PopupMenu popup = new PopupMenu();
 
 	/**
@@ -28,10 +24,10 @@ public class TrayPopup {
 	 */
 	public TrayPopup(final MainFrame mainFrame) {
 		// Create a popup menu components
-		final MenuItem aboutItem = new MenuItem(i18n.get("menubar.about"));
+		MenuItem aboutItem = new MenuItem(i18n.get("menubar.about"));
 		aboutItem.addActionListener(new AboutActionListener(null));
 
-		final MenuItem exitItem = new MenuItem(i18n.get("menubar.exit"));
+		MenuItem exitItem = new MenuItem(i18n.get("menubar.exit"));
 		exitItem.addActionListener(new ExitActionListener(mainFrame));
 
 		popup.add(aboutItem);

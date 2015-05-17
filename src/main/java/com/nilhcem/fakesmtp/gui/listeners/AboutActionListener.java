@@ -30,35 +30,30 @@ public class AboutActionListener implements ActionListener {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AboutActionListener.class);
 
 	/**
-	 * @param parent The parent container that is used for the About dialog
-	 * window
+	 * @param parent The parent container that is used for the About dialog window.
 	 */
-	public AboutActionListener(final Container parent) {
+	public AboutActionListener(Container parent) {
 		this.parent = parent;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// for copying style
-		final JLabel label = new JLabel();
-		final Font font = label.getFont();
+		JLabel label = new JLabel();
+		Font font = label.getFont();
 
 		// create some css from the label's font
-		final StringBuffer style = new StringBuffer("font-family:")
-			.append(font.getFamily())
-			.append(";font-weight:");
+		StringBuffer style = new StringBuffer("font-family:").append(font.getFamily()).append(";font-weight:");
 		if (font.isBold()) {
 			style.append("bold");
 		} else {
 			style.append("normal");
 		}
-		style.append(";font-size:")
-			.append(font.getSize())
-			.append("pt;");
+		style.append(";font-size:").append(font.getSize()).append("pt;");
 
 		// html content
-		final String link = i18n.get("menubar.about.dialog.link");
-		final JEditorPane ep = new JEditorPane("text/html",
+		String link = i18n.get("menubar.about.dialog.link");
+		JEditorPane ep = new JEditorPane("text/html",
 			String.format("<html><body style=\"%s\">%s<br /><a href=\"%s\">%s</a></body></html>",
 				style, i18n.get("menubar.about.dialog"), link, link));
 
@@ -91,7 +86,7 @@ public class AboutActionListener implements ActionListener {
 				if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
 					desktop.browse(new URI(url));
 				}
-			} catch (final Exception e) {
+			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
 		}

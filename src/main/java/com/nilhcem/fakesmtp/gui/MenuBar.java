@@ -4,8 +4,6 @@ import com.nilhcem.fakesmtp.core.ArgsHandler;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.gui.listeners.AboutActionListener;
 import com.nilhcem.fakesmtp.gui.listeners.ExitActionListener;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -26,14 +24,12 @@ public final class MenuBar extends Observable {
 	private final JMenuBar menuBar = new JMenuBar();
 	private final MainFrame mainFrame;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(MenuBar.class);
-
 	/**
 	 * Creates the menu bar and the different menus (file / edit / help).
-         * 
-         * @param mainFrame  MainFrame class required for the closing action.
+	 *
+	 * @param mainFrame MainFrame class required for the closing action.
 	 */
-	public MenuBar(final MainFrame mainFrame) {
+	public MenuBar(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 
 		menuBar.add(createFileMenu());

@@ -33,7 +33,7 @@ public class MainWindowListener extends WindowAdapter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MainWindowListener.class);
 
 	/**
-	 * @param mainFrame The MainFrame class used for closing actions
+	 * @param mainFrame The MainFrame class used for closing actions.
 	 */
 	public MainWindowListener(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;

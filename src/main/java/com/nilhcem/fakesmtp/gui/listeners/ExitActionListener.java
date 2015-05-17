@@ -17,14 +17,14 @@ public class ExitActionListener implements ActionListener {
 	/**
 	 * MainFrame is used for closing.
 	 *
-	 * @param mainFrame MainFrame window that will be closed
+	 * @param mainFrame MainFrame window that will be closed.
 	 */
-	public ExitActionListener(final MainFrame mainFrame) {
+	public ExitActionListener(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 	}
 
 	@Override
-	public void actionPerformed(final ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		mainFrame.close();
 	}
 }
