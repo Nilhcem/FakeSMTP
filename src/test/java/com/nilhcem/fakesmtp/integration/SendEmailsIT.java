@@ -102,4 +102,17 @@ public final class SendEmailsIT {
 		email.setMsg("Just to check if everything is OK");
 		email.send();
 	}
+
+	@Test
+	public void sendEmailWithDots() throws EmailException {
+		Email email = new SimpleEmail();
+		email.setDebug(true);
+		email.setHostName(TestConfig.HOST);
+		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
+		email.setFrom("user@example.com");
+		email.addTo("foo@example.com");
+		email.setSubject("Two dots separated with a new line");
+		email.setMsg(".\n.");
+		email.send();
+	}
 }
