@@ -26,17 +26,18 @@ import org.slf4j.LoggerFactory;
  */
 public class MainWindowListener extends WindowAdapter {
 
-	private final MainFrame mainFrame;
 	private TrayIcon trayIcon = null;
 	private final boolean useTray;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MainWindowListener.class);
 
+        private final boolean isMac;
+        
 	/**
-	 * @param mainFrame The MainFrame class used for closing actions.
+	 * @param mainFrame The MainFrame class used for closing actions
+         *        from TrayPopup.
 	 */
 	public MainWindowListener(final MainFrame mainFrame) {
-		this.mainFrame = mainFrame;
 		useTray = (SystemTray.isSupported() && Boolean.parseBoolean(Configuration.INSTANCE.get("application.tray.use")));
                 
 		if (useTray) {
@@ -50,6 +51,10 @@ public class MainWindowListener extends WindowAdapter {
 			trayIcon.setImageAutoSize(true);
 			trayIcon.setPopupMenu(trayPopup.get());
 		}
+                
+                /* the order of AWT events on OS X is slightly different */
+                String osName = System.getProperty("os.name").toLowerCase();
+                isMac = (osName.indexOf("mac") >= 0);
 	}
 
         @Override
@@ -62,7 +67,7 @@ public class MainWindowListener extends WindowAdapter {
 
                 final SystemTray tray = SystemTray.getSystemTray();
                 final JFrame frame = (JFrame) e.getSource();
-
+                
                 if ((e.getNewState() & Frame.ICONIFIED) != 0) {
                         try {
                                 /* Displays the window when the icon is clicked twice */
@@ -75,18 +80,30 @@ public class MainWindowListener extends WindowAdapter {
                                                 frame.setExtendedState(state);
                                                 frame.setVisible(true);
 
+                                                if (!isMac) {
+                                                        tray.remove(trayIcon);
+                                                }
+                                                
                                                 trayIcon.removeActionListener(this);
                                         }
                                 });
 
                                 tray.add(trayIcon);
-                                frame.setVisible(false);
+                                
+                                if (isMac) {
+                                        frame.setVisible(false);
+                                }
+                                else {
+                                        frame.dispose();
+                                }
                         } catch (AWTException ex) {
                                 LOGGER.error("Couldn't create a tray icon, the minimizing is not possible", ex);
                         }
                 }
-                else  {
-                        tray.remove(trayIcon);
+                else {
+                        if (isMac) {
+                                tray.remove(trayIcon);
+                        }
                         frame.setVisible(true);
                 }
         }
