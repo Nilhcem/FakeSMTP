@@ -54,7 +54,7 @@ public final class MainFrame {
 		MainWindowListener windowListener = new MainWindowListener(this);
                 
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.addWindowStateListener(windowListener); // for catching windowClosing event
+		mainFrame.addWindowStateListener(windowListener); // used for TrayIcon
 		mainFrame.setSize(frameSize);
 		mainFrame.setMinimumSize(frameSize);
 
