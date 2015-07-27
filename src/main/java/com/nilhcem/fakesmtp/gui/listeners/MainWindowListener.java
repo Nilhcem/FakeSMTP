@@ -91,10 +91,10 @@ public class MainWindowListener extends WindowAdapter {
 			public void actionPerformed(ActionEvent ae) {
 				int state = frame.getExtendedState();
 				state &= ~Frame.ICONIFIED;
-
-				frame.setVisible(true);
+				
 				frame.setExtendedState(state);
-				tray.remove(trayIcon);
+                                frame.setVisible(true);
+                                tray.remove(trayIcon);
 
 				trayIcon.removeActionListener(this);
 			}
@@ -102,7 +102,7 @@ public class MainWindowListener extends WindowAdapter {
 
 		try {
 			tray.add(trayIcon);
-			frame.setVisible(false);
+                        frame.dispose();
 		} catch (AWTException ex) {
 			LOGGER.error("Couldn't create a tray icon, the minimizing is not possible", ex);
 
