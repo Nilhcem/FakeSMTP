@@ -53,8 +53,8 @@ public final class MainFrame {
 
 		MainWindowListener windowListener = new MainWindowListener(this);
                 
-		mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		mainFrame.addWindowListener(windowListener); // for catching windowClosing event
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.addWindowStateListener(windowListener); // for catching windowClosing event
 		mainFrame.setSize(frameSize);
 		mainFrame.setMinimumSize(frameSize);
 

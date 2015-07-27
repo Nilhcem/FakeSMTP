@@ -38,7 +38,7 @@ public class MainWindowListener extends WindowAdapter {
 	public MainWindowListener(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		useTray = (SystemTray.isSupported() && Boolean.parseBoolean(Configuration.INSTANCE.get("application.tray.use")));
-
+                
 		if (useTray) {
 			final TrayPopup trayPopup = new TrayPopup(mainFrame);
 
@@ -52,63 +52,42 @@ public class MainWindowListener extends WindowAdapter {
 		}
 	}
 
-	@Override
-	public void windowIconified(final WindowEvent e) {
-		super.windowIconified(e);
+        @Override
+        public void windowStateChanged(WindowEvent e) {
+                super.windowStateChanged(e);
 
-		if (useTray) {
-			minimizeFrameIntoTray((JFrame) e.getSource());
-		}
-	}
+                if (!useTray) {
+                        return;
+                }
 
-	@Override
-	public void windowClosing(WindowEvent e) {
-		if (useTray && minimizeFrameIntoTray((JFrame) e.getSource())) {
-			return;
-		}
+                final SystemTray tray = SystemTray.getSystemTray();
+                final JFrame frame = (JFrame) e.getSource();
 
-		mainFrame.close();
-	}
+                if ((e.getNewState() & Frame.ICONIFIED) != 0) {
+                        try {
+                                /* Displays the window when the icon is clicked twice */
+                                trayIcon.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent ae) {
+                                                int state = frame.getExtendedState();
+                                                state &= ~Frame.ICONIFIED;
 
-	/**
-	 * Minimizes the specified frame into the tray. When tray icon receives
-	 * an action, the frame is restored to the previous state.
-	 *
-	 * @return a boolean value whether the window has been minimized or not.
-	 */
-	private boolean minimizeFrameIntoTray(final JFrame frame) {
-		if (!useTray) {
-			LOGGER.warn("It is not allowed to use the system tray");
+                                                frame.setExtendedState(state);
+                                                frame.setVisible(true);
 
-			return false;
-		}
+                                                trayIcon.removeActionListener(this);
+                                        }
+                                });
 
-		final SystemTray tray = SystemTray.getSystemTray();
-
-		/* Displays the window when the icon is clicked twice */
-		trayIcon.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent ae) {
-				int state = frame.getExtendedState();
-				state &= ~Frame.ICONIFIED;
-				
-				frame.setExtendedState(state);
-                                frame.setVisible(true);
-                                tray.remove(trayIcon);
-
-				trayIcon.removeActionListener(this);
-			}
-		});
-
-		try {
-			tray.add(trayIcon);
-                        frame.dispose();
-		} catch (AWTException ex) {
-			LOGGER.error("Couldn't create a tray icon, the minimizing is not possible", ex);
-
-			return false;
-		}
-
-		return true;
-	}
+                                tray.add(trayIcon);
+                                frame.setVisible(false);
+                        } catch (AWTException ex) {
+                                LOGGER.error("Couldn't create a tray icon, the minimizing is not possible", ex);
+                        }
+                }
+                else  {
+                        tray.remove(trayIcon);
+                        frame.setVisible(true);
+                }
+        }
 }
