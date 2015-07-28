@@ -31,15 +31,13 @@ public class MainWindowListener extends WindowAdapter {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MainWindowListener.class);
 
-        private final boolean isMac;
-        
 	/**
-	 * @param mainFrame The MainFrame class used for closing actions
-         *        from TrayPopup.
+	 * @param mainFrame The MainFrame class used for closing actions from
+	 * TrayPopup.
 	 */
 	public MainWindowListener(final MainFrame mainFrame) {
 		useTray = (SystemTray.isSupported() && Boolean.parseBoolean(Configuration.INSTANCE.get("application.tray.use")));
-                
+
 		if (useTray) {
 			final TrayPopup trayPopup = new TrayPopup(mainFrame);
 
@@ -51,60 +49,45 @@ public class MainWindowListener extends WindowAdapter {
 			trayIcon.setImageAutoSize(true);
 			trayIcon.setPopupMenu(trayPopup.get());
 		}
-                
-                /* the order of AWT events on OS X is slightly different */
-                String osName = System.getProperty("os.name").toLowerCase();
-                isMac = (osName.indexOf("mac") >= 0);
 	}
 
-        @Override
-        public void windowStateChanged(WindowEvent e) {
-                super.windowStateChanged(e);
+	@Override
+	public void windowStateChanged(WindowEvent e) {
+		super.windowStateChanged(e);
 
-                if (!useTray) {
-                        return;
-                }
+		if (!useTray) {
+			return;
+		}
 
-                final SystemTray tray = SystemTray.getSystemTray();
-                final JFrame frame = (JFrame) e.getSource();
-                
-                if ((e.getNewState() & Frame.ICONIFIED) != 0) {
-                        try {
-                                /* Displays the window when the icon is clicked twice */
-                                trayIcon.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent ae) {
-                                                int state = frame.getExtendedState();
-                                                state &= ~Frame.ICONIFIED;
+		final SystemTray tray = SystemTray.getSystemTray();
+		final JFrame frame = (JFrame) e.getSource();
 
-                                                frame.setExtendedState(state);
-                                                frame.setVisible(true);
+		if ((e.getNewState() & Frame.ICONIFIED) != 0) {
+			try {
+				/* Displays the window when the icon is clicked twice */
+				trayIcon.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent ae) {
+						int state = frame.getExtendedState();
+						state &= ~Frame.ICONIFIED;
 
-                                                if (!isMac) {
-                                                        tray.remove(trayIcon);
-                                                }
-                                                
-                                                trayIcon.removeActionListener(this);
-                                        }
-                                });
+						frame.setExtendedState(state);
+						frame.setVisible(true);
 
-                                tray.add(trayIcon);
-                                
-                                if (isMac) {
-                                        frame.setVisible(false);
-                                }
-                                else {
-                                        frame.dispose();
-                                }
-                        } catch (AWTException ex) {
-                                LOGGER.error("Couldn't create a tray icon, the minimizing is not possible", ex);
-                        }
-                }
-                else {
-                        if (isMac) {
-                                tray.remove(trayIcon);
-                        }
-                        frame.setVisible(true);
-                }
-        }
+						tray.remove(trayIcon);
+
+						trayIcon.removeActionListener(this);
+					}
+				});
+
+				tray.add(trayIcon);
+
+				frame.dispose();
+			} catch (AWTException ex) {
+				LOGGER.error("Couldn't create a tray icon, the minimizing is not possible", ex);
+			}
+		} else {
+			frame.setVisible(true);
+		}
+	}
 }
