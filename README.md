@@ -65,6 +65,8 @@ Usage on Docker
 
 Dockerfile
 
+*(see src/main/docker/Dockerfile)
+
     FROM java:8
     
     RUN mkdir -p /output
