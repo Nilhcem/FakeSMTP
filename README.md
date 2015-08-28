@@ -65,11 +65,8 @@ Usage on Docker
 
 * Run distributed version :
 
-  # build docker image with name "mail"
   docker build -t="mail" github.com/evrycollin/FakeSMTP
   
-  # run "mail" container and forward SMTP port to 250,
-  # mount output volume
   docker run -ti -p 250:25 --privileged=true -v /mail:/output mail
 
 
