@@ -1,5 +1,9 @@
 FROM java:8
-VOLUME /mail-data
+
+RUN mkdir -p /output
+
 ADD fakeSMTP-2.1-SNAPSHOT.jar /fakeSMTP.jar
-RUN bash -c 'touch /app.jar'
-ENTRYPOINT ["java","-jar","/fakeSMTP.jar","--background", "--output-dir", "/mail-data", "--port", "25", "--start-server"]
+
+VOLUME /output
+
+ENTRYPOINT ["java","-jar","/fakeSMTP.jar","--background", "--output-dir", "/output", "--port", "25", "--start-server"]
