@@ -63,22 +63,17 @@ To see all the available options (relay domains, custom eml-viewer...):
 Usage on Docker
 ---------------
 
-Dockerfile
+* Run distributed version :
 
-*(see src/main/docker/Dockerfile)
+  # build docker image with name "mail"
+  docker build -t="mail" github.com/evrycollin/FakeSMTP
+  
+  # run "mail" container and forward SMTP port to 250,
+  # mount output volume
+  docker run -ti -p 250:25 --privileged=true -v /mail:/output mail
 
-    FROM java:8
-    
-    RUN mkdir -p /output
-    
-    ADD fakeSMTP-2.1-SNAPSHOT.jar /fakeSMTP.jar
-    
-    VOLUME /output
-    
-    EXPOSE 25
-    
-    ENTRYPOINT ["java","-jar","/fakeSMTP.jar","--background", "--output-dir", "/output", "--port", "25", "--start-server"]
 
+* Build from source
 
 Get sources from GitHub
 
@@ -96,18 +91,18 @@ Run the docker image
 
 Configure container
 
-*Map the SMTP port 25 to host :
+* Map the SMTP port 25 to host :
     
     -p 250:25 
 
-*Map volume for received mails :
+* Map volume for received mails :
   
     --privileged=true  -v /mail-data:/output 
 
 Full command
 
-*Foward fakesmtp:25 to host port 250, 
-*mount host folder /home/fakesmtp/mail as container folder /output
+* Foward fakesmtp:25 to host port 250, 
+* mount host folder /home/fakesmtp/mail as container folder /output
 
     docker run -ti -d -p 250:25 --privileged=true -v /home/fakesmtp/mail:/output fakesmtp
 
