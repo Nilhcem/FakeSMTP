@@ -63,16 +63,16 @@ To see all the available options (relay domains, custom eml-viewer...):
 Usage on Docker
 ---------------
 
-* Run distributed version :
+* Run distributed version :  [Dockerfile](https://github.com/evrycollin/FakeSMTP/blob/master/Dockerfile)
 
-  docker build -t="mail" github.com/evrycollin/FakeSMTP
+    docker build -t="mail" github.com/evrycollin/FakeSMTP
   
-  docker run -ti -p 250:25 --privileged=true -v /mail:/output mail
+    docker run -ti -p 250:25 --privileged=true -v /mail:/output mail
 
 
 * Build from source
 
-Get sources from GitHub
+Get sources from GitHub  [Dockerfile](https://github.com/evrycollin/FakeSMTP/blob/add-docker/src/main/docker/Dockerfile)
 
     git clone https://github.com/evrycollin/FakeSMTP
     cd FakeSMTP
