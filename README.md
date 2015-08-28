@@ -112,14 +112,6 @@ Full command
     docker run -ti -d -p 250:25 --privileged=true -v /home/fakesmtp/mail:/output fakesmtp
 
 
-Compose it
-
-Use docker-compse to build your plateforme.
-Exemple : simple plateforme with nginx, tomcat, mysql and fakesmtp
-
-**TODO
-    
-
 Alternatives
 ------------
 
