@@ -71,28 +71,37 @@ Get sources from GitHub
   
 Build the docker image
 
-    mvn package docker:build
+    mvn package docker:build -DskipTests
     
 Run the docker image
 
-    docker run -ti fakesmtp
+    docker run -ti -d fakesmtp
 
 Configure container
 
-  Map the SMTP port 25 to host :
+*Map the SMTP port 25 to host :
     
     -p 250:25 
 
-  Map volume for received mails :
+*Map volume for received mails :
   
     --privileged=true  -v /mail-data:/output 
 
 Full command
 
-  Foward fakesmtp:25 to host port 250, 
-  mount host folder /home/fakesmtp/mail as container folder /output
+*Foward fakesmtp:25 to host port 250, 
+*mount host folder /home/fakesmtp/mail as container folder /output
 
-    docker run -ti -p 250:25 --privileged=true -v /home/fakesmtp/mail:/output fakesmtp
+    docker run -ti -d -p 250:25 --privileged=true -v /home/fakesmtp/mail:/output fakesmtp
+
+
+Compose it
+
+Use docker-compse to build your plateforme.
+Exemple : simple plateforme with nginx, tomcat, mysql and fakesmtp
+
+**TODO
+    
 
 Alternatives
 ------------
