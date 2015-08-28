@@ -65,8 +65,9 @@ Usage on Docker
 
 * Run distributed version :  [Dockerfile](https://github.com/evrycollin/FakeSMTP/blob/master/Dockerfile)
 
-    docker build -t="mail" github.com/evrycollin/FakeSMTP
-    docker run -ti -p 250:25 --privileged=true -v /mail:/output mail
+      docker build -t="mail" github.com/evrycollin/FakeSMTP
+    
+      docker run -ti -p 250:25 --privileged=true -v /mail:/output mail
 
 
 * Build from source
