@@ -63,18 +63,18 @@ To see all the available options (relay domains, custom eml-viewer...):
 Usage on Docker
 ---------------
 
-* Run distributed version :  [Dockerfile](https://github.com/evrycollin/FakeSMTP/blob/master/Dockerfile)
+* Run distributed version: [Dockerfile](https://github.com/Nilhcem/FakeSMTP/blob/master/Dockerfile)
 
-      docker build -t="mail" github.com/evrycollin/FakeSMTP
+      docker build -t="mail" github.com/Nilhcem/FakeSMTP
 
       docker run -ti -p 250:25 --privileged=true -v /mail:/output mail
 
 
 * Build from source
 
-Get sources from GitHub  [Dockerfile](https://github.com/evrycollin/FakeSMTP/blob/add-docker/src/main/docker/Dockerfile)
+Get sources from GitHub: [Dockerfile](https://github.com/Nilhcem/FakeSMTP/blob/add-docker/src/main/docker/Dockerfile)
 
-    git clone https://github.com/evrycollin/FakeSMTP
+    git clone https://github.com/Nilhcem/FakeSMTP
     cd FakeSMTP
     git checkout remotes/origin/add-docker
 
@@ -88,11 +88,11 @@ Run the docker image
 
 Configure container
 
-* Map the SMTP port 25 to host :
+* Map the SMTP port 25 to host:
 
     -p 250:25
 
-* Map volume for received mails :
+* Map volume for received mails:
 
     --privileged=true  -v /mail-data:/output
 
