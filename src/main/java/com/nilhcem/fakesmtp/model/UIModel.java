@@ -1,16 +1,17 @@
 package com.nilhcem.fakesmtp.model;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.nilhcem.fakesmtp.core.I18n;
 import com.nilhcem.fakesmtp.core.exception.BindPortException;
 import com.nilhcem.fakesmtp.core.exception.InvalidHostException;
 import com.nilhcem.fakesmtp.core.exception.InvalidPortException;
 import com.nilhcem.fakesmtp.core.exception.OutOfRangePortException;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * UI presentation model of the application.
@@ -46,7 +47,7 @@ public enum UIModel {
 	 * @throws InvalidPortException when the port is invalid.
 	 * @throws BindPortException when the port cannot be bound.
 	 * @throws OutOfRangePortException when the port is out of range.
-	 * @throws java.net.UnknownHostException when the address cannot be resolved.
+	 * @throws InvalidHostException when the address cannot be resolved.
 	 * @throws RuntimeException when an unknown exception happened.
 	 */
 	public void toggleButton() throws BindPortException, OutOfRangePortException, InvalidPortException, InvalidHostException {
@@ -56,7 +57,6 @@ public enum UIModel {
 			try {
 				int port = Integer.parseInt(portStr);
 				InetAddress host = null;
-
 				if (hostStr != null && !hostStr.isEmpty()) {
 					host = InetAddress.getByName(hostStr);
 				}
@@ -87,7 +87,7 @@ public enum UIModel {
 	public void setHost(String host) {
 		this.hostStr = host;
 	}
-	
+
 	public int getNbMessageReceived() {
 		return nbMessageReceived;
 	}

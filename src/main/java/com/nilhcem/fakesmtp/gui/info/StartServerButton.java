@@ -49,7 +49,7 @@ public final class StartServerButton extends Observable implements Observer {
 			UIModel.INSTANCE.toggleButton();
 		} catch (InvalidHostException ihe) {
 			displayError(String.format(i18n.get("startsrv.err.invalidHost"), ihe.getHost()));
-                } catch (InvalidPortException ipe) {
+		} catch (InvalidPortException ipe) {
 			displayError(String.format(i18n.get("startsrv.err.invalid")));
 		} catch (BindPortException bpe) {
 			displayError(String.format(i18n.get("startsrv.err.bound"), bpe.getPort()));

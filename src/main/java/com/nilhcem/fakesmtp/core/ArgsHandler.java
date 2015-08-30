@@ -119,7 +119,7 @@ public enum ArgsHandler {
 			}
 			UIModel.INSTANCE.setRelayDomains(domains);
 		}
-		
+
 		// Host binding for GUI
 		if (bindAddress != null) {
 			UIModel.INSTANCE.setHost(bindAddress);
