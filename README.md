@@ -66,7 +66,7 @@ Usage on Docker
 * Run distributed version :  [Dockerfile](https://github.com/evrycollin/FakeSMTP/blob/master/Dockerfile)
 
       docker build -t="mail" github.com/evrycollin/FakeSMTP
-    
+
       docker run -ti -p 250:25 --privileged=true -v /mail:/output mail
 
 
@@ -77,11 +77,11 @@ Get sources from GitHub  [Dockerfile](https://github.com/evrycollin/FakeSMTP/blo
     git clone https://github.com/evrycollin/FakeSMTP
     cd FakeSMTP
     git checkout remotes/origin/add-docker
-  
+
 Build the docker image
 
     mvn package docker:build -DskipTests
-    
+
 Run the docker image
 
     docker run -ti -d fakesmtp
@@ -89,16 +89,16 @@ Run the docker image
 Configure container
 
 * Map the SMTP port 25 to host :
-    
-    -p 250:25 
+
+    -p 250:25
 
 * Map volume for received mails :
-  
-    --privileged=true  -v /mail-data:/output 
+
+    --privileged=true  -v /mail-data:/output
 
 Full command
 
-* Foward fakesmtp:25 to host port 250, 
+* Foward fakesmtp:25 to host port 250,
 * mount host folder /home/fakesmtp/mail as container folder /output
 
     docker run -ti -d -p 250:25 --privileged=true -v /home/fakesmtp/mail:/output fakesmtp
