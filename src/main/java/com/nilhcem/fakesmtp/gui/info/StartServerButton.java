@@ -50,7 +50,7 @@ public final class StartServerButton extends Observable implements Observer {
 		} catch (InvalidHostException ihe) {
 			displayError(String.format(i18n.get("startsrv.err.invalidHost"), ihe.getHost()));
 		} catch (InvalidPortException ipe) {
-			displayError(String.format(i18n.get("startsrv.err.invalid")));
+			displayError(String.format(i18n.get("startsrv.err.invalidPort")));
 		} catch (BindPortException bpe) {
 			displayError(String.format(i18n.get("startsrv.err.bound"), bpe.getPort()));
 		} catch (OutOfRangePortException orpe) {
