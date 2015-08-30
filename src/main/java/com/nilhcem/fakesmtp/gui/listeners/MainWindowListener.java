@@ -26,14 +26,13 @@ import org.slf4j.LoggerFactory;
  */
 public class MainWindowListener extends WindowAdapter {
 
-	private TrayIcon trayIcon = null;
+	private TrayIcon trayIcon;
 	private final boolean useTray;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MainWindowListener.class);
 
 	/**
-	 * @param mainFrame The MainFrame class used for closing actions from
-	 * TrayPopup.
+	 * @param mainFrame The MainFrame class used for closing actions from TrayPopup.
 	 */
 	public MainWindowListener(final MainFrame mainFrame) {
 		useTray = (SystemTray.isSupported() && Boolean.parseBoolean(Configuration.INSTANCE.get("application.tray.use")));
@@ -54,7 +53,6 @@ public class MainWindowListener extends WindowAdapter {
 	@Override
 	public void windowStateChanged(WindowEvent e) {
 		super.windowStateChanged(e);
-
 		if (!useTray) {
 			return;
 		}
@@ -81,7 +79,6 @@ public class MainWindowListener extends WindowAdapter {
 				});
 
 				tray.add(trayIcon);
-
 				frame.dispose();
 			} catch (AWTException ex) {
 				LOGGER.error("Couldn't create a tray icon, the minimizing is not possible", ex);

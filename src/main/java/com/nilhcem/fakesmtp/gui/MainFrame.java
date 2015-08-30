@@ -25,11 +25,11 @@ import org.slf4j.Logger;
  */
 public final class MainFrame {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(MainFrame.class);
+
 	private final JFrame mainFrame = new JFrame(Configuration.INSTANCE.get("application.title"));
 	private final MenuBar menu = new MenuBar(this);
 	private final MainPanel panel = new MainPanel(menu);
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(MainFrame.class);
 
 	/**
 	 * Creates the main window and makes it visible.
@@ -59,7 +59,6 @@ public final class MainFrame {
 		MainWindowListener windowListener = new MainWindowListener(this);
 
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		mainFrame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -105,10 +104,8 @@ public final class MainFrame {
 	}
 
 	public void close() {
-		// Save configuration
-		
 		LOGGER.debug("Closing the application and saving the configuration");
-			
+
 		Configuration.INSTANCE.set("smtp.default.port", panel.getPortText().get().getText());
 		Configuration.INSTANCE.set("emails.default.dir", panel.getSaveMsgTextField().get().getText());
 
@@ -121,7 +118,7 @@ public final class MainFrame {
 		if (SMTPServerHandler.INSTANCE.getSmtpServer().isRunning()) {
 			SMTPServerHandler.INSTANCE.getSmtpServer().stop();
 		}
-                
+
 		mainFrame.dispose();
 	}
 }
