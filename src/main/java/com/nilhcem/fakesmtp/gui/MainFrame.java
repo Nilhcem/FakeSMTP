@@ -12,7 +12,10 @@ import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
+import org.slf4j.Logger;
 
 /**
  * Provides the main window of the application.
@@ -25,6 +28,8 @@ public final class MainFrame {
 	private final JFrame mainFrame = new JFrame(Configuration.INSTANCE.get("application.title"));
 	private final MenuBar menu = new MenuBar(this);
 	private final MainPanel panel = new MainPanel(menu);
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(MainFrame.class);
 
 	/**
 	 * Creates the main window and makes it visible.
@@ -52,9 +57,17 @@ public final class MainFrame {
 			getClass().getResource(Configuration.INSTANCE.get("application.icon.path")));
 
 		MainWindowListener windowListener = new MainWindowListener(this);
-                
-		mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		mainFrame.addWindowListener(windowListener); // for catching windowClosing event
+
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		mainFrame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				close();
+			}
+		});
+
+		mainFrame.addWindowStateListener(windowListener); // used for TrayIcon
 		mainFrame.setSize(frameSize);
 		mainFrame.setMinimumSize(frameSize);
 
@@ -93,13 +106,16 @@ public final class MainFrame {
 
 	public void close() {
 		// Save configuration
+		
+		LOGGER.debug("Closing the application and saving the configuration");
+			
 		Configuration.INSTANCE.set("smtp.default.port", panel.getPortText().get().getText());
 		Configuration.INSTANCE.set("emails.default.dir", panel.getSaveMsgTextField().get().getText());
 
 		try {
 			Configuration.INSTANCE.saveToUserProfile();
 		} catch (IOException ex) {
-			LoggerFactory.getLogger(MainFrame.class).error("Could not save configuration", ex);
+			LOGGER.error("Could not save configuration", ex);
 		}
 		// Check for SMTP server running and stop it
 		if (SMTPServerHandler.INSTANCE.getSmtpServer().isRunning()) {
@@ -107,6 +123,5 @@ public final class MainFrame {
 		}
                 
 		mainFrame.dispose();
-		System.exit(0);
 	}
 }
