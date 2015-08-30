@@ -131,11 +131,10 @@ Usage on Docker
 
 * Build from source
 
-Get sources from GitHub: [Dockerfile](https://github.com/Nilhcem/FakeSMTP/blob/add-docker/src/main/docker/Dockerfile)
+Get sources from GitHub: [Dockerfile](https://github.com/Nilhcem/FakeSMTP/blob/master/src/main/docker/Dockerfile)
 
     git clone https://github.com/Nilhcem/FakeSMTP
     cd FakeSMTP
-    git checkout remotes/origin/add-docker
 
 Build the docker image
 
