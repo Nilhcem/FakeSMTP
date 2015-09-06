@@ -14,6 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+		<docker.image>fakesmtp</docker.image>
 	</properties>
 
 	<dependencies>
@@ -251,6 +252,24 @@
 					</reportPlugins>
 				</configuration>
 			</plugin>
+
+			<!-- Docker -->
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.3.2</version>
+				<configuration>
+					<imageName>${docker.image}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -306,6 +325,10 @@
 		<contributor>
 			<name>Vest</name>
 			<url>https://github.com/Vest</url>
+		</contributor>
+		<contributor>
+			<name>evrycollin</name>
+			<url>https://github.com/evrycollin</url>
 		</contributor>
 	</contributors>
 

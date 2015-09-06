@@ -26,17 +26,15 @@ import org.slf4j.LoggerFactory;
  */
 public class MainWindowListener extends WindowAdapter {
 
-	private final MainFrame mainFrame;
-	private TrayIcon trayIcon = null;
+	private TrayIcon trayIcon;
 	private final boolean useTray;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MainWindowListener.class);
 
 	/**
-	 * @param mainFrame The MainFrame class used for closing actions.
+	 * @param mainFrame The MainFrame class used for closing actions from TrayPopup.
 	 */
 	public MainWindowListener(final MainFrame mainFrame) {
-		this.mainFrame = mainFrame;
 		useTray = (SystemTray.isSupported() && Boolean.parseBoolean(Configuration.INSTANCE.get("application.tray.use")));
 
 		if (useTray) {
@@ -53,62 +51,40 @@ public class MainWindowListener extends WindowAdapter {
 	}
 
 	@Override
-	public void windowIconified(final WindowEvent e) {
-		super.windowIconified(e);
-
-		if (useTray) {
-			minimizeFrameIntoTray((JFrame) e.getSource());
-		}
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {
-		if (useTray && minimizeFrameIntoTray((JFrame) e.getSource())) {
+	public void windowStateChanged(WindowEvent e) {
+		super.windowStateChanged(e);
+		if (!useTray) {
 			return;
 		}
 
-		mainFrame.close();
-	}
-
-	/**
-	 * Minimizes the specified frame into the tray. When tray icon receives
-	 * an action, the frame is restored to the previous state.
-	 *
-	 * @return a boolean value whether the window has been minimized or not.
-	 */
-	private boolean minimizeFrameIntoTray(final JFrame frame) {
-		if (!useTray) {
-			LOGGER.warn("It is not allowed to use the system tray");
-
-			return false;
-		}
-
 		final SystemTray tray = SystemTray.getSystemTray();
+		final JFrame frame = (JFrame) e.getSource();
 
-		/* Displays the window when the icon is clicked twice */
-		trayIcon.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent ae) {
-				int state = frame.getExtendedState();
-				state &= ~Frame.ICONIFIED;
+		if ((e.getNewState() & Frame.ICONIFIED) != 0) {
+			try {
+				/* Displays the window when the icon is clicked twice */
+				trayIcon.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent ae) {
+						int state = frame.getExtendedState();
+						state &= ~Frame.ICONIFIED;
 
-				frame.setVisible(true);
-				frame.setExtendedState(state);
-				tray.remove(trayIcon);
+						frame.setExtendedState(state);
+						frame.setVisible(true);
 
-				trayIcon.removeActionListener(this);
+						tray.remove(trayIcon);
+
+						trayIcon.removeActionListener(this);
+					}
+				});
+
+				tray.add(trayIcon);
+				frame.dispose();
+			} catch (AWTException ex) {
+				LOGGER.error("Couldn't create a tray icon, the minimizing is not possible", ex);
 			}
-		});
-
-		try {
-			tray.add(trayIcon);
-			frame.setVisible(false);
-		} catch (AWTException ex) {
-			LOGGER.error("Couldn't create a tray icon, the minimizing is not possible", ex);
-
-			return false;
+		} else {
+			frame.setVisible(true);
 		}
-
-		return true;
 	}
 }

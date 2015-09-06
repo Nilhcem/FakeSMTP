@@ -60,6 +60,61 @@ the following example will autostart the SMTP server on the port 2525 and bound 
 +--
 
 
+* Usage on Docker
+
+ * Run distributed version: {{{https://github.com/Nilhcem/FakeSMTP/blob/master/Dockerfile}Dockerfile}}
+
++--
+ docker build -t="mail" github.com/Nilhcem/FakeSMTP
+ docker run -ti -p 250:25 --privileged=true -v /mail:/output mail
++--
+
+ * Build from source
+
+ Get sources from GitHub: {{{https://github.com/Nilhcem/FakeSMTP/blob/master/src/main/docker/Dockerfile}Dockerfile}}
+
++--
+ git clone https://github.com/Nilhcem/FakeSMTP
+ cd FakeSMTP
++--
+
+ Build the docker image
+
++--
+ mvn package docker:build -DskipTests
++--
+
+ Run the docker image
+
++--
+ docker run -ti -d fakesmtp
++--
+
+ Configure container
+
+ * Map the SMTP port 25 to host:
+
++--
+ -p 250:25
++--
+
+ * Map volume for received mails:
+
++--
+ --privileged=true  -v /mail-data:/output
++--
+
+ Full command
+
+ * Foward fakesmtp:25 to host port 250,
+
+ * mount host folder /home/fakesmtp/mail as container folder /output
+
++--
+ docker run -ti -d -p 250:25 --privileged=true -v /home/fakesmtp/mail:/output fakesmtp
++--
+
+
 * Alternatives
 
  FakeSMTP was created because we couldn't find any free (as in freedom) and cross-platform SMTP server with GUI for testing emails in applications or websites.\

@@ -26,5 +26,6 @@ public class ExitActionListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		mainFrame.close();
+		System.exit(0);
 	}
 }
