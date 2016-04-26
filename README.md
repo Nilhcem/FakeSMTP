@@ -161,6 +161,11 @@ Full command
 
     `docker run -ti -d -p 250:25 --privileged=true -v /home/fakesmtp/mail:/output fakesmtp`
 
+Execute container in boot2Docker Windows with volume
+
+  `docker create -v //c/Users/user/fake-smtp-docker/tmp:/tmp/spool_mail --name spool_email fakesmtp`
+  
+  `winpty docker run -ti -d -p 250:25 --privileged=true --volumes-from spool_email -it -p 250:25 fakesmtp`
 
 Contact me
 ----------
