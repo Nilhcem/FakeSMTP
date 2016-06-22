@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Nilhcem/FakeSMTP.svg?branch=master)](https://travis-ci.org/Nilhcem/FakeSMTP)
+
 FakeSMTP
 ========
 
