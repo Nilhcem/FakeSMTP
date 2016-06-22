@@ -42,6 +42,15 @@ public final class MailListener implements SimpleMessageListener {
      */
 	@Override
 	public void deliver(String from, String recipient, InputStream data) throws IOException {
+		
+		try {
+			// TODO Get value, ultimately from some kind of input
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO properly log Exception
+			e.printStackTrace();
+		}
+		
 		saver.saveEmailAndNotify(from, recipient, data);
 	}
 }

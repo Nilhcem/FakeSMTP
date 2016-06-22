@@ -105,6 +105,8 @@ public enum ArgsHandler {
 		backgroundStart = cmd.hasOption(OPT_BACKGROUNDSTART_SHORT);
 		memoryModeEnabled = cmd.hasOption(OPT_MEMORYMODE_SHORT);
 		emlViewer = cmd.getOptionValue(OPT_EMLVIEWER_SHORT);
+		
+		// TODO handle stall-time command
 
 		// Change SMTP server log level to info if memory mode was enabled to improve performance
 		if (memoryModeEnabled) {

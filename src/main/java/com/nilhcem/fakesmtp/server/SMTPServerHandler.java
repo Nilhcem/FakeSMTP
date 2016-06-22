@@ -34,10 +34,13 @@ public enum SMTPServerHandler {
 	 * @throws BindPortException when the port can't be opened.
 	 * @throws OutOfRangePortException when port is out of range.
 	 * @throws IllegalArgumentException when port is out of range.
+	 * 
+	 * TODO Add param for stall-time
 	 */
 	public void startServer(int port, InetAddress bindAddress) throws BindPortException, OutOfRangePortException {
 		LOGGER.debug("Starting server on port {}", port);
 		try {
+			// TODO here, assign stall-time to myListener
 			smtpServer.setBindAddress(bindAddress);
 			smtpServer.setPort(port);
 			smtpServer.start();

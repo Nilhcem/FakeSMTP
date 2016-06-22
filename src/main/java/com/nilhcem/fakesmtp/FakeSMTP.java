@@ -59,6 +59,7 @@ public final class FakeSMTP {
 
 		if (ArgsHandler.INSTANCE.shouldStartInBackground()) {
 			try {
+				// TODO add stall-time property and pass it to startServer
 				SMTPServerHandler.INSTANCE.startServer(getPort(), getBindAddress());
 			} catch (NumberFormatException e) {
 				LOGGER.error("Error: Invalid port number", e);
