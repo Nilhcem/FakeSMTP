@@ -34,6 +34,10 @@ public final class SendEmailsIT {
 		email.send();
 	}
 	
+	/**
+	 * Meant to test the delay feature. Start app with -h for details
+	 * @throws EmailException
+	 */
 	@Test
 	public void sendMultipleNumberedEmails() throws EmailException{
 		for(int i = 1; i <= 5; i++){

@@ -31,19 +31,21 @@ public enum SMTPServerHandler {
 	 *
 	 * @param port the SMTP port to be opened.
 	 * @param bindAddress the address to bind to. null means bind to all.
+	 * @param delay the time in seconds to wait before each message acceptance
 	 * @throws BindPortException when the port can't be opened.
 	 * @throws OutOfRangePortException when port is out of range.
 	 * @throws IllegalArgumentException when port is out of range.
-	 * 
-	 * TODO Add param for stall-time
 	 */
-	public void startServer(int port, InetAddress bindAddress) throws BindPortException, OutOfRangePortException {
+	public void startServer(int port, InetAddress bindAddress, float delay ) throws BindPortException, OutOfRangePortException {
 		LOGGER.debug("Starting server on port {}", port);
 		try {
-			// TODO here, assign stall-time to myListener
+			
 			smtpServer.setBindAddress(bindAddress);
 			smtpServer.setPort(port);
 			smtpServer.start();
+			
+			myListener.setDelay( delay );
+			
 		} catch (RuntimeException exception) {
 			if (exception.getMessage().contains("BindException")) { // Can't open port
 				LOGGER.error("{}. Port {}", exception.getMessage(), port);

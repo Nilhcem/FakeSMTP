@@ -12,6 +12,7 @@ import org.subethamail.smtp.helper.SimpleMessageListener;
  */
 public final class MailListener implements SimpleMessageListener {
 	private final MailSaver saver;
+	private float delay;
 
 	/**
 	 * Creates the listener.
@@ -28,12 +29,21 @@ public final class MailListener implements SimpleMessageListener {
 	 * Called once for every RCPT TO during a SMTP exchange.<br>
      * Each accepted recipient will result in a separate deliver() call later.
      * </p>
+     * But first delay (if delay is more than 0).
+     * @see setDelay(float)
      *
 	 * @param from the user who send the email.
 	 * @param recipient the recipient of the email.
 	 * @return always return {@code true}
 	 */
 	public boolean accept(String from, String recipient) {
+		
+		try {
+			Thread.sleep(  (long) ( delay * 1000 ) );
+		} catch (InterruptedException e) {
+			System.out.println("Delay (sleep) is interrupted.");
+			Thread.currentThread().interrupt();
+		}
 		return true;
 	}
 
@@ -42,15 +52,13 @@ public final class MailListener implements SimpleMessageListener {
      */
 	@Override
 	public void deliver(String from, String recipient, InputStream data) throws IOException {
-		
-		try {
-			// TODO Get value, ultimately from some kind of input
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO properly log Exception
-			e.printStackTrace();
-		}
-		
 		saver.saveEmailAndNotify(from, recipient, data);
+	}
+
+	/**
+	 * @param delay number of seconds to delay acceptance
+	 */
+	public void setDelay(float delay) {
+		this.delay = delay;
 	}
 }

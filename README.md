@@ -55,6 +55,10 @@ If you don't need to save emails on the filesystem (to improve the overall perfo
 
     java -jar fakeSMTP-VERSION.jar -m
 
+If you want to simulate an acceptance delay for each message, the seconds argument can be fractional:
+
+	java -jar fakeSMTP-VERSION.jar -d seconds
+
 To see all the available options (relay domains, custom eml-viewer...):
 
     java -jar fakeSMTP-VERSION.jar --help
