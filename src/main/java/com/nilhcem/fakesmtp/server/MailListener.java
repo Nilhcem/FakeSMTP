@@ -2,7 +2,12 @@ package com.nilhcem.fakesmtp.server;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.subethamail.smtp.helper.SimpleMessageListener;
+
+import com.nilhcem.fakesmtp.FakeSMTP;
 
 /**
  * Listens to incoming emails and redirects them to the {@code MailSaver} object.
@@ -11,6 +16,7 @@ import org.subethamail.smtp.helper.SimpleMessageListener;
  * @since 1.0
  */
 public final class MailListener implements SimpleMessageListener {
+	private static final Logger LOGGER = LoggerFactory.getLogger(FakeSMTP.class);
 	private final MailSaver saver;
 	private float delay;
 
@@ -41,7 +47,7 @@ public final class MailListener implements SimpleMessageListener {
 		try {
 			Thread.sleep(  (long) ( delay * 1000 ) );
 		} catch (InterruptedException e) {
-			System.out.println("Delay (sleep) is interrupted.");
+			LOGGER.error("Delay (sleep) is interrupted.");
 			Thread.currentThread().interrupt();
 		}
 		return true;

@@ -54,7 +54,7 @@ public final class FakeSMTP {
 		try {
 			ArgsHandler.INSTANCE.handleArgs(args);
 		} catch (ParseException e) {
-			System.out.println( "\n"+ e.getMessage()+ "\n" );
+			LOGGER.error("\n"+ e.getMessage()+ "\n");
 			ArgsHandler.INSTANCE.displayUsage();
 			return;
 		}

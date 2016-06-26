@@ -56,7 +56,7 @@ public class AboutActionListener implements ActionListener {
 		JEditorPane ep = new JEditorPane("text/html",
 			String.format("<html><body style=\"%s\">%s<br /><a href=\"%s\">%s</a></body></html>",
 				style, i18n.get("menubar.about.dialog"), link, link));
-		
+
 		// handle link events
 		ep.addHyperlinkListener(new HyperlinkListener() {
 			@Override
