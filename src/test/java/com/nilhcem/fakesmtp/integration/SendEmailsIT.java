@@ -17,7 +17,34 @@ public final class SendEmailsIT {
 		logger.info("Launching integration tests...");
 		logger.info("You need to run the project and launch the SMTP server on port {} before testing.", TestConfig.PORT_INTEGRATION_TESTS);
 	}
-
+	/**
+	 * Meant to be called within a loop
+	 * @param num
+	 * @throws EmailException
+	 */
+	private static void sendNumberedEmail(int num)throws EmailException{
+		Email email = new SimpleEmail();
+		email.setHostName(TestConfig.HOST);
+		email.setSmtpPort(TestConfig.PORT_INTEGRATION_TESTS);
+		email.setStartTLSEnabled(true);
+		email.setFrom("user@gmail.com");
+		email.setSubject("Simple email #" + num);
+		email.setMsg("This is a simple plain text email :-)... #" + num);
+		email.addTo("foo@bar.com");
+		email.send();
+	}
+	
+	/**
+	 * Meant to test the delay feature. Start app with -h for details
+	 * @throws EmailException
+	 */
+	@Test
+	public void sendMultipleNumberedEmails() throws EmailException{
+		for(int i = 1; i <= 5; i++){
+			SendEmailsIT.sendNumberedEmail(i);
+		}
+	}
+	
 	@Test
 	public void sendSimpleTestEmail() throws EmailException {
 		Email email = new SimpleEmail();

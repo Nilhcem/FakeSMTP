@@ -16,7 +16,7 @@ public class SMTPServerHandlerTest {
 
 	@Test(expected = OutOfRangePortException.class)
 	public void testOutOfRangePort() throws BindPortException, OutOfRangePortException {
-		SMTPServerHandler.INSTANCE.startServer(9999999, null);
+		SMTPServerHandler.INSTANCE.startServer(9999999, null, 0);
 	}
 
 	@Test

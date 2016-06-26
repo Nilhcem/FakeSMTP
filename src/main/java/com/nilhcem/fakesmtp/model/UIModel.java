@@ -34,6 +34,7 @@ public enum UIModel {
 	private String savePath = I18n.INSTANCE.get("emails.default.dir");
 	private final Map<Integer, String> listMailsMap = new HashMap<Integer, String>();
 	private List<String> relayDomains;
+	private float delay;
 
 	UIModel() {
 	}
@@ -61,7 +62,7 @@ public enum UIModel {
 					host = InetAddress.getByName(hostStr);
 				}
 
-				SMTPServerHandler.INSTANCE.startServer(port, host);
+				SMTPServerHandler.INSTANCE.startServer(port, host, delay);
 			} catch (NumberFormatException e) {
 				throw new InvalidPortException(e);
 			} catch	(UnknownHostException e) {
@@ -114,5 +115,9 @@ public enum UIModel {
 
 	public void setRelayDomains(List<String> relayDomains) {
 		this.relayDomains = relayDomains;
+	}
+
+	public void setDelay(float delay ) {
+		this.delay = delay;
 	}
 }

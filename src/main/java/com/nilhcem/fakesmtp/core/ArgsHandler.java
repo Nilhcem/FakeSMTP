@@ -59,6 +59,11 @@ public enum ArgsHandler {
 	private static final String OPT_EMLVIEWER_LONG = "eml-viewer";
 	private static final String OPT_EMLVIEWER_DESC = "Executable of program used for viewing emails";
 
+	private static final String OPT_DELAY_SHORT = "d";
+	private static final String OPT_DELAY_LONG = "delay";
+	private static final String OPT_DELAY_DESC = 
+			"Delays each mail acceptance for the specified seconds. Can be fractional";
+	
 	private final Options options;
 
 	private String port;
@@ -68,6 +73,7 @@ public enum ArgsHandler {
 	private boolean backgroundStart;
 	private boolean startServerAtLaunch;
 	private boolean memoryModeEnabled;
+	private String delay;
 
 	/**
 	 * Handles command line arguments.
@@ -82,6 +88,7 @@ public enum ArgsHandler {
 		options.addOption(OPT_RELAYDOMAINS_SHORT, OPT_RELAYDOMAINS_LONG, true, OPT_RELAYDOMAINS_DESC);
 		options.addOption(OPT_MEMORYMODE_SHORT, OPT_MEMORYMODE_LONG, false, OPT_MEMORYMODE_DESC);
 		options.addOption(OPT_EMLVIEWER_SHORT, OPT_EMLVIEWER_LONG, true, OPT_EMLVIEWER_DESC);
+		options.addOption(OPT_DELAY_SHORT, OPT_DELAY_LONG, true, OPT_DELAY_DESC);
 	}
 
 	/**
@@ -105,6 +112,7 @@ public enum ArgsHandler {
 		backgroundStart = cmd.hasOption(OPT_BACKGROUNDSTART_SHORT);
 		memoryModeEnabled = cmd.hasOption(OPT_MEMORYMODE_SHORT);
 		emlViewer = cmd.getOptionValue(OPT_EMLVIEWER_SHORT);
+		delay = cmd.getOptionValue(OPT_DELAY_SHORT, "0");
 
 		// Change SMTP server log level to info if memory mode was enabled to improve performance
 		if (memoryModeEnabled) {
@@ -123,6 +131,14 @@ public enum ArgsHandler {
 		// Host binding for GUI
 		if (bindAddress != null) {
 			UIModel.INSTANCE.setHost(bindAddress);
+		}
+		
+		// Simulate any email-acceptance lag if wanted
+		try {
+			UIModel.INSTANCE.setDelay( Float.parseFloat( delay ) );
+		} catch (NumberFormatException e) {
+			throw new ParseException( 
+					"The delay argument must be a number, not \""+delay+"\"" );
 		}
 	}
 
@@ -164,6 +180,12 @@ public enum ArgsHandler {
 	}
 
 	/**
+	 * @return the delay in seconds, to sleep before accepting each message,
+	 * or "0" if unspecified.
+	 */
+	public String getDelay() {
+		return delay;
+	}/**
 	 * @return the output directory, as specified by the user, or a {@code null} string if unspecified.
 	 */
 	public String getOutputDirectory() {

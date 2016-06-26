@@ -1,6 +1,7 @@
 package com.nilhcem.fakesmtp;
 
 import java.awt.EventQueue;
+import java.awt.SplashScreen;
 import java.awt.Toolkit;
 import java.net.InetAddress;
 import java.net.URL;
@@ -53,13 +54,20 @@ public final class FakeSMTP {
 		try {
 			ArgsHandler.INSTANCE.handleArgs(args);
 		} catch (ParseException e) {
+			LOGGER.error("\n"+ e.getMessage()+ "\n");
 			ArgsHandler.INSTANCE.displayUsage();
 			return;
 		}
 
 		if (ArgsHandler.INSTANCE.shouldStartInBackground()) {
 			try {
-				SMTPServerHandler.INSTANCE.startServer(getPort(), getBindAddress());
+				
+				SplashScreen splash = SplashScreen.getSplashScreen();
+				if( splash != null ) splash.close();
+				
+				SMTPServerHandler.INSTANCE.startServer(getPort(), 
+						getBindAddress(), getDelay() );
+				
 			} catch (NumberFormatException e) {
 				LOGGER.error("Error: Invalid port number", e);
 			} catch (UnknownHostException e) {
@@ -98,6 +106,14 @@ public final class FakeSMTP {
 				}
 			});
 		}
+	}
+
+	/**
+	 * @return How long to delay acceptance of each message, in seconds.
+	 * @throws NumberFormatException
+	 */
+	private static float getDelay() throws NumberFormatException {
+		return Float.parseFloat( ArgsHandler.INSTANCE.getDelay() );
 	}
 
 	/**

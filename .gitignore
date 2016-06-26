@@ -4,6 +4,7 @@
 
 # Target folder
 target/*
+/target/
 
 # Eclipse files
 .classpath
