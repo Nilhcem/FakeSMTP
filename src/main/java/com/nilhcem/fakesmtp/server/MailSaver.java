@@ -176,7 +176,7 @@ public final class MailSaver extends Observable {
 
 		// Copy String to file
 		try {
-			FileUtils.writeStringToFile(file, mailContent);
+			FileUtils.writeStringToFile(file, mailContent, Charset.forName(I18n.UTF8));
 		} catch (IOException e) {
 			// If we can't save file, we display the error in the SMTP logs
 			Logger smtpLogger = LoggerFactory.getLogger(org.subethamail.smtp.server.Session.class);
