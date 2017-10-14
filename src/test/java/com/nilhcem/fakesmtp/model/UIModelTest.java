@@ -32,6 +32,17 @@ public class UIModelTest {
 		UIModel.INSTANCE.setHost("INVALID");
 		UIModel.INSTANCE.toggleButton();
 	}
+	
+	@Test(expected = InvalidPortException.class)
+	public void testNullHostAndPort() throws BindPortException, OutOfRangePortException, InvalidPortException, InvalidHostException {
+		UIModel.INSTANCE.toggleButton();
+	}
+	
+	@Test(expected = InvalidPortException.class)
+	public void testEmptyHostAndPort() throws BindPortException, OutOfRangePortException, InvalidPortException, InvalidHostException {
+		UIModel.INSTANCE.setHost("");
+		UIModel.INSTANCE.toggleButton();
+	}	
 
 	@Test
 	public void testIsStarted() throws BindPortException, OutOfRangePortException, InvalidPortException, InvalidHostException {
