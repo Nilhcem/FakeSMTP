@@ -37,7 +37,7 @@ public final class MailSaver extends Observable {
 	// This can be a static variable since it is Thread Safe
 	private static final Pattern SUBJECT_PATTERN = Pattern.compile("^Subject: (.*)$");
 
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyhhmmssSSS");
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddhhmmssSSS");
 
 	/**
 	 * Saves incoming email in file system and notifies observers.
