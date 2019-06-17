@@ -68,11 +68,11 @@ cross-platform SMTP server with GUI for testing emails in applications or websit
 Listed below are some greats alternatives to Fake SMTP:
 
 
-**[SMTP4dev](http://smtp4dev.codeplex.com/)**
+**[SMTP4dev](https://github.com/rnwood/smtp4dev)**
 
 * Nice features;
 * Open source;
-* Windows only (written in .Net).
+* Cross-Platform (via .NET Core).
 
 
 **[DevNull SMTP](http://www.aboutmyip.com/AboutMyXApp/DevNullSmtp.jsp)**
