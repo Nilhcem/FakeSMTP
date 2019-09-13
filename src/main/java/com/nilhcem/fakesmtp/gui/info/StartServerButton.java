@@ -60,8 +60,9 @@ public final class StartServerButton extends Observable implements Observer {
 		}
 
 		if (UIModel.INSTANCE.isStarted()) {
-			button.setText(i18n.get("startsrv.started"));
-			button.setEnabled(false);
+			button.setText(i18n.get("startsrv.stop"));
+		} else {
+			button.setText(i18n.get("startsrv.start"));
 		}
 		setChanged();
 		notifyObservers();

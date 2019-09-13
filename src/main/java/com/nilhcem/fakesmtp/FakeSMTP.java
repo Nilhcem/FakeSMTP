@@ -59,7 +59,7 @@ public final class FakeSMTP {
 
 		if (ArgsHandler.INSTANCE.shouldStartInBackground()) {
 			try {
-				SMTPServerHandler.INSTANCE.startServer(getPort(), getBindAddress());
+				SMTPServerHandler.get().startServer(getPort(), getBindAddress());
 			} catch (NumberFormatException e) {
 				LOGGER.error("Error: Invalid port number", e);
 			} catch (UnknownHostException e) {

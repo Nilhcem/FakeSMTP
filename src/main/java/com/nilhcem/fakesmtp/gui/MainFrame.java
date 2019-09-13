@@ -79,7 +79,7 @@ public final class MainFrame {
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
-				SMTPServerHandler.INSTANCE.stopServer();
+				SMTPServerHandler.get().stopServer();
 			}
 		});
 
@@ -115,8 +115,8 @@ public final class MainFrame {
 			LOGGER.error("Could not save configuration", ex);
 		}
 		// Check for SMTP server running and stop it
-		if (SMTPServerHandler.INSTANCE.getSmtpServer().isRunning()) {
-			SMTPServerHandler.INSTANCE.getSmtpServer().stop();
+		if (SMTPServerHandler.get().getSmtpServer().isRunning()) {
+			SMTPServerHandler.get().getSmtpServer().stop();
 		}
 
 		mainFrame.dispose();

@@ -47,10 +47,10 @@ public final class ClearAllButton extends Observable implements Observer {
 					return;
 				}
 
-				synchronized (SMTPServerHandler.INSTANCE.getMailSaver().getLock()) {
+				synchronized (SMTPServerHandler.get().getMailSaver().getLock()) {
 				    // Note: Should delete emails before calling observers, since observers will clean the model.
 					if (answer == JOptionPane.YES_OPTION) {
-						SMTPServerHandler.INSTANCE.getMailSaver().deleteEmails();
+						SMTPServerHandler.get().getMailSaver().deleteEmails();
 					}
 				    setChanged();
 				    notifyObservers();
