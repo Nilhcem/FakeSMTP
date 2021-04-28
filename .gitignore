@@ -18,3 +18,4 @@ target/*
 # Received emails folder
 received-emails/*
 emails-recus/*
+/target/

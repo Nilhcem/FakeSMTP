@@ -59,8 +59,7 @@ public enum UIModel {
 				InetAddress host = null;
 				if (hostStr != null && !hostStr.isEmpty()) {
 					host = InetAddress.getByName(hostStr);
-				}
-
+				} 
 				SMTPServerHandler.INSTANCE.startServer(port, host);
 			} catch (NumberFormatException e) {
 				throw new InvalidPortException(e);

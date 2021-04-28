@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class I18nTest {
+	private static final String TEST = "TEST";
 	private static Locale defaultLocale;
 
 	@BeforeClass
@@ -34,6 +35,12 @@ public class I18nTest {
 
 	@Test
 	public void getValueWhenKeyIsFound() {
+		assertTrue(!I18n.INSTANCE.get("menubar.file").isEmpty());
+	}
+	
+	@Test
+	public void localeNotFound(){
+		Locale.setDefault(new Locale.Builder().setLanguage(TEST).build());
 		assertTrue(!I18n.INSTANCE.get("menubar.file").isEmpty());
 	}
 }
