@@ -25,7 +25,7 @@ import java.util.Observer;
 public final class LogsPane implements Observer {
 
 	private final JScrollPane logsPane = new JScrollPane();
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private final JTextArea logsArea = new JTextArea();
 
 	/**
