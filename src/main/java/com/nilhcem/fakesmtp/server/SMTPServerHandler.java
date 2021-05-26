@@ -15,74 +15,90 @@ import com.nilhcem.fakesmtp.core.exception.OutOfRangePortException;
  * @author Nilhcem
  * @since 1.0
  */
-public enum SMTPServerHandler {
-	INSTANCE;
+public class SMTPServerHandler {
+    private static SMTPServerHandler INSTANCE = null;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(SMTPServerHandler.class);
-	private final MailSaver mailSaver = new MailSaver();
-	private final MailListener myListener = new MailListener(mailSaver);
-	private final SMTPServer smtpServer = new SMTPServer(new SimpleMessageListenerAdapter(myListener), new SMTPAuthHandlerFactory());
+    private static final Logger LOGGER = LoggerFactory.getLogger(SMTPServerHandler.class);
+    private final MailSaver mailSaver;
+    private final MailListener myListener;
+    private final SMTPServer smtpServer;
 
-	SMTPServerHandler() {
-	}
+    private SMTPServerHandler() {
+        mailSaver = new MailSaver();
+        myListener = new MailListener(mailSaver);
+        smtpServer = new SMTPServer(new SimpleMessageListenerAdapter(myListener), new SMTPAuthHandlerFactory());
+    }
 
-	/**
-	 * Starts the server on the port and address specified in parameters.
-	 *
-	 * @param port the SMTP port to be opened.
-	 * @param bindAddress the address to bind to. null means bind to all.
-	 * @throws BindPortException when the port can't be opened.
-	 * @throws OutOfRangePortException when port is out of range.
-	 * @throws IllegalArgumentException when port is out of range.
-	 */
-	public void startServer(int port, InetAddress bindAddress) throws BindPortException, OutOfRangePortException {
-		LOGGER.debug("Starting server on port {}", port);
-		try {
-			smtpServer.setBindAddress(bindAddress);
-			smtpServer.setPort(port);
-			smtpServer.start();
-		} catch (RuntimeException exception) {
-			if (exception.getMessage().contains("BindException")) { // Can't open port
-				LOGGER.error("{}. Port {}", exception.getMessage(), port);
-				throw new BindPortException(exception, port);
-			} else if (exception.getMessage().contains("out of range")) { // Port out of range
-				LOGGER.error("Port {} out of range.", port);
-				throw new OutOfRangePortException(exception, port);
-			} else { // Unknown error
-				LOGGER.error("", exception);
-				throw exception;
-			}
-		}
-	}
+    /**
+     * Getter for the instance object. Creates a new one if there is none yet.
+     *
+     * @return the {@link SMTPServerHandler} instance.
+     */
+    public static SMTPServerHandler get() {
+        if (INSTANCE == null) {
+            INSTANCE = new SMTPServerHandler();
+        }
+        return INSTANCE;
+    }
 
-	/**
-	 * Stops the server.
-	 * <p>
-	 * If the server is not started, does nothing special.
-	 * </p>
-	 */
-	public void stopServer() {
-		if (smtpServer.isRunning()) {
-			LOGGER.debug("Stopping server");
-			smtpServer.stop();
-		}
-	}
+    /**
+     * Starts the server on the port and address specified in parameters.
+     *
+     * @param port        the SMTP port to be opened.
+     * @param bindAddress the address to bind to. null means bind to all.
+     * @throws BindPortException        when the port can't be opened.
+     * @throws OutOfRangePortException  when port is out of range.
+     * @throws IllegalArgumentException when port is out of range.
+     */
+    public void startServer(int port, InetAddress bindAddress) throws BindPortException, OutOfRangePortException {
+        LOGGER.debug("Starting server on port {}", port);
+        try {
+            smtpServer.setBindAddress(bindAddress);
+            smtpServer.setPort(port);
+            smtpServer.start();
+        } catch (RuntimeException exception) {
+            if (exception.getMessage().contains("BindException")) { // Can't open port
+                LOGGER.error("{}. Port {}", exception.getMessage(), port);
+                throw new BindPortException(exception, port);
+            } else if (exception.getMessage().contains("out of range")) { // Port out of range
+                LOGGER.error("Port {} out of range.", port);
+                throw new OutOfRangePortException(exception, port);
+            } else { // Unknown error
+                LOGGER.error("", exception);
+                throw exception;
+            }
+        }
+    }
 
-	/**
-	 * Returns the {@code MailSaver} object.
-	 *
-	 * @return the {@code MailSaver} object.
-	 */
-	public MailSaver getMailSaver() {
-		return mailSaver;
-	}
+    /**
+     * Stops the server.
+     * <p>
+     * If the server is not started, does nothing special.
+     * </p>
+     */
+    public void stopServer() {
+        if (smtpServer.isRunning()) {
+            LOGGER.debug("Stopping server");
+            smtpServer.stop();
+            INSTANCE = null;
+        }
+    }
 
-	/**
-	 * Returns the {@code SMTPServer} object.
+    /**
+     * Returns the {@code MailSaver} object.
+     *
+     * @return the {@code MailSaver} object.
+     */
+    public MailSaver getMailSaver() {
+        return mailSaver;
+    }
+
+    /**
+     * Returns the {@code SMTPServer} object.
      *
      * @return the {@code SMTPServer} object.
-	 */
-	public SMTPServer getSmtpServer() {
-		return smtpServer;
-	}
+     */
+    public SMTPServer getSmtpServer() {
+        return smtpServer;
+    }
 }

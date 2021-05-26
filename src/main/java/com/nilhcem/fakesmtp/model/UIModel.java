@@ -52,7 +52,7 @@ public enum UIModel {
 	 */
 	public void toggleButton() throws BindPortException, OutOfRangePortException, InvalidPortException, InvalidHostException {
 		if (started) {
-			// Do nothing. We can't stop the server. User has to quit the app (issue with SubethaSMTP)
+			SMTPServerHandler.get().stopServer();
 		} else {
 			try {
 				int port = Integer.parseInt(portStr);
@@ -61,7 +61,7 @@ public enum UIModel {
 					host = InetAddress.getByName(hostStr);
 				}
 
-				SMTPServerHandler.INSTANCE.startServer(port, host);
+				SMTPServerHandler.get().startServer(port, host);
 			} catch (NumberFormatException e) {
 				throw new InvalidPortException(e);
 			} catch	(UnknownHostException e) {

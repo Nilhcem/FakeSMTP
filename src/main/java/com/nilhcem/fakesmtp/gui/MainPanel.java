@@ -117,7 +117,7 @@ public final class MainPanel {
 		dirChooser.addObserver(saveMsgTextField);
 
 		// When a message is received
-		MailSaver mailSaver = SMTPServerHandler.INSTANCE.getMailSaver();
+		MailSaver mailSaver = SMTPServerHandler.get().getMailSaver();
 		mailSaver.addObserver(nbReceivedLabel);
 		mailSaver.addObserver(mailsListPane);
 		mailSaver.addObserver(lastMailPane);
