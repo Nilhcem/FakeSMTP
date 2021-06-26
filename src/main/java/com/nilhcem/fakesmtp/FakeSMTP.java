@@ -1,7 +1,6 @@
 package com.nilhcem.fakesmtp;
 
-import java.awt.EventQueue;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -94,10 +93,17 @@ public final class FakeSMTP {
 						LOGGER.error("", e);
 					}
 
+					normalizeDefaultTextAreaFont();
+
 					new MainFrame();
 				}
 			});
 		}
+	}
+
+	private static void normalizeDefaultTextAreaFont() {
+		int fontSize = UIManager.getFont("TextField.font").getSize() + 2;
+		UIManager.getDefaults().put("TextArea.font", new Font("monospaced", Font.PLAIN, fontSize));
 	}
 
 	/**
