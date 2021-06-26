@@ -44,8 +44,8 @@ public final class MailsListPane implements Observer {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MailsListPane.class);
 	private final I18n i18n = I18n.INSTANCE;
 	private final JScrollPane mailsListPane = new JScrollPane();
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss a");
-	private final int[] widths = new int[] {85, 140, 140}; // widths of columns in tab
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm:ss a Z (z)");
+	private final int[] widths = new int[] {140, 140, 140}; // widths of columns in tab
 
 	/**
 	 * Table with non-editable cells.
