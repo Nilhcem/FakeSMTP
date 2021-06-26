@@ -14,10 +14,10 @@ import com.nilhcem.fakesmtp.server.MailSaver;
 import com.nilhcem.fakesmtp.server.SMTPServerHandler;
 import net.miginfocom.swing.MigLayout;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
+import javax.swing.*;
+import java.awt.*;
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Provides the main panel of the application, which will contain all the components.
@@ -25,7 +25,7 @@ import java.util.Observable;
  * @author Nilhcem
  * @since 1.0
  */
-public final class MainPanel {
+public final class MainPanel implements Observer {
 	// I18n
 	private final I18n i18n = I18n.INSTANCE;
 
@@ -118,6 +118,7 @@ public final class MainPanel {
 
 		// When a message is received
 		MailSaver mailSaver = SMTPServerHandler.INSTANCE.getMailSaver();
+		mailSaver.addObserver(this);
 		mailSaver.addObserver(nbReceivedLabel);
 		mailSaver.addObserver(mailsListPane);
 		mailSaver.addObserver(lastMailPane);
@@ -205,5 +206,14 @@ public final class MainPanel {
 	 */
 	public SaveMsgField getSaveMsgTextField() {
 		return saveMsgTextField;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				mainPanel.paintImmediately(mainPanel.getVisibleRect());
+			}
+		});
 	}
 }
