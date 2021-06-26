@@ -43,15 +43,13 @@ public final class ClearAllButton extends Observable implements Observer {
 				int answer = JOptionPane.showConfirmDialog(button.getParent(), i18n.get("clearall.delete.email"),
 					String.format(i18n.get("clearall.title"), Configuration.INSTANCE.get("application.name")),
 						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if (answer == JOptionPane.CLOSED_OPTION) {
+				if (answer != JOptionPane.YES_OPTION) {
 					return;
 				}
 
 				synchronized (SMTPServerHandler.INSTANCE.getMailSaver().getLock()) {
 				    // Note: Should delete emails before calling observers, since observers will clean the model.
-					if (answer == JOptionPane.YES_OPTION) {
-						SMTPServerHandler.INSTANCE.getMailSaver().deleteEmails();
-					}
+					SMTPServerHandler.INSTANCE.getMailSaver().deleteEmails();
 				    setChanged();
 				    notifyObservers();
 					button.setEnabled(false);
